@@ -1,3 +1,4 @@
+"use client";
 import { useMemo } from "react";
 
 import { Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
@@ -22,6 +23,30 @@ const EditingPage = () => {
     ],
     []
   );
+
+  const handleDownloadPDF = async () => {
+    try {
+      const response = await fetch("/api/generate-pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) throw new Error("PDF generation failed");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "generated.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+    }
+  };
 
   return (
     <Flex justifyContent="center" alignItems="flex-start">
@@ -48,7 +73,9 @@ const EditingPage = () => {
           </Flex>
         </Box>
         <Flex justifyContent="center" gap={usySpacing.px20}>
-          <Button variant="primary">Download</Button>
+          <Button variant="primary" onClick={handleDownloadPDF}>
+            Download
+          </Button>
           <Link href="/preview">
             <Button variant="outline">Preview</Button>
           </Link>

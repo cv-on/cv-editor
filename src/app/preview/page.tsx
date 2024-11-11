@@ -1,5 +1,5 @@
 import { Flex } from "@usy-ui/base";
-import { CvTemplate } from "../components/cv-template";
+import { CvTemplate } from "../../components/cv-template";
 
 const PreviewPage = () => {
   return (

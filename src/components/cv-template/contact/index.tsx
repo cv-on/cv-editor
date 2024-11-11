@@ -11,6 +11,7 @@ import {
 } from "@usy-ui/base";
 
 import { Section } from "../../section";
+import Link from "next/link";
 
 export const Contact = () => {
   const itemsMemo = useMemo(
@@ -26,10 +27,12 @@ export const Contact = () => {
       {
         icon: <BrandGithubIcon />,
         label: "github.com/orgs/exper-projects",
+        url: "https://github.com/orgs/exper-projects",
       },
       {
         icon: <BrandLinkedinIcon />,
         label: "linkedin.com/in/anhthi-ieig",
+        url: "https://www.linkedin.com/in/anhthi-ieig/",
       },
     ],
     []
@@ -38,11 +41,17 @@ export const Contact = () => {
   return (
     <>
       <Section title="Contact">
-        {itemsMemo.map(({ icon, label }) => (
+        {itemsMemo.map(({ icon, label, url }) => (
           <Flex key={label} marginProps={{ marginBottom: usySpacing.px10 }}>
             {icon}
             &nbsp;&nbsp;
-            <Typography size="small">{label}</Typography>
+            {url ? (
+              <Link href={url} target="_blank">
+                <Typography size="small">{label}</Typography>
+              </Link>
+            ) : (
+              <Typography size="small">{label}</Typography>
+            )}
           </Flex>
         ))}
       </Section>

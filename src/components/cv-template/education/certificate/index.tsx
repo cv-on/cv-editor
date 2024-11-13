@@ -1,8 +1,11 @@
 import { FC } from "react";
 
 import { Typography } from "@usy-ui/base";
-import { ParagraphType } from "@/types/common";
 
-export const Certificate: FC<ParagraphType> = ({ content }) => {
+type CertificateProps = {
+  content: string;
+};
+
+export const Certificate: FC<CertificateProps> = ({ content }) => {
   return <Typography size="small">- {content}</Typography>;
 };

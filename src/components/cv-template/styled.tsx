@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 const a4Ratio = 1.414357682619647;
 
-export const CvPageStyled = styled.div`
+export const CvPageStyled = styled.div<{ $isRenderMode?: boolean }>`
   width: 900px;
+  height: 100%;
   min-height: calc(900px * ${a4Ratio});
   background-color: ${usyColor.white};
-  padding: ${usySpacing.px40};
+  padding: ${({ $isRenderMode }) => ($isRenderMode ? 0 : usySpacing.px40)};
 `;
 
 export const MainColumnStyled = styled.div`

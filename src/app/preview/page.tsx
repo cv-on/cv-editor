@@ -4,7 +4,7 @@ import { CvTemplate } from "../../components/cv-template";
 const PreviewPage = () => {
   return (
     <Flex justifyContent="center">
-      <CvTemplate />
+      <CvTemplate isRenderMode />
     </Flex>
   );
 };

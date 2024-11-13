@@ -1,5 +1,8 @@
+import { Url } from "./common";
+
 export type SideProjectType = {
   name: string;
   description: string;
-  url: string;
+  techStacks: string[];
+  url: Url;
 };

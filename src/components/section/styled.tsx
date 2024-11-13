@@ -3,7 +3,7 @@ import { Typography, usyColor, usySpacing } from "@usy-ui/base";
 import styled from "styled-components";
 
 export const SectionStyled = styled.div`
-  margin-bottom: ${usySpacing.px40};
+  margin-bottom: ${usySpacing.px32};
 `;
 
 export const TitleTypography = styled(Typography)`
@@ -18,7 +18,7 @@ export const TitleTypography = styled(Typography)`
   &::before {
     content: "";
     width: 80%;
-    height: ${usySpacing.px2};
+    height: 1px;
     background-color: ${usyColor.dark5};
     position: absolute;
     left: 0;

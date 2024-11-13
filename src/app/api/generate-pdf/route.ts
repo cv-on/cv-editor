@@ -10,16 +10,18 @@ export async function POST() {
       waitUntil: "networkidle0",
     });
 
-    await page.emulateMediaType("screen");
+    await page.emulateMediaType("print");
+    const scaleDownRate = 0.89;
     const pdfBuffer = await page.pdf({
-      scale: 0.9,
+      scale: scaleDownRate,
       format: "a4",
-      // margin: {
-      //   top: 10,
-      //   right: 10,
-      //   bottom: 10,
-      //   left: 10,
-      // },
+      printBackground: true,
+      margin: {
+        top: 40 * scaleDownRate,
+        right: 40 * scaleDownRate,
+        bottom: 40 * scaleDownRate,
+        left: 40 * scaleDownRate,
+      },
     });
 
     await browser.close();

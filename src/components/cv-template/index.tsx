@@ -17,12 +17,16 @@ import { Summary } from "./summary";
 import { TechnicalSkills } from "./technical-skills";
 
 type CvTemplateProps = {
+  isRenderMode?: boolean;
   className?: string;
 };
 
-export const CvTemplate: FC<CvTemplateProps> = ({ className }) => {
+export const CvTemplate: FC<CvTemplateProps> = ({
+  isRenderMode,
+  className,
+}) => {
   return (
-    <CvPageStyled className={className}>
+    <CvPageStyled $isRenderMode={isRenderMode} className={className}>
       <Flex
         alignItems="center"
         gap={usySpacing.px40}

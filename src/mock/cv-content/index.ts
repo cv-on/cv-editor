@@ -6,7 +6,7 @@ import { experience } from "./experience";
 import { sideProjects } from "./side-project";
 import { education } from "./education";
 
-export const mockCVContent: CvTemplateType = {
+export const mockCvContent: CvTemplateType = {
   personalInfo: personalInfo,
   qualification: qualification,
   technicalSkills: technicalSkills,

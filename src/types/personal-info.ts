@@ -1,13 +1,14 @@
 import { Url } from "./common";
 
+export type ConnectTypeUnion = "github" | "linkedin";
 type ConnectLink = {
-  type: "github" | "linkedin";
-  label: string;
-  url: Url;
+  type: ConnectTypeUnion;
+  shortUrl: string;
+  fullUrl: Url;
 };
 
 export type PersonalInfoType = {
-  avatar: string;
+  avatarSrc: string;
   name: string;
   position: string;
   dateOfBirth: Date;

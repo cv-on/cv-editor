@@ -4,5 +4,6 @@ export type SideProjectType = {
   name: string;
   description: string;
   techStacks: string[];
-  url: Url;
+  shortUrl: string;
+  fullUrl: Url;
 };

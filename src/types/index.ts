@@ -10,6 +10,8 @@ import { SideProjectType } from "./side-project";
 import { TechnicalSkillType } from "./technical-skills";
 import { EducationType } from "./education";
 
+export * from "./personal-info";
+
 export type CvTemplateType = {
   personalInfo: PersonalInfoType;
   qualification: QualificationType;

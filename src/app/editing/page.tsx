@@ -84,7 +84,7 @@ const EditingPage = () => {
           >
             Download
           </Button>
-          <Link href="/preview">
+          <Link href="/preview" target="_blank">
             <Button variant="outline">Preview</Button>
           </Link>
         </Flex>

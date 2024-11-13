@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { ReactNode, useContext, useMemo } from "react";
 
 import {
   BrandGithubIcon,
@@ -12,30 +12,44 @@ import {
 
 import { Section } from "../../section";
 import Link from "next/link";
+import { CvContentContext } from "@/context/cv-context";
+import { getBrandIconByType } from "./utils";
+import { Url } from "@/types/common";
+
+type ContactItem = {
+  icon: ReactNode;
+  label: string;
+  url?: Url;
+};
 
 export const Contact = () => {
-  const itemsMemo = useMemo(
+  const {
+    cvContent: { personalInfo },
+  } = useContext(CvContentContext);
+
+  const connectLinksMemo = useMemo<ContactItem[]>(
+    () =>
+      personalInfo.connectLinks.map((link) => ({
+        icon: getBrandIconByType(link.type),
+        label: link.shortUrl,
+        url: link.fullUrl,
+      })),
+    [personalInfo]
+  );
+
+  const itemsMemo = useMemo<ContactItem[]>(
     () => [
       {
         icon: <EnvelopeIcon />,
-        label: "anhthi.ieig@gmail.com",
+        label: personalInfo.email,
       },
       {
         icon: <PhoneIcon />,
-        label: "(+84) 342777610",
+        label: personalInfo.phone,
       },
-      {
-        icon: <BrandGithubIcon />,
-        label: "github.com/orgs/exper-projects",
-        url: "https://github.com/orgs/exper-projects",
-      },
-      {
-        icon: <BrandLinkedinIcon />,
-        label: "linkedin.com/in/anhthi-ieig",
-        url: "https://www.linkedin.com/in/anhthi-ieig/",
-      },
+      ...connectLinksMemo,
     ],
-    []
+    [personalInfo, connectLinksMemo]
   );
 
   return (

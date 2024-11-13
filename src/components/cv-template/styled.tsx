@@ -26,5 +26,6 @@ export const SubColumnStyled = styled.div`
 export const NameTypography = styled.h2`
   margin-top: 0;
   margin-bottom: ${usySpacing.px6};
+  text-transform: uppercase;
   font-family: "Lora";
 `;

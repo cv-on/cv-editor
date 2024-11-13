@@ -8,18 +8,22 @@ export const TechnicalSkills = () => {
       <Section title="Technical Skills">
         <Skill
           type="Languages"
-          paragraph={{
-            content: "JavaScript (ES6+), TypeScript, Go, HTML5, CSS3/Sass",
-          }}
+          items={[
+            "JavaScript (ES6+)",
+            "TypeScript",
+            "Go",
+            "HTML5",
+            "CSS3/Sass",
+          ]}
         />
-        <Skill type="Frontend" paragraph={{ content: "ReactJS, NextJS" }} />
-        <Skill type="Backend" paragraph={{ content: "NestJS, ExpressJS" }} />
-        <Skill type="AWS" paragraph={{ content: "S3, EC2" }} />
+        <Skill type="Frontend" items={["ReactJS", "NextJS"]} />
+        <Skill type="Backend" items={["NestJS", "ExpressJS"]} />
+        <Skill type="AWS" items={["S3", "EC2"]} />
         <Skill
           type="Testing"
-          paragraph={{ content: "Jest, React Testing Library, Playwright" }}
+          items={["Jest", "React Testing Library", "Playwright"]}
         />
-        <Skill type="Other tools" paragraph={{ content: "Git, Jira, npm" }} />
+        <Skill type="Other tools" items={["Git", "Jira", "npm"]} />
       </Section>
     </>
   );

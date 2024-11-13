@@ -5,12 +5,14 @@ export const sideProjects: SideProjectType[] = [
     name: "Project A",
     description: "Implement project A",
     techStacks: ["ReactJS", "NextJS"],
-    url: "https://projecta.com",
+    shortUrl: "project-a.com",
+    fullUrl: "https://project-a.com",
   },
   {
     name: "Project B",
     description: "Implement project B",
     techStacks: ["ReactJS", "NextJS"],
-    url: "https://projecta.com",
+    shortUrl: "project-b.com",
+    fullUrl: "https://project-b.com",
   },
 ];

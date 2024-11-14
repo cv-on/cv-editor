@@ -4,9 +4,13 @@ import { Box, Typography, usySpacing } from "@usy-ui/base";
 
 import { TechSkillType } from "@/types";
 
-export const TechSkill: FC<TechSkillType> = ({ type, items }) => {
+type TechSkillProps = TechSkillType & {
+  index: number;
+};
+
+export const TechSkill: FC<TechSkillProps> = ({ type, items, index }) => {
   return (
-    <Box marginProps={{ marginBottom: usySpacing.px14 }}>
+    <Box marginProps={{ marginTop: index === 0 ? "0" : usySpacing.px14 }}>
       <Typography size="small" weight="bold">
         {type}
       </Typography>

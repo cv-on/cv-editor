@@ -16,14 +16,14 @@ export const personalInfo: PersonalInfoSectionType = {
     owners of products who understand and bring solutions to solve customer's problems`,
   connectLinks: [
     {
-      type: "github",
-      shortUrl: "github.com/orgs/exper-projects",
-      fullUrl: "https://github.com/orgs/exper-projects",
-    },
-    {
       type: "linkedin",
       shortUrl: "linkedin.com/in/anhthi-ieig",
       fullUrl: "https://linkedin.com/in/anhthi-ieig",
+    },
+    {
+      type: "github",
+      shortUrl: "github.com/orgs/exper-projects",
+      fullUrl: "https://github.com/orgs/exper-projects",
     },
   ],
 };

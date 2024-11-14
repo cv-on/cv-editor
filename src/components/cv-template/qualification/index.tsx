@@ -1,14 +1,22 @@
+import { useContext } from "react";
+
+import { CvContentContext } from "@/context/cv-context";
+
 import { CvSection } from "../../cv-section";
 
-import { ItemDesc } from "./item-desc";
+import { Paragraph } from "./paragraph";
 
 export const QualificationSection = () => {
+  const {
+    cvContent: { qualification },
+  } = useContext(CvContentContext);
+
   return (
     <>
       <CvSection title="Qualification">
-        <ItemDesc content="Solid understanding on software development using in Agile/Scrum" />
-        <ItemDesc content="Practical experience on developing a scalable frontend codebase from scratch (ReactJS, NextJS)" />
-        <ItemDesc content="Adapt well from loosely process to strictly process, from product to outsourcing companies in various fields such as FinTech, Education, Logistics..." />
+        {qualification.paragraphs.map((content) => (
+          <Paragraph key={content.substring(0, 10)} content={content} />
+        ))}
       </CvSection>
     </>
   );

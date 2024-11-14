@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import { Typography } from "@usy-ui/base";
 
-type CertificateProps = {
+type ParagraphProps = {
   content: string;
 };
 
-export const Certificate: FC<CertificateProps> = ({ content }) => {
+export const Paragraph: FC<ParagraphProps> = ({ content }) => {
   return <Typography size="small">- {content}</Typography>;
 };

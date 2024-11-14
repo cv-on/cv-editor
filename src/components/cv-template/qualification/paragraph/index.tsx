@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import { Typography } from "@usy-ui/base";
 
-type ItemDescProps = {
+type ParagraphProps = {
   content: string;
 };
 
-export const ItemDesc: FC<ItemDescProps> = ({ content }) => {
+export const Paragraph: FC<ParagraphProps> = ({ content }) => {
   return <Typography size="small">- {content}</Typography>;
 };

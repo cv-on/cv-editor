@@ -1,66 +1,47 @@
-import { Typography } from "@usy-ui/base";
+import { useContext } from "react";
+
+import { CvContentContext } from "@/context/cv-context";
 
 import { CvSection } from "../../cv-section";
 
+import { Company } from "./company";
+
 export const ExperienceSection = () => {
+  const {
+    cvContent: { experience },
+  } = useContext(CvContentContext);
+
   return (
     <>
       <CvSection title="Experience">
-        <Typography size="small">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
-        <Typography size="small">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
-        <Typography size="small">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
-        <Typography size="small">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
-        <Typography size="small">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-          ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum
-        </Typography>
+        {experience.companies.map(
+          (
+            {
+              name,
+              fromDate,
+              toDate,
+              position,
+              projects,
+              techStacks,
+              responsibilities,
+              achievements,
+            },
+            index
+          ) => (
+            <Company
+              key={name}
+              name={name}
+              fromDate={fromDate}
+              toDate={toDate}
+              position={position}
+              projects={projects}
+              techStacks={techStacks}
+              responsibilities={responsibilities}
+              achievements={achievements}
+              index={index}
+            />
+          )
+        )}
       </CvSection>
     </>
   );

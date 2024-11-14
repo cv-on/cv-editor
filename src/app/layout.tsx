@@ -7,14 +7,14 @@ import StyledComponentsRegistry from "@/lib/register";
 import "@usy-ui/base/dist/styles.css";
 
 const lora = Lora({
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
 });
 
 const montserrat = Montserrat({
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",

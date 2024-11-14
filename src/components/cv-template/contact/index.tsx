@@ -40,11 +40,29 @@ export const ContactSection = () => {
   const itemsMemo = useMemo<ContactItem[]>(
     () => [
       {
-        icon: <EnvelopeIcon />,
+        icon: (
+          <EnvelopeIcon
+            style={{
+              minWidth: "22px",
+              maxWidth: "22px",
+              minHeight: "22px",
+              maxHeight: "22px",
+            }}
+          />
+        ),
         label: personalInfo.email,
       },
       {
-        icon: <PhoneIcon />,
+        icon: (
+          <PhoneIcon
+            style={{
+              minWidth: "22px",
+              maxWidth: "22px",
+              minHeight: "22px",
+              maxHeight: "22px",
+            }}
+          />
+        ),
         label: personalInfo.phone,
       },
       ...connectLinksMemo,

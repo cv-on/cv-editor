@@ -1,23 +1,23 @@
 import { FC } from "react";
 
 import { Box, Flex, Typography, usySpacing } from "@usy-ui/base";
+import dayjs from "dayjs";
 
 import { CompanyType } from "@/types";
-import dayjs from "dayjs";
+
+import { CompanyFlexStyled } from "./company.styled";
+import { Project } from "./project";
 
 type CompanyProps = CompanyType & {
   index: number;
 };
 
 export const Company: FC<CompanyProps> = ({
-  name,
+  companyName,
   fromDate,
   toDate,
   position,
   projects,
-  techStacks,
-  responsibilities,
-  achievements,
   index,
 }) => {
   const fromDateStr = dayjs(fromDate).format("MMM YYYY");
@@ -28,98 +28,50 @@ export const Company: FC<CompanyProps> = ({
    * Render
    */
 
-  const renderNameAndTime = () => {
-    return (
-      <Flex justifyContent="space-between" alignItems="center">
-        <Typography weight="bold">{name}</Typography>
-        <Typography size="tiny">{`${fromDateStr} - ${toDateStr}`}</Typography>
-      </Flex>
-    );
-  };
-
-  const renderPosition = () => {
+  const renderNameTimeAndPosition = () => {
     return (
       <>
-        <Typography size="small">{position}</Typography>
-      </>
-    );
-  };
-
-  const renderTechStacks = () => {
-    return (
-      <>
-        <Typography>
-          <Typography weight="bold" size="small">
-            ◾ Tech Stacks:&nbsp;
+        <Flex justifyContent="space-between" alignItems="center">
+          <Typography size="large" weight="bold">
+            {companyName}
           </Typography>
-          {techStacks.join(", ")}
+          <Typography
+            tag="em"
+            size="tiny"
+          >{`${fromDateStr} - ${toDateStr}`}</Typography>
+        </Flex>
+        <Typography tag="em" size="small" weight="semibold">
+          {position}
         </Typography>
       </>
     );
   };
 
   const renderProjects = () => {
-    return (
-      <>
-        <Typography weight="bold" size="small">
-          ◾ Projects
-        </Typography>
-        <Box paddingProps={{ paddingLeft: usySpacing.px6 }}>
-          {projects.map((project) => (
-            <Typography key={project} size="small">
-              {`- ${project}`}
-            </Typography>
-          ))}
-        </Box>
-      </>
-    );
-  };
-
-  const renderResponsibilities = () => {
-    return (
-      <>
-        <Typography weight="bold" size="small">
-          ◾ Responsibilities
-        </Typography>
-        <Box paddingProps={{ paddingLeft: usySpacing.px6 }}>
-          {responsibilities.map((responsibility) => (
-            <Typography key={responsibility} size="small">
-              {`- ${responsibility}`}
-            </Typography>
-          ))}
-        </Box>
-      </>
-    );
-  };
-
-  const renderAchievements = () => {
-    return (
-      <>
-        <Typography weight="bold" size="small">
-          ◾ Achievements
-        </Typography>
-        <Box paddingProps={{ paddingLeft: usySpacing.px6 }}>
-          {achievements.map((achieve) => (
-            <Typography key={achieve} size="small">
-              {`- ${achieve}`}
-            </Typography>
-          ))}
-        </Box>
-      </>
+    return projects.map(
+      ({ client, projectName, techStacks, responsibilities, achievements }) => (
+        <Project
+          key={projectName}
+          client={client}
+          projectName={projectName}
+          techStacks={techStacks}
+          responsibilities={responsibilities}
+          achievements={achievements}
+        />
+      )
     );
   };
 
   return (
-    <Flex
+    <CompanyFlexStyled
       direction="column"
-      marginProps={{ marginTop: index === 0 ? "0" : usySpacing.px18 }}
+      paddingProps={{
+        paddingTop: index === 0 ? "0" : usySpacing.px24,
+        paddingBottom: usySpacing.px12,
+      }}
     >
-      {renderNameAndTime()}
-      {renderPosition()}
-      {renderTechStacks()}
+      {renderNameTimeAndPosition()}
       {renderProjects()}
-      {renderResponsibilities()}
-      {renderAchievements()}
-    </Flex>
+    </CompanyFlexStyled>
   );
 };

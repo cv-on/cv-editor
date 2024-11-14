@@ -1,12 +1,17 @@
-export type CompanyType = {
-  name: string;
-  fromDate: Date;
-  toDate: Date | "present";
-  position: string;
-  projects: string[];
+export type ProjectType = {
+  client?: string;
+  projectName: string;
   techStacks: string[];
   responsibilities: string[];
   achievements: string[];
+};
+
+export type CompanyType = {
+  companyName: string;
+  fromDate: Date;
+  toDate: Date | "present";
+  position: string;
+  projects: ProjectType[];
 };
 
 export type ExperienceSectionType = {

@@ -1,6 +1,7 @@
 "use client";
 import { Scrollable, usyColor, usySpacing } from "@usy-ui/base";
 import styled from "styled-components";
+
 import { CvTemplate } from "../../components/cv-template";
 
 export const PreviewContainerStyled = styled(Scrollable)`

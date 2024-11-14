@@ -1,6 +1,7 @@
+import { createContext } from "react";
+
 import { mockCvContent } from "@/mock/cv-content";
 import { CvTemplateType } from "@/types";
-import { createContext } from "react";
 
 type CvContentContextProps = {
   cvContent: CvTemplateType;

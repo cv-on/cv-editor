@@ -1,20 +1,20 @@
 import { ReactNode, useContext, useMemo } from "react";
 
 import {
-  BrandGithubIcon,
-  BrandLinkedinIcon,
   EnvelopeIcon,
   Flex,
   PhoneIcon,
   Typography,
   usySpacing,
 } from "@usy-ui/base";
-
-import { Section } from "../../section";
 import Link from "next/link";
+
 import { CvContentContext } from "@/context/cv-context";
+import { Url } from "@/types";
+
+import { CvSection } from "../../cv-section";
+
 import { getBrandIconByType } from "./utils";
-import { Url } from "@/types/common";
 
 type ContactItem = {
   icon: ReactNode;
@@ -54,7 +54,7 @@ export const Contact = () => {
 
   return (
     <>
-      <Section title="Contact">
+      <CvSection title="Contact">
         {itemsMemo.map(({ icon, label, url }) => (
           <Flex key={label} marginProps={{ marginBottom: usySpacing.px10 }}>
             {icon}
@@ -68,7 +68,7 @@ export const Contact = () => {
             )}
           </Flex>
         ))}
-      </Section>
+      </CvSection>
     </>
   );
 };

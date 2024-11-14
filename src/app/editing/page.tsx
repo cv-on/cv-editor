@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 
 import { Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
+import Link from "next/link";
 
 import {
   CvTemplateStyled,
@@ -9,7 +10,6 @@ import {
   EditSectionStyled,
   PreviewContainerStyled,
 } from "./styled";
-import Link from "next/link";
 
 const EditingPage = () => {
   const [isDownloading, setIsDownloading] = useState(false);

@@ -1,9 +1,10 @@
+import clsx from "clsx";
 import type { Metadata } from "next";
 import { Lora, Montserrat } from "next/font/google";
 
 import StyledComponentsRegistry from "@/lib/register";
+
 import "@usy-ui/base/dist/styles.css";
-import clsx from "clsx";
 
 const lora = Lora({
   weight: ["400", "700"],

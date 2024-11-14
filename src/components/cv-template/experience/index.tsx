@@ -1,11 +1,11 @@
 import { Typography } from "@usy-ui/base";
 
-import { Section } from "../../section";
+import { CvSection } from "../../cv-section";
 
 export const Experience = () => {
   return (
     <>
-      <Section title="Experience">
+      <CvSection title="Experience">
         <Typography size="small">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry&apos;s standard dummy text
@@ -61,7 +61,7 @@ export const Experience = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum
         </Typography>
-      </Section>
+      </CvSection>
     </>
   );
 };

@@ -1,23 +1,20 @@
 import { FC, useState } from "react";
 
-import { Avatar, Box, Flex, Typography, usySpacing } from "@usy-ui/base";
+import { Flex, usySpacing } from "@usy-ui/base";
+
+import { CvContentContext } from "@/context/cv-context";
+import { mockCvContent } from "@/mock/cv-content";
+import { CvTemplateType } from "@/types";
 
 import { Contact } from "./contact";
 import { CoreQualification } from "./core-qualification";
 import { Education } from "./education";
 import { Experience } from "./experience";
+import { Header } from "./header";
 import { SideProjects } from "./side-projects";
-import {
-  CvPageStyled,
-  MainColumnStyled,
-  NameTypography,
-  SubColumnStyled,
-} from "./styled";
+import { CvPageStyled, MainColumnStyled, SubColumnStyled } from "./styled";
 import { Summary } from "./summary";
 import { TechnicalSkills } from "./technical-skills";
-import { CvContentContext } from "@/context/cv-context";
-import { mockCvContent } from "@/mock/cv-content";
-import { CvTemplateType } from "@/types";
 
 type CvTemplateProps = {
   isRenderMode?: boolean;
@@ -29,22 +26,11 @@ export const CvTemplate: FC<CvTemplateProps> = ({
   className,
 }) => {
   const [cvContent, setCvContent] = useState<CvTemplateType>(mockCvContent);
-  const { personalInfo } = cvContent;
 
   return (
     <CvContentContext.Provider value={{ cvContent, setCvContent }}>
       <CvPageStyled $isRenderMode={isRenderMode} className={className}>
-        <Flex
-          alignItems="center"
-          gap={usySpacing.px40}
-          marginProps={{ marginTop: usySpacing.px10 }}
-        >
-          <Avatar size="huge" src={personalInfo.avatarSrc} />
-          <Box>
-            <NameTypography>{personalInfo.name}</NameTypography>
-            <Typography weight="semibold">{personalInfo.position}</Typography>
-          </Box>
-        </Flex>
+        <Header />
         <Flex marginProps={{ marginTop: usySpacing.px48 }}>
           <MainColumnStyled>
             <Summary />

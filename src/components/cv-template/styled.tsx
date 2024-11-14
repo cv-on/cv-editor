@@ -22,10 +22,3 @@ export const SubColumnStyled = styled.div`
   max-width: 33.33%;
   padding-left: ${usySpacing.px20};
 `;
-
-export const NameTypography = styled.h2`
-  margin-top: 0;
-  margin-bottom: ${usySpacing.px6};
-  text-transform: uppercase;
-  font-family: "Lora";
-`;

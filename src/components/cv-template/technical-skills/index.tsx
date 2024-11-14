@@ -1,11 +1,11 @@
-import { Section } from "../../section";
+import { CvSection } from "../../cv-section";
 
 import { Skill } from "./skills";
 
 export const TechnicalSkills = () => {
   return (
     <>
-      <Section title="Technical Skills">
+      <CvSection title="Technical Skills">
         <Skill
           type="Languages"
           items={[
@@ -24,7 +24,7 @@ export const TechnicalSkills = () => {
           items={["Jest", "React Testing Library", "Playwright"]}
         />
         <Skill type="Other tools" items={["Git", "Jira", "npm"]} />
-      </Section>
+      </CvSection>
     </>
   );
 };

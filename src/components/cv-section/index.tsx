@@ -2,12 +2,12 @@ import { FC, ReactNode } from "react";
 
 import { SectionStyled, TitleTypography } from "./styled";
 
-type SectionProps = {
+type CvSectionProps = {
   title: string;
   children: ReactNode;
 };
 
-export const Section: FC<SectionProps> = ({ title, children }) => {
+export const CvSection: FC<CvSectionProps> = ({ title, children }) => {
   return (
     <SectionStyled>
       <TitleTypography tag="h2" size="large" weight="bold">

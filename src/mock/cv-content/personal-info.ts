@@ -1,4 +1,5 @@
 import { PersonalInfoType } from "@/types";
+
 import { AvatarSrcConst } from "../images/avatar";
 
 export const personalInfo: PersonalInfoType = {

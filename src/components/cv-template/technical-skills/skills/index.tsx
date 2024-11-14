@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { Box, Typography, usySpacing } from "@usy-ui/base";
+
 import { TechnicalSkillType } from "@/types";
 
 export const Skill: FC<TechnicalSkillType> = ({ type, items }) => {

@@ -1,11 +1,11 @@
-import { Section } from "../../section";
+import { CvSection } from "../../cv-section";
 
 import { SideProject } from "./project";
 
 export const SideProjects = () => {
   return (
     <>
-      <Section title="Side Projects">
+      <CvSection title="Side Projects">
         <SideProject
           name="Usy UI"
           description="A React component UI library"
@@ -20,7 +20,7 @@ export const SideProjects = () => {
           shortUrl="usy-ui.github.io/landing"
           fullUrl="https://usy-ui.github.io/landing"
         />
-      </Section>
+      </CvSection>
     </>
   );
 };

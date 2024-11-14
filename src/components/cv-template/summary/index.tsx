@@ -1,8 +1,10 @@
+import { useContext } from "react";
+
 import { Typography } from "@usy-ui/base";
 
-import { Section } from "../../section";
-import { useContext } from "react";
 import { CvContentContext } from "@/context/cv-context";
+
+import { CvSection } from "../../cv-section";
 
 export const Summary = () => {
   const {
@@ -11,9 +13,9 @@ export const Summary = () => {
 
   return (
     <>
-      <Section title="Summary">
+      <CvSection title="Summary">
         <Typography size="small">{personalInfo.summary}</Typography>
-      </Section>
+      </CvSection>
     </>
   );
 };

@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { Flex, Typography, usySpacing } from "@usy-ui/base";
-import { SideProjectType } from "@/types/side-project";
 import Link from "next/link";
+
+import { SideProjectType } from "@/types/cv-types/side-project";
 
 export const SideProject: FC<SideProjectType> = ({
   name,

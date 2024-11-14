@@ -1,3 +1,3 @@
-export type QualificationType = {
+export type QualificationSectionType = {
   paragraphs: string[];
 };

@@ -1,3 +1,3 @@
-export type EducationType = {
+export type EducationSectionType = {
   paragraphs: string[];
 };

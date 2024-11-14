@@ -2,7 +2,7 @@ import { CvSection } from "../../cv-section";
 
 import { SideProject } from "./project";
 
-export const SideProjects = () => {
+export const SideProjectsSection = () => {
   return (
     <>
       <CvSection title="Side Projects">

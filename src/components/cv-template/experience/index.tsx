@@ -2,7 +2,7 @@ import { Typography } from "@usy-ui/base";
 
 import { CvSection } from "../../cv-section";
 
-export const Experience = () => {
+export const ExperienceSection = () => {
   return (
     <>
       <CvSection title="Experience">

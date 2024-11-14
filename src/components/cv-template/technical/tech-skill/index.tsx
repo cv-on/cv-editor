@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import { Box, Typography, usySpacing } from "@usy-ui/base";
 
-import { TechnicalSkillType } from "@/types";
+import { TechSkillType } from "@/types";
 
-export const Skill: FC<TechnicalSkillType> = ({ type, items }) => {
+export const TechSkill: FC<TechSkillType> = ({ type, items }) => {
   return (
     <Box marginProps={{ marginBottom: usySpacing.px14 }}>
       <Typography size="small" weight="bold">

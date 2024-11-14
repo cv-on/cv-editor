@@ -2,7 +2,7 @@ import { CvSection } from "../../cv-section";
 
 import { ItemDesc } from "./item-desc";
 
-export const CoreQualification = () => {
+export const QualificationSection = () => {
   return (
     <>
       <CvSection title="Qualification">

@@ -1,6 +1,6 @@
-import { QualificationType } from "@/types";
+import { QualificationSectionType } from "@/types";
 
-export const qualification: QualificationType = {
+export const qualification: QualificationSectionType = {
   paragraphs: [
     "Solid understanding on software development using in Agile/Scrum",
     "Practical experience on developing a scalable frontend codebase from scratch (ReactJS, NextJS)",

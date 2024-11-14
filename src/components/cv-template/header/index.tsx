@@ -6,7 +6,7 @@ import { CvContentContext } from "@/context/cv-context";
 
 import { NameTypography } from "./styled";
 
-export const Header = () => {
+export const HeaderSection = () => {
   const {
     cvContent: { personalInfo },
   } = useContext(CvContentContext);

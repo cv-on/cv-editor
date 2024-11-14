@@ -1,15 +1,15 @@
-import { CompanyType } from "./company";
-import { EducationType } from "./education";
-import { PersonalInfoType } from "./personal-info";
-import { QualificationType } from "./qualification";
-import { SideProjectType } from "./side-project";
-import { TechnicalSkillType } from "./technical-skills";
+import { EducationSectionType } from "./education";
+import { ExperienceSectionType } from "./experience";
+import { PersonalInfoSectionType } from "./personal-info";
+import { QualificationSectionType } from "./qualification";
+import { SideProjectsSectionType } from "./side-projects";
+import { TechnicalSectionType } from "./technical";
 
 export type CvTemplateType = {
-  personalInfo: PersonalInfoType;
-  qualification: QualificationType;
-  technicalSkills: TechnicalSkillType[];
-  experience: CompanyType[];
-  sideProjects: SideProjectType[];
-  education: EducationType;
+  personalInfo: PersonalInfoSectionType;
+  qualification: QualificationSectionType;
+  technical: TechnicalSectionType;
+  experience: ExperienceSectionType;
+  sideProjects: SideProjectsSectionType;
+  education: EducationSectionType;
 };

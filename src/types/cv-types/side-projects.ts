@@ -7,3 +7,7 @@ export type SideProjectType = {
   shortUrl: string;
   fullUrl: Url;
 };
+
+export type SideProjectsSectionType = {
+  projects: SideProjectType[];
+};

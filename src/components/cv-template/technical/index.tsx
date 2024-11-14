@@ -1,12 +1,12 @@
 import { CvSection } from "../../cv-section";
 
-import { Skill } from "./skills";
+import { TechSkill } from "./tech-skill";
 
-export const TechnicalSkills = () => {
+export const TechnicalSection = () => {
   return (
     <>
       <CvSection title="Technical Skills">
-        <Skill
+        <TechSkill
           type="Languages"
           items={[
             "JavaScript (ES6+)",
@@ -16,14 +16,14 @@ export const TechnicalSkills = () => {
             "CSS3/Sass",
           ]}
         />
-        <Skill type="Frontend" items={["ReactJS", "NextJS"]} />
-        <Skill type="Backend" items={["NestJS", "ExpressJS"]} />
-        <Skill type="AWS" items={["S3", "EC2"]} />
-        <Skill
+        <TechSkill type="Frontend" items={["ReactJS", "NextJS"]} />
+        <TechSkill type="Backend" items={["NestJS", "ExpressJS"]} />
+        <TechSkill type="AWS" items={["S3", "EC2"]} />
+        <TechSkill
           type="Testing"
           items={["Jest", "React Testing Library", "Playwright"]}
         />
-        <Skill type="Other tools" items={["Git", "Jira", "npm"]} />
+        <TechSkill type="Other tools" items={["Git", "Jira", "npm"]} />
       </CvSection>
     </>
   );

@@ -8,3 +8,7 @@ export type CompanyType = {
   responsibilities: string[];
   achievements: string[];
 };
+
+export type ExperienceSectionType = {
+  companies: CompanyType[];
+};

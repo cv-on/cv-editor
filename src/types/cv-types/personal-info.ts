@@ -7,7 +7,7 @@ type ConnectLink = {
   fullUrl: Url;
 };
 
-export type PersonalInfoType = {
+export type PersonalInfoSectionType = {
   avatarSrc: string;
   name: string;
   position: string;

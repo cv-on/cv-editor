@@ -22,7 +22,7 @@ type ContactItem = {
   url?: Url;
 };
 
-export const Contact = () => {
+export const ContactSection = () => {
   const {
     cvContent: { personalInfo },
   } = useContext(CvContentContext);

@@ -1,5 +1,4 @@
-"use client";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import {
 } from "./styled";
 
 const EditingPage = () => {
-  const [isDownloading, setIsDownloading] = useState(false);
   const sections = useMemo(
     () => [
       { id: "personal-information", name: "Personal Information" },
@@ -27,7 +25,6 @@ const EditingPage = () => {
 
   const handleDownloadPDF = async () => {
     try {
-      setIsDownloading(true);
       const response = await fetch("/api/generate-pdf", {
         method: "POST",
         headers: {
@@ -46,7 +43,6 @@ const EditingPage = () => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-      setIsDownloading(false);
     } catch (error) {
       console.error("Error downloading PDF:", error);
     }
@@ -77,11 +73,7 @@ const EditingPage = () => {
           </Flex>
         </Box>
         <Flex justifyContent="center" gap={usySpacing.px20}>
-          <Button
-            variant="primary"
-            loading={isDownloading}
-            onClick={handleDownloadPDF}
-          >
+          <Button variant="primary" onClick={handleDownloadPDF}>
             Download
           </Button>
           <Link href="/preview" target="_blank">

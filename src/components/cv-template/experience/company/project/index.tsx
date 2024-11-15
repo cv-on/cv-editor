@@ -3,6 +3,7 @@ import { FC } from "react";
 import { Box, Flex, Typography, usySpacing } from "@usy-ui/base";
 
 import { ProjectType } from "@/types";
+
 import { BadgeProjectName } from "./project.styled";
 
 export const Project: FC<ProjectType> = ({
@@ -12,24 +13,26 @@ export const Project: FC<ProjectType> = ({
   responsibilities,
   achievements,
 }) => {
-  const renderClientAndProjects = () => {
+  const renderProjects = () => {
     return (
-      <Flex alignItems="center">
-        <Typography weight="semibold">
-          <BadgeProjectName>{projectName}</BadgeProjectName>
-        </Typography>
-        {client && (
-          <>
-            &nbsp;-&nbsp;
-            <Typography weight="semibold">
-              Client:&nbsp;
-              <Typography tag="span" weight="light">
-                {client}
-              </Typography>
-            </Typography>
-          </>
-        )}
+      <Flex alignItems="center" marginProps={{ marginBottom: usySpacing.px4 }}>
+        {projectName.split(",").map((proj) => (
+          <BadgeProjectName key={proj.trim()}>{proj.trim()}</BadgeProjectName>
+        ))}
       </Flex>
+    );
+  };
+
+  const renderClient = () => {
+    return (
+      client && (
+        <Typography size="small">
+          <Typography tag="span" size="small" weight="bold">
+            ◾Client:&nbsp;
+          </Typography>
+          {client}
+        </Typography>
+      )
     );
   };
 
@@ -85,7 +88,8 @@ export const Project: FC<ProjectType> = ({
       direction="column"
       marginProps={{ marginTop: usySpacing.px8, marginBottom: usySpacing.px10 }}
     >
-      {renderClientAndProjects()}
+      {renderProjects()}
+      {renderClient()}
       {renderTechStacks()}
       {renderResponsibilities()}
       {renderAchievements()}

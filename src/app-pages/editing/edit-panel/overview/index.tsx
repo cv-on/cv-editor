@@ -1,14 +1,26 @@
-"use client";
-import { useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 
 import { Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
 import Link from "next/link";
 
-import { EditSectionStyled } from "./editing-section.styled";
+import { DisplaySectionUnion } from "../types";
 
-export const EditingSection = () => {
+import { EditSectionStyled } from "./styled";
+
+type SectionThumbType = {
+  id: DisplaySectionUnion;
+  name: string;
+};
+
+type OverviewSectionsProps = {
+  changeSection: (section: DisplaySectionUnion) => void;
+};
+
+export const OverviewSections: FC<OverviewSectionsProps> = ({
+  changeSection,
+}) => {
   const [isDownloading, setIsDownloading] = useState(false);
-  const sections = useMemo(
+  const sectionThumbsMemo = useMemo<SectionThumbType[]>(
     () => [
       { id: "personal-info", name: "Personal Info" },
       { id: "qualification", name: "Qualification" },
@@ -47,10 +59,16 @@ export const EditingSection = () => {
     }
   };
 
-  return (
-    <>
+  /**
+   * Render
+   */
+
+  const renderSectionThumbs = () => {
+    return (
       <Box>
-        <Typography size="large">Editing Sections</Typography>
+        <Typography size="large" weight="bold">
+          Editing Sections
+        </Typography>
         <Flex
           justifyContent="space-between"
           alignItems="flex-start"
@@ -58,8 +76,8 @@ export const EditingSection = () => {
           wrap="wrap"
           marginProps={{ marginTop: usySpacing.px20 }}
         >
-          {sections.map(({ id, name }) => (
-            <EditSectionStyled key={id}>
+          {sectionThumbsMemo.map(({ id, name }) => (
+            <EditSectionStyled key={id} onClick={() => changeSection(id)}>
               <Typography align="center" weight="bold">
                 {name}
               </Typography>
@@ -67,6 +85,11 @@ export const EditingSection = () => {
           ))}
         </Flex>
       </Box>
+    );
+  };
+
+  const renderCta = () => {
+    return (
       <Flex justifyContent="center" gap={usySpacing.px20}>
         <Button
           variant="primary"
@@ -79,6 +102,17 @@ export const EditingSection = () => {
           <Button variant="outline">Preview</Button>
         </Link>
       </Flex>
-    </>
+    );
+  };
+
+  return (
+    <Flex
+      direction="column"
+      widthProps={{ maxWidth: "50%" }}
+      paddingProps={{ padding: usySpacing.px32 }}
+    >
+      {renderSectionThumbs()}
+      {renderCta()}
+    </Flex>
   );
 };

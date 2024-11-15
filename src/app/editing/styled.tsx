@@ -4,6 +4,14 @@ import styled from "styled-components";
 
 import { CvTemplate } from "../../components/cv-template";
 
+export const EditingPageContainerStyled = styled.div`
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  overflow: hidden;
+`;
+
 export const PreviewContainerStyled = styled(Scrollable)`
   max-height: 100vh;
   display: flex;
@@ -20,12 +28,9 @@ export const CvTemplateStyled = styled(CvTemplate)`
   border-radius: 2px;
 `;
 
-export const EditSectionContainerStyled = styled.div`
+export const EditPanelContainerStyled = styled.div`
   min-width: 500px;
   max-width: 500px;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: ${usySpacing.px32};
+  overflow: hidden;
 `;

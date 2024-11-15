@@ -1,22 +1,22 @@
-import { Flex } from "@usy-ui/base";
+import { EditPanel } from "@/app-pages/editing/edit-panel";
 
-import { EditingSection } from "./editing-section";
 import {
   CvTemplateStyled,
-  EditSectionContainerStyled,
+  EditingPageContainerStyled,
+  EditPanelContainerStyled,
   PreviewContainerStyled,
-} from "./page.styled";
+} from "./styled";
 
 const EditingPage = () => {
   return (
-    <Flex justifyContent="center" alignItems="flex-start">
+    <EditingPageContainerStyled>
       <PreviewContainerStyled>
         <CvTemplateStyled />
       </PreviewContainerStyled>
-      <EditSectionContainerStyled>
-        <EditingSection />
-      </EditSectionContainerStyled>
-    </Flex>
+      <EditPanelContainerStyled>
+        <EditPanel />
+      </EditPanelContainerStyled>
+    </EditingPageContainerStyled>
   );
 };
 

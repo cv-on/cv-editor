@@ -3,6 +3,8 @@ import { FC, useMemo, useState } from "react";
 import { Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
 import Link from "next/link";
 
+import { SectionHeader } from "../_header";
+import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { EditSectionStyled } from "./styled";
@@ -66,9 +68,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
   const renderSectionThumbs = () => {
     return (
       <Box>
-        <Typography size="large" weight="bold">
-          Editing Sections
-        </Typography>
+        <SectionHeader sectionTitle="Editing Sections" />
         <Flex
           justifyContent="space-between"
           alignItems="flex-start"
@@ -108,8 +108,10 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
   return (
     <Flex
       direction="column"
+      justifyContent="space-between"
       widthProps={{ maxWidth: "50%" }}
-      paddingProps={{ padding: usySpacing.px32 }}
+      heightProps={{ minHeight: "100vh" }}
+      paddingProps={{ ...SectionPaddingConst }}
     >
       {renderSectionThumbs()}
       {renderCta()}

@@ -6,11 +6,11 @@ import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
-type PersonalInfoSectionProps = {
+type ExperienceSectionProps = {
   changeSection: (section: DisplaySectionUnion) => void;
 };
 
-export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
+export const ExperienceSection: FC<ExperienceSectionProps> = ({
   changeSection,
 }) => {
   return (
@@ -20,7 +20,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
       paddingProps={{ ...SectionPaddingConst }}
     >
       <SectionHeader
-        sectionTitle="Personal Info"
+        sectionTitle="Experience"
         changeSection={changeSection}
         hasGoBack
       />

@@ -1,15 +1,14 @@
-import { useContext } from "react";
+"use client";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { educationSelector } from "@/app-states/education";
 
 import { CvSection } from "../../cv-section";
 
 import { Paragraph } from "./paragraph";
 
 export const EducationSection = () => {
-  const {
-    cvContent: { education },
-  } = useContext(CvContentContext);
+  const education = useRecoilValue(educationSelector);
 
   return (
     <>

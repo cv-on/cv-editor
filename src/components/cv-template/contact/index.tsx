@@ -1,4 +1,5 @@
-import { ReactNode, useContext, useMemo } from "react";
+"use client";
+import { ReactNode, useMemo } from "react";
 
 import {
   EnvelopeIcon,
@@ -8,8 +9,9 @@ import {
   usySpacing,
 } from "@usy-ui/base";
 import Link from "next/link";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { personalInfoSelector } from "@/app-states";
 import { Url } from "@/types";
 
 import { CvSection } from "../../cv-section";
@@ -23,9 +25,7 @@ type ContactItem = {
 };
 
 export const ContactSection = () => {
-  const {
-    cvContent: { personalInfo },
-  } = useContext(CvContentContext);
+  const personalInfo = useRecoilValue(personalInfoSelector);
 
   const referenceLinksMemo = useMemo<ContactItem[]>(
     () =>

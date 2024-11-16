@@ -1,15 +1,14 @@
-import { useContext } from "react";
+"use client";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { experienceSelector } from "@/app-states/experience";
 
 import { CvSection } from "../../cv-section";
 
 import { Company } from "./company";
 
 export const ExperienceSection = () => {
-  const {
-    cvContent: { experience },
-  } = useContext(CvContentContext);
+  const experience = useRecoilValue(experienceSelector);
 
   return (
     <>

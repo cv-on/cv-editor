@@ -1,15 +1,13 @@
-import { useContext } from "react";
-
+"use client";
 import { Typography } from "@usy-ui/base";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { personalInfoSelector } from "@/app-states";
 
 import { CvSection } from "../../cv-section";
 
 export const SummarySection = () => {
-  const {
-    cvContent: { personalInfo },
-  } = useContext(CvContentContext);
+  const personalInfo = useRecoilValue(personalInfoSelector);
 
   return (
     <>

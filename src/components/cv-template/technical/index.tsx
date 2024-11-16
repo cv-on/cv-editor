@@ -1,15 +1,14 @@
-import { useContext } from "react";
+"use client";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { technicalSelector } from "@/app-states/technical";
 
 import { CvSection } from "../../cv-section";
 
 import { TechSkill } from "./tech-skill";
 
 export const TechnicalSection = () => {
-  const {
-    cvContent: { technical },
-  } = useContext(CvContentContext);
+  const technical = useRecoilValue(technicalSelector);
 
   return (
     <>

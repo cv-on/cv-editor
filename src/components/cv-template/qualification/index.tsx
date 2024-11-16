@@ -1,15 +1,14 @@
-import { useContext } from "react";
+"use client";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { qualificationSelector } from "@/app-states/qualification";
 
 import { CvSection } from "../../cv-section";
 
 import { QualifyItem } from "./qualify-item";
 
 export const QualificationSection = () => {
-  const {
-    cvContent: { qualification },
-  } = useContext(CvContentContext);
+  const qualification = useRecoilValue(qualificationSelector);
 
   return (
     <>

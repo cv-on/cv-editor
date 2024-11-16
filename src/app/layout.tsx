@@ -2,7 +2,8 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Lora, Montserrat } from "next/font/google";
 
-import StyledComponentsRegistry from "@/lib/register";
+import RecoilRootProvider from "@/providers/recoil-root";
+import StyledComponentsRegistry from "@/providers/styled-components";
 
 import "@usy-ui/base/dist/styles.css";
 
@@ -33,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(lora.className, montserrat.className)}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <RecoilRootProvider>{children}</RecoilRootProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

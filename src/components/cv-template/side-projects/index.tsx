@@ -1,15 +1,14 @@
-import { useContext } from "react";
+"use client";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { sideProjectsSelector } from "@/app-states/side-projects";
 
 import { CvSection } from "../../cv-section";
 
 import { SideProject } from "./project";
 
 export const SideProjectsSection = () => {
-  const {
-    cvContent: { sideProjects },
-  } = useContext(CvContentContext);
+  const sideProjects = useRecoilValue(sideProjectsSelector);
 
   return (
     <>

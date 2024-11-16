@@ -1,15 +1,13 @@
-import { useContext } from "react";
-
+"use client";
 import { Avatar, Box, Flex, Typography, usySpacing } from "@usy-ui/base";
+import { useRecoilValue } from "recoil";
 
-import { CvContentContext } from "@/context/cv-context";
+import { personalInfoSelector } from "@/app-states";
 
 import { NameTypography } from "./styled";
 
 export const HeaderSection = () => {
-  const {
-    cvContent: { personalInfo },
-  } = useContext(CvContentContext);
+  const personalInfo = useRecoilValue(personalInfoSelector);
 
   return (
     <Flex

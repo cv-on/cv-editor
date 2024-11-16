@@ -1,11 +1,6 @@
-"use client";
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import { Flex, usySpacing } from "@usy-ui/base";
-
-import { CvContentContext } from "@/context/cv-context";
-import { mockCvContent } from "@/mock/cv-content";
-import { CvTemplateType } from "@/types";
 
 import { ContactSection } from "./contact";
 import { EducationSection } from "./education";
@@ -26,26 +21,22 @@ export const CvTemplate: FC<CvTemplateProps> = ({
   isRenderMode,
   className,
 }) => {
-  const [cvContent, setCvContent] = useState<CvTemplateType>(mockCvContent);
-
   return (
-    <CvContentContext.Provider value={{ cvContent, setCvContent }}>
-      <CvPageStyled $isRenderMode={isRenderMode} className={className}>
-        <HeaderSection />
-        <Flex marginProps={{ marginTop: usySpacing.px48 }}>
-          <MainColumnStyled>
-            <SummarySection />
-            <QualificationSection />
-            <ExperienceSection />
-          </MainColumnStyled>
-          <SubColumnStyled>
-            <ContactSection />
-            <TechnicalSection />
-            <SideProjectsSection />
-            <EducationSection />
-          </SubColumnStyled>
-        </Flex>
-      </CvPageStyled>
-    </CvContentContext.Provider>
+    <CvPageStyled $isRenderMode={isRenderMode} className={className}>
+      <HeaderSection />
+      <Flex marginProps={{ marginTop: usySpacing.px48 }}>
+        <MainColumnStyled>
+          <SummarySection />
+          <QualificationSection />
+          <ExperienceSection />
+        </MainColumnStyled>
+        <SubColumnStyled>
+          <ContactSection />
+          <TechnicalSection />
+          <SideProjectsSection />
+          <EducationSection />
+        </SubColumnStyled>
+      </Flex>
+    </CvPageStyled>
   );
 };

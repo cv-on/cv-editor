@@ -61,6 +61,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             <Input
               {...field}
               label="Name"
+              placeholder="John Doe"
               description={errors.name?.message}
               hasError={Boolean(errors.name?.message)}
             />
@@ -74,6 +75,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             <Input
               {...field}
               label="Position"
+              placeholder="Senior Fullstack Developer"
               description={errors.position?.message}
               hasError={Boolean(errors.position?.message)}
             />
@@ -91,6 +93,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             <Input
               {...field}
               label="Email"
+              placeholder="john-doe@gmail.com"
               description={errors.email?.message}
               hasError={Boolean(errors.email?.message)}
             />
@@ -104,6 +107,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             <Input
               {...field}
               label="Phone"
+              placeholder="+84 111 222 333"
               description={errors.phone?.message}
               hasError={Boolean(errors.phone?.message)}
             />
@@ -117,6 +121,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             <TextArea
               {...field}
               label="Summary"
+              placeholder="Highly skilled on..."
               heightProps={{ minHeight: "150px" }}
               description={errors.summary?.message}
               hasError={Boolean(errors.summary?.message)}

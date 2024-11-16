@@ -27,9 +27,9 @@ export const ContactSection = () => {
     cvContent: { personalInfo },
   } = useContext(CvContentContext);
 
-  const connectLinksMemo = useMemo<ContactItem[]>(
+  const referenceLinksMemo = useMemo<ContactItem[]>(
     () =>
-      personalInfo.connectLinks.map((link) => ({
+      personalInfo.referenceLinks.map((link) => ({
         icon: getBrandIconByType(link.type),
         label: link.shortUrl,
         url: link.fullUrl,
@@ -65,9 +65,9 @@ export const ContactSection = () => {
         ),
         label: personalInfo.phone,
       },
-      ...connectLinksMemo,
+      ...referenceLinksMemo,
     ],
-    [personalInfo, connectLinksMemo]
+    [personalInfo, referenceLinksMemo]
   );
 
   return (

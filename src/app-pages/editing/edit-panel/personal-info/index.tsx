@@ -1,6 +1,17 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
-import { Flex } from "@usy-ui/base";
+import {
+  Button,
+  Flex,
+  Input,
+  Scrollable,
+  TextArea,
+  usySpacing,
+} from "@usy-ui/base";
+import { Controller, useForm } from "react-hook-form";
+
+import { ValidateRules } from "@/constants/validation";
+import { PersonalInfoSectionType } from "@/types";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
@@ -13,17 +24,129 @@ type PersonalInfoSectionProps = {
 export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   changeSection,
 }) => {
+  const {
+    formState: { errors },
+    control,
+    watch,
+  } = useForm<PersonalInfoSectionType>({
+    mode: "onBlur",
+    defaultValues: {
+      name: "",
+    },
+  });
+
+  const formValues = watch();
+
+  useEffect(() => {
+    console.log(formValues);
+  }, [formValues]);
+
+  /**
+   * Render
+   */
+
+  const renderFormFields = () => {
+    return (
+      <>
+        <SectionHeader
+          sectionTitle="Personal Info"
+          changeSection={changeSection}
+          hasGoBack
+        />
+        <Controller
+          name="name"
+          control={control}
+          rules={{ required: ValidateRules.required }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Name"
+              description={errors.name?.message}
+              hasError={Boolean(errors.name?.message)}
+            />
+          )}
+        />
+        <Controller
+          name="position"
+          control={control}
+          rules={{ required: ValidateRules.required }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Position"
+              description={errors.position?.message}
+              hasError={Boolean(errors.position?.message)}
+            />
+          )}
+        />
+        <Input label="Date of Birth" />
+        <Controller
+          name="email"
+          control={control}
+          rules={{
+            required: ValidateRules.required,
+            pattern: ValidateRules.emailPattern,
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Email"
+              description={errors.email?.message}
+              hasError={Boolean(errors.email?.message)}
+            />
+          )}
+        />
+        <Controller
+          name="phone"
+          control={control}
+          rules={{ required: ValidateRules.required }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Phone"
+              description={errors.phone?.message}
+              hasError={Boolean(errors.phone?.message)}
+            />
+          )}
+        />
+        <Controller
+          name="summary"
+          control={control}
+          rules={{ required: ValidateRules.required }}
+          render={({ field }) => (
+            <TextArea
+              {...field}
+              label="Summary"
+              heightProps={{ minHeight: "150px" }}
+              description={errors.summary?.message}
+              hasError={Boolean(errors.summary?.message)}
+            />
+          )}
+        />
+      </>
+    );
+  };
+
+  const renderReferenceLinks = () => {
+    return (
+      <Flex direction="column" alignItems="center" gap={usySpacing.px20}>
+        <Button variant="outline">Add reference link</Button>
+      </Flex>
+    );
+  };
+
   return (
-    <Flex
-      direction="column"
-      widthProps={{ maxWidth: "50%" }}
-      paddingProps={{ ...SectionPaddingConst }}
-    >
-      <SectionHeader
-        sectionTitle="Personal Info"
-        changeSection={changeSection}
-        hasGoBack
-      />
-    </Flex>
+    <Scrollable heightProps={{ maxHeight: "100vh" }}>
+      <form>
+        <Flex
+          direction="column"
+          gap={usySpacing.px24}
+          paddingProps={{ ...SectionPaddingConst }}
+        >
+          {renderFormFields()}
+          {renderReferenceLinks()}
+        </Flex>
+      </form>
+    </Scrollable>
   );
 };

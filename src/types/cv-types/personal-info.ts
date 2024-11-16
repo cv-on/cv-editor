@@ -1,7 +1,7 @@
 import { Url } from "./common";
 
 export type ConnectTypeUnion = "github" | "linkedin";
-type ConnectLink = {
+type ReferenceLink = {
   type: ConnectTypeUnion;
   shortUrl: string;
   fullUrl: Url;
@@ -15,5 +15,5 @@ export type PersonalInfoSectionType = {
   email: string;
   phone: string;
   summary: string;
-  connectLinks: ConnectLink[];
+  referenceLinks: ReferenceLink[];
 };

@@ -1,4 +1,4 @@
-import { BrandGithubIcon, BrandLinkedinIcon, usySpacing } from "@usy-ui/base";
+import { BrandGithubIcon, BrandLinkedinIcon } from "@usy-ui/base";
 
 import { ConnectTypeUnion } from "@/types";
 

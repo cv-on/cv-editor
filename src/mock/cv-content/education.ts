@@ -2,7 +2,7 @@ import { EducationSectionType } from "@/types";
 
 export const education: EducationSectionType = {
   paragraphs: [
-    `Got a Bachelor's Degree from A University`,
-    `Got a Bachelor's Degree from B University`,
+    `Earned a Bachelor's Degree in Computer Science from XYZ University`,
+    `Complete 3 DevOps courses in Udemy`,
   ],
 };

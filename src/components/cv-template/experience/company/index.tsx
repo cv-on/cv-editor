@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Box, Flex, Typography, usySpacing } from "@usy-ui/base";
+import { Flex, Typography, usySpacing } from "@usy-ui/base";
 import dayjs from "dayjs";
 
 import { CompanyType } from "@/types";

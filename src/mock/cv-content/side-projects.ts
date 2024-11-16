@@ -3,18 +3,18 @@ import { SideProjectsSectionType } from "@/types";
 export const sideProjects: SideProjectsSectionType = {
   projects: [
     {
-      name: "Project A",
-      description: "Implement project A",
-      techStacks: ["ReactJS", "NextJS"],
-      shortUrl: "project-a.com",
-      fullUrl: "https://project-a.com",
+      name: "Recipe Master",
+      description: "Build a web app for managing and sharing recipes",
+      techStacks: ["ReactJS", "NextJS", "MongoDB"],
+      shortUrl: "recipe-master.com",
+      fullUrl: "https://recipe-master.com",
     },
     {
-      name: "Project B",
-      description: "Implement project B",
-      techStacks: ["ReactJS", "NextJS"],
-      shortUrl: "project-b.com",
-      fullUrl: "https://project-b.com",
+      name: "Fitness Tracker",
+      description: "Develop a fitness app for tracking workouts and progress",
+      techStacks: ["ReactJS", "TypeScript", "Redux"],
+      shortUrl: "fitness-tracker.dev",
+      fullUrl: "https://fitness-tracker.dev",
     },
   ],
 };

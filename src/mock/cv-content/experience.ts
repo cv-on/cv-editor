@@ -3,50 +3,59 @@ import { ExperienceSectionType } from "@/types";
 export const experience: ExperienceSectionType = {
   companies: [
     {
-      companyName: "Company A",
+      companyName: "GBK Technologies",
       fromDate: new Date("2020/01/01"),
       toDate: "present",
-      position: "Senior Frontend",
+      position: "Senior Fullstack Developer",
       projects: [
         {
-          client: "Libeara",
-          projectName: "Delta V1",
-          techStacks: ["ReactJS", "NodeJS"],
+          client: "TechCorp",
+          projectName: "Alpha System Revamp",
+          techStacks: ["Angular", "Node.js", "MongoDB"],
           responsibilities: [
-            "My main tasks were estimating, developing features for Order Placement module and integrating with other 6 modules in a large micro-frontend architect",
-            "My main tasks were estimating, developing features for Order Placement module and integrating with other 6 modules in a large micro-frontend architect",
+            "Collaborated with a team to design and implement new features for the Customer Management module in a modular architecture.",
+            "Optimized API endpoints for better performance and reduced latency by 30%.",
+            "Integrated third-party services such as payment gateways and email notifications.",
           ],
-          achievements: ["Achievements 1", "Achievements 2"],
+          achievements: [
+            "Successfully delivered the project ahead of schedule by 2 weeks.",
+            "Recognized for improving the module's performance, reducing errors by 20%.",
+          ],
         },
         {
-          client: "DBS",
-          projectName: "Crypto Trading, YFJ",
-          techStacks: ["ReactJS", "NodeJS"],
+          client: "ShopEase",
+          projectName: "Beta E-commerce Platform, ReFace",
+          techStacks: ["ReactJS", "Express.js", "PostgreSQL"],
           responsibilities: [
-            "My main tasks were estimating, developing features for Order Placement module and integrating with other 6 modules in a large micro-frontend architect",
-            "My main tasks were estimating, developing features for Order Placement module and integrating with other 6 modules in a large micro-frontend architect",
+            "Developed and maintained the Product Catalog and Search modules, ensuring seamless user experience.",
+            "Worked on implementing server-side rendering (SSR) to improve website load times.",
+            "Collaborated with UI/UX designers to create responsive and accessible web components.",
           ],
-          achievements: ["Achievements 1", "Achievements 2"],
+          achievements: [
+            "Improved website performance, resulting in a 25% increase in user retention.",
+            "Played a key role in achieving 99.9% uptime for the platform during peak holiday seasons.",
+          ],
         },
       ],
     },
     {
-      companyName: "Company B",
-      fromDate: new Date("2018/01/01"),
+      companyName: "MediFlow Solutions",
+      fromDate: new Date("2018/05/01"),
       toDate: new Date("2020/01/01"),
-      position: "Senior Frontend",
+      position: "Senior Fullstack Developer",
       projects: [
         {
-          projectName: "Project A",
-          techStacks: ["ReactJS", "NodeJS"],
-          responsibilities: ["Responsibilities 1", "Responsibilities 2"],
-          achievements: ["Achievements 1", "Achievements 2"],
-        },
-        {
-          projectName: "Project B",
-          techStacks: ["ReactJS", "NodeJS"],
-          responsibilities: ["Responsibilities 1", "Responsibilities 2"],
-          achievements: ["Achievements 1", "Achievements 2"],
+          projectName: "Gamma Healthcare Dashboard",
+          techStacks: ["Vue.js", "Firebase", "Python (Flask)"],
+          responsibilities: [
+            "Designed and implemented real-time data visualization dashboards for healthcare analytics.",
+            "Integrated Firebase for secure authentication and cloud storage of sensitive data.",
+            "Coordinated with backend teams to ensure smooth API integration for live updates.",
+          ],
+          achievements: [
+            "Delivered the dashboard with 100% client satisfaction, praised for intuitive design.",
+            "Reduced data processing time by 40% through optimized database queries and caching strategies.",
+          ],
         },
       ],
     },

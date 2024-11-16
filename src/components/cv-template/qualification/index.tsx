@@ -4,7 +4,7 @@ import { CvContentContext } from "@/context/cv-context";
 
 import { CvSection } from "../../cv-section";
 
-import { Paragraph } from "./paragraph";
+import { QualifyItem } from "./qualify-item";
 
 export const QualificationSection = () => {
   const {
@@ -14,8 +14,12 @@ export const QualificationSection = () => {
   return (
     <>
       <CvSection title="Qualification">
-        {qualification.paragraphs.map((content) => (
-          <Paragraph key={content.substring(0, 10)} content={content} />
+        {qualification.paragraphs.map(({ keyWord, description }) => (
+          <QualifyItem
+            key={keyWord}
+            keyWord={keyWord}
+            description={description}
+          />
         ))}
       </CvSection>
     </>

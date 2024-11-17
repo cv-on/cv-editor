@@ -5,6 +5,7 @@ import {
   Flex,
   Input,
   Scrollable,
+  Separator,
   TextArea,
   usySpacing,
 } from "@usy-ui/base";
@@ -21,6 +22,8 @@ import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { ReferenceLinkInput } from "./reference-link-input";
+import { UploadAvatar } from "./upload-avatar";
+import dayjs from "dayjs";
 
 type PersonalInfoSectionProps = {
   changeSection: (section: DisplaySectionUnion) => void;
@@ -50,6 +53,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const syncPersonalInfoState = () => setPersonalInfo({ ...getValues() });
   const debounceSyncPersonalInfoState = debounce(syncPersonalInfoState, 300);
 
+  const syncAvatar = (base64Img: string) => {
+    setPersonalInfo({ ...personalInfo, avatarSrc: base64Img });
+  };
+
   const handleAddReferenceLink = () => {
     append({
       type: "custom",
@@ -70,6 +77,8 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
           changeSection={changeSection}
           hasGoBack
         />
+        <UploadAvatar syncAvatar={syncAvatar} />
+        <Separator title="Info Fields" titleProps={{ weight: "semibold" }} />
         <Controller
           name="name"
           control={control}
@@ -106,7 +115,6 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             />
           )}
         />
-        <Input label="Date of Birth" />
         <Controller
           name="email"
           control={control}
@@ -185,7 +193,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
         ))}
 
         <Button variant="outline" onClick={handleAddReferenceLink}>
-          Add reference link
+          Add link
         </Button>
       </Flex>
     );
@@ -203,6 +211,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
           }}
         >
           {renderFormFields()}
+          <Separator
+            title="Reference Links"
+            titleProps={{ weight: "semibold" }}
+          />
           {renderReferenceLinks()}
         </Flex>
       </form>

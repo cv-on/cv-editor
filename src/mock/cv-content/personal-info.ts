@@ -6,7 +6,6 @@ export const personalInfo: PersonalInfoSectionType = {
   avatarSrc: AvatarSrcConst,
   name: "John Doe",
   position: "Senior Fullstack Developer",
-  dateOfBirth: new Date("2000/01/01"),
   email: "john-doe@gmail.com",
   phone: "+84 111 222 333",
   summary:

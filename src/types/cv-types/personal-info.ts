@@ -19,7 +19,6 @@ export type PersonalInfoSectionType = {
   avatarSrc: string;
   name: string;
   position: string;
-  dateOfBirth: Date;
   email: string;
   phone: string;
   summary: string;

@@ -1,4 +1,3 @@
-"use client";
 import { Typography } from "@usy-ui/base";
 import { useRecoilValue } from "recoil";
 

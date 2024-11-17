@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { EducationSection } from "./education";
 import { ExperienceSection } from "./experience";

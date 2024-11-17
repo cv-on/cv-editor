@@ -1,4 +1,3 @@
-"use client";
 import { useRecoilValue } from "recoil";
 
 import { sideProjectsSelector } from "@/app-states/side-projects";

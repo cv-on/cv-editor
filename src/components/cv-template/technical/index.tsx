@@ -1,4 +1,3 @@
-"use client";
 import { useRecoilValue } from "recoil";
 
 import { technicalSelector } from "@/app-states/technical";

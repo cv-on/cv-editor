@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
 import {
   Button,
@@ -8,14 +8,19 @@ import {
   TextArea,
   usySpacing,
 } from "@usy-ui/base";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
 
+import { personalInfoAtom } from "@/app-states";
 import { ValidateRules } from "@/constants/validation";
 import { PersonalInfoSectionType } from "@/types";
+import { debounce } from "@/utils/helpers";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
+
+import { ReferenceLinkInput } from "./reference-link-input";
 
 type PersonalInfoSectionProps = {
   changeSection: (section: DisplaySectionUnion) => void;
@@ -24,22 +29,29 @@ type PersonalInfoSectionProps = {
 export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   changeSection,
 }) => {
+  const [personalInfo, setPersonalInfo] = useRecoilState(personalInfoAtom);
+
   const {
     formState: { errors },
     control,
+    getValues,
     watch,
   } = useForm<PersonalInfoSectionType>({
     mode: "onBlur",
-    defaultValues: {
-      name: "",
-    },
+    values: personalInfo,
+    defaultValues: personalInfo,
   });
 
-  const formValues = watch();
+  const { fields } = useFieldArray({
+    control,
+    name: "referenceLinks",
+  });
 
-  useEffect(() => {
-    console.log(formValues);
-  }, [formValues]);
+  const syncPersonalInfoState = () => setPersonalInfo({ ...getValues() });
+  const debounceSyncPersonalInfoState = debounce(syncPersonalInfoState, 300);
+
+  console.log("formValues", watch());
+  console.log("errors", errors);
 
   /**
    * Render
@@ -64,6 +76,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="John Doe"
               description={errors.name?.message}
               hasError={Boolean(errors.name?.message)}
+              onChange={(value) => {
+                field.onChange(value);
+                debounceSyncPersonalInfoState();
+              }}
             />
           )}
         />
@@ -78,6 +94,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="Senior Fullstack Developer"
               description={errors.position?.message}
               hasError={Boolean(errors.position?.message)}
+              onChange={(value) => {
+                field.onChange(value);
+                debounceSyncPersonalInfoState();
+              }}
             />
           )}
         />
@@ -96,6 +116,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="john-doe@gmail.com"
               description={errors.email?.message}
               hasError={Boolean(errors.email?.message)}
+              onChange={(value) => {
+                field.onChange(value);
+                debounceSyncPersonalInfoState();
+              }}
             />
           )}
         />
@@ -110,6 +134,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="+84 111 222 333"
               description={errors.phone?.message}
               hasError={Boolean(errors.phone?.message)}
+              onChange={(value) => {
+                field.onChange(value);
+                debounceSyncPersonalInfoState();
+              }}
             />
           )}
         />
@@ -125,6 +153,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               heightProps={{ minHeight: "150px" }}
               description={errors.summary?.message}
               hasError={Boolean(errors.summary?.message)}
+              onChange={(value) => {
+                field.onChange(value);
+                debounceSyncPersonalInfoState();
+              }}
             />
           )}
         />
@@ -135,6 +167,16 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const renderReferenceLinks = () => {
     return (
       <Flex direction="column" alignItems="center" gap={usySpacing.px20}>
+        {fields.map((item, index) => (
+          <ReferenceLinkInput
+            key={item.id}
+            index={index}
+            control={control}
+            item={item}
+            changeState={() => debounceSyncPersonalInfoState()}
+          />
+        ))}
+
         <Button variant="outline">Add reference link</Button>
       </Flex>
     );
@@ -146,7 +188,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
         <Flex
           direction="column"
           gap={usySpacing.px24}
-          paddingProps={{ ...SectionPaddingConst }}
+          paddingProps={{
+            ...SectionPaddingConst,
+            paddingBottom: usySpacing.px64,
+          }}
         >
           {renderFormFields()}
           {renderReferenceLinks()}

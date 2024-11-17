@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 
 import { Flex, usySpacing } from "@usy-ui/base";

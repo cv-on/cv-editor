@@ -1,4 +1,3 @@
-"use client";
 import { ReactNode, useMemo } from "react";
 
 import {
@@ -17,6 +16,7 @@ import { Url } from "@/types";
 import { CvSection } from "../../cv-section";
 
 import { getBrandIconByType } from "./utils";
+import { ReferenceIconsConst } from "@/app-pages/editing/edit-panel/personal-info/reference-link-input/constants";
 
 type ContactItem = {
   icon: ReactNode;
@@ -30,9 +30,9 @@ export const ContactSection = () => {
   const referenceLinksMemo = useMemo<ContactItem[]>(
     () =>
       personalInfo.referenceLinks.map((link) => ({
-        icon: getBrandIconByType(link.type),
-        label: link.shortUrl,
-        url: link.fullUrl,
+        icon: ReferenceIconsConst[link.type],
+        label: link.url.replace("www", "").split("//")[1],
+        url: link.url,
       })),
     [personalInfo]
   );

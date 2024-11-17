@@ -1,10 +1,18 @@
 import { Url } from "./common";
 
-export type ConnectTypeUnion = "github" | "linkedin";
-type ReferenceLink = {
-  type: ConnectTypeUnion;
-  shortUrl: string;
-  fullUrl: Url;
+export type ReferenceTypeUnion =
+  | "facebook"
+  | "instagram"
+  | "x"
+  | "linkedin"
+  | "whatsapp"
+  | "reddit"
+  | "github"
+  | "custom";
+
+export type ReferenceLink = {
+  type: ReferenceTypeUnion;
+  url: Url;
 };
 
 export type PersonalInfoSectionType = {

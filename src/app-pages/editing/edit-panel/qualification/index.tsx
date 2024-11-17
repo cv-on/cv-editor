@@ -20,13 +20,13 @@ import Sortable from "sortablejs";
 import { qualificationAtom } from "@/app-states/qualification";
 import { useObserveState } from "@/hooks/use-observe-state";
 import { QualificationSectionType, QualifyType } from "@/types";
+import { changeItemOrder } from "@/utils/helpers";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { DragDropStyled } from "./styled";
-import { changeItemOrder } from "@/utils/helpers";
 
 type QualificationSectionProps = {
   changeSection: (section: DisplaySectionUnion) => void;

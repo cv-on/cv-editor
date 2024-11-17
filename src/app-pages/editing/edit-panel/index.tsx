@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 
+import { Scrollable } from "@usy-ui/base";
+
 import { EducationSection } from "./education";
 import { ExperienceSection } from "./experience";
 import { OverviewSections } from "./overview";
@@ -10,7 +12,6 @@ import { SideProjectsSection } from "./side-projects";
 import { EditPanelContainerStyled } from "./styled";
 import { TechnicalSection } from "./technical";
 import { DisplaySectionUnion } from "./types";
-import { Scrollable } from "@usy-ui/base";
 
 export const EditPanel = () => {
   const [displaySection, setDisplaySection] =

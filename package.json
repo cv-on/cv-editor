@@ -1,7 +1,29 @@
 {
-  "name": "cvon",
+  "name": "@cv-on/tool",
   "version": "0.1.0",
+  "description": "A free tool for create CV",
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/cv-on/tool#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cv-on/tool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cv-on/tool/issues"
+  },
+  "author": "anhthi.ieig",
+  "license": "ISC",
+  "keywords": [
+    "react",
+    "reactjs",
+    "next",
+    "nextjs",
+    "components",
+    "library"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

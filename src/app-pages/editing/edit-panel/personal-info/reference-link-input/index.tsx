@@ -1,16 +1,24 @@
 import { FC, useState } from "react";
 
 import {
+  Badge,
   Button,
-  ContentFnParams,
   Flex,
   Input,
   Popover,
+  PopoverContentFnParams,
+  Typography,
   usySpacing,
 } from "@usy-ui/base";
-import { Control, Controller, FieldArrayWithId } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldArrayWithId,
+  UseFieldArrayRemove,
+  UseFieldArrayUpdate,
+} from "react-hook-form";
 
-import { PersonalInfoSectionType, ReferenceTypeUnion } from "@/types";
+import { PersonalInfoSectionType, ReferenceTypeUnion, Url } from "@/types";
 import { capitalize } from "@/utils/format";
 
 import { ReferenceIconsArray, ReferenceIconsConst } from "./constants";
@@ -20,6 +28,9 @@ type ReferenceLinkInputProps = {
   index: number;
   control: Control<PersonalInfoSectionType, any>;
   item: FieldArrayWithId<PersonalInfoSectionType, "referenceLinks", "id">;
+  update: UseFieldArrayUpdate<PersonalInfoSectionType, "referenceLinks">;
+  remove: UseFieldArrayRemove;
+
   changeState: () => void;
 };
 
@@ -27,6 +38,8 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
   index,
   control,
   item,
+  update,
+  remove,
   changeState,
 }) => {
   const [selectIcon, setSelectIcon] = useState<ReferenceTypeUnion>(item.type);
@@ -35,37 +48,30 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
    * Render
    */
 
-  const renderIconsPanel = ({ closePopover }: ContentFnParams) => {
+  const renderIconsPanel = ({ closePopover }: PopoverContentFnParams) => {
     return (
-      <Controller
-        name={`referenceLinks.${index}.type`}
-        control={control}
-        defaultValue={item.type}
-        render={({ field }) => (
-          <Flex
-            justifyContent="flex-start"
-            alignItems="center"
-            wrap="wrap"
-            gap={usySpacing.px12}
-            widthProps={{ width: "168px" }}
+      <Flex
+        justifyContent="flex-start"
+        alignItems="center"
+        wrap="wrap"
+        gap={usySpacing.px12}
+        widthProps={{ width: "168px" }}
+      >
+        {ReferenceIconsArray.map(({ type, iconElement }) => (
+          <BrandIconButton
+            key={type}
+            type="button"
+            onClick={() => {
+              update(index, { ...item, type });
+              setSelectIcon(type);
+              closePopover();
+              changeState();
+            }}
           >
-            {ReferenceIconsArray.map(({ type, iconElement }) => (
-              <BrandIconButton
-                key={type}
-                type="button"
-                onClick={() => {
-                  field.onChange(type);
-                  setSelectIcon(type);
-                  closePopover();
-                  changeState();
-                }}
-              >
-                {iconElement}
-              </BrandIconButton>
-            ))}
-          </Flex>
-        )}
-      />
+            {iconElement}
+          </BrandIconButton>
+        ))}
+      </Flex>
     );
   };
 
@@ -81,16 +87,19 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
         render={({ field }) => (
           <Input
             {...field}
-            label={selectIcon ? capitalize(selectIcon) : "Link"}
+            label={capitalize(selectIcon)}
             placeholder="https://..."
-            onChange={(value) => {
-              field.onChange(value);
+            onBlur={() => {
               changeState();
             }}
           />
         )}
       />
-      <TrashBinIconStyled />
+      <TrashBinIconStyled
+        onClick={() => {
+          remove(index);
+        }}
+      />
     </Flex>
   );
 };

@@ -10,13 +10,11 @@ import {
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
 
+import { ReferenceIconsConst } from "@/app-pages/editing/edit-panel/personal-info/reference-link-input/constants";
 import { personalInfoSelector } from "@/app-states";
 import { Url } from "@/types";
 
 import { CvSection } from "../../cv-section";
-
-import { getBrandIconByType } from "./utils";
-import { ReferenceIconsConst } from "@/app-pages/editing/edit-panel/personal-info/reference-link-input/constants";
 
 type ContactItem = {
   icon: ReactNode;

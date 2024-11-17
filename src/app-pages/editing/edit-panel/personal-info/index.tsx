@@ -42,7 +42,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
     defaultValues: personalInfo,
   });
 
-  const { fields } = useFieldArray({
+  const { fields, update, append, remove } = useFieldArray({
     control,
     name: "referenceLinks",
   });
@@ -50,8 +50,13 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const syncPersonalInfoState = () => setPersonalInfo({ ...getValues() });
   const debounceSyncPersonalInfoState = debounce(syncPersonalInfoState, 300);
 
-  console.log("formValues", watch());
-  console.log("errors", errors);
+  const handleAddReferenceLink = () => {
+    append({
+      type: "custom",
+      url: "https://...",
+    });
+    syncPersonalInfoState();
+  };
 
   /**
    * Render
@@ -173,11 +178,15 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             index={index}
             control={control}
             item={item}
+            update={update}
+            remove={remove}
             changeState={() => debounceSyncPersonalInfoState()}
           />
         ))}
 
-        <Button variant="outline">Add reference link</Button>
+        <Button variant="outline" onClick={handleAddReferenceLink}>
+          Add reference link
+        </Button>
       </Flex>
     );
   };

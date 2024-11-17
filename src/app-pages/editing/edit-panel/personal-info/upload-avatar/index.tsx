@@ -27,14 +27,7 @@ export const UploadAvatar: FC<UploadAvatarProps> = ({
   };
 
   return (
-    <Flex
-      direction="column"
-      alignItems="center"
-      gap={usySpacing.px20}
-      marginProps={{
-        marginTop: usySpacing.px20,
-      }}
-    >
+    <Flex direction="column" alignItems="center" gap={usySpacing.px20}>
       <input
         ref={inputRef}
         type="file"

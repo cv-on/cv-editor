@@ -12,7 +12,7 @@ export const QualificationSection = () => {
   return (
     <>
       <CvSection title="Qualification">
-        {qualification.paragraphs.map(({ keyWord, description }) => (
+        {qualification.qualifyItems.map(({ keyWord, description }) => (
           <QualifyItem
             key={keyWord}
             keyWord={keyWord}

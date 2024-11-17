@@ -1,7 +1,7 @@
 import { QualificationSectionType } from "@/types";
 
 export const qualification: QualificationSectionType = {
-  paragraphs: [
+  qualifyItems: [
     {
       keyWord: "Proficient in Agile/Scrum Methodologies",
       description:

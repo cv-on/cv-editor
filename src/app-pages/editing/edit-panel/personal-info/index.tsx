@@ -1,11 +1,9 @@
-"use client";
 import { FC } from "react";
 
 import {
   Button,
   Flex,
   Input,
-  Scrollable,
   Separator,
   TextArea,
   usySpacing,
@@ -75,11 +73,6 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const renderFormFields = () => {
     return (
       <>
-        <SectionHeader
-          sectionTitle="Personal Info"
-          changeSection={changeSection}
-          hasGoBack
-        />
         <UploadAvatar
           avatarSrc={personalInfo.avatarSrc}
           syncAvatar={syncAvatar}
@@ -206,24 +199,24 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   };
 
   return (
-    <Scrollable heightProps={{ maxHeight: "100vh" }}>
-      <form>
-        <Flex
-          direction="column"
-          gap={usySpacing.px24}
-          paddingProps={{
-            ...SectionPaddingConst,
-            paddingBottom: usySpacing.px64,
-          }}
-        >
-          {renderFormFields()}
-          <Separator
-            title="Reference Links"
-            titleProps={{ weight: "semibold" }}
-          />
-          {renderReferenceLinks()}
-        </Flex>
-      </form>
-    </Scrollable>
+    <form>
+      <Flex
+        direction="column"
+        gap={usySpacing.px24}
+        paddingProps={{ ...SectionPaddingConst }}
+      >
+        <SectionHeader
+          sectionTitle="Personal Info"
+          changeSection={changeSection}
+          hasGoBack
+        />
+        {renderFormFields()}
+        <Separator
+          title="Reference Links"
+          titleProps={{ weight: "semibold" }}
+        />
+        {renderReferenceLinks()}
+      </Flex>
+    </form>
   );
 };

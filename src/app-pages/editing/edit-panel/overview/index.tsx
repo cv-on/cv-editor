@@ -1,7 +1,9 @@
 import { FC, useMemo, useState } from "react";
 
-import { Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
+import { Badge, Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
 import Link from "next/link";
+
+import { resetCvContentOnStorage } from "@/utils/local-storage";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
@@ -65,10 +67,25 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
    * Render
    */
 
+  const renderNote = () => {
+    return (
+      <Flex alignItems="flex-start" gap={usySpacing.px4}>
+        <Badge variant="filled" color="amber" radius="full">
+          Note
+        </Badge>
+        <Typography tag="em" size="small">
+          This tool is still in development, and some functions are not yet
+          available.
+        </Typography>
+      </Flex>
+    );
+  };
+
   const renderSectionThumbs = () => {
     return (
       <Box>
         <SectionHeader sectionTitle="Editing Sections" />
+        {renderNote()}
         <Flex
           justifyContent="space-between"
           alignItems="flex-start"
@@ -96,11 +113,19 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
           loading={isDownloading}
           onClick={handleDownloadPDF}
         >
-          Download
+          Export CV
         </Button>
         <Link href="/preview" target="_blank">
           <Button variant="outline">Preview</Button>
         </Link>
+        <Button
+          variant="outline"
+          onClick={() => {
+            resetCvContentOnStorage();
+          }}
+        >
+          Reset
+        </Button>
       </Flex>
     );
   };

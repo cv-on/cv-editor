@@ -3,7 +3,7 @@ import { CvTemplateType } from "@/types";
 
 export const isClient = typeof window !== "undefined";
 
-export const isCvContentCached = (): boolean => {
+export const getIsCvContentCached = (): boolean => {
   if (isClient) {
     return Boolean(localStorage.getItem("cv-content"));
   }
@@ -24,4 +24,10 @@ export const getCvContentFromStorage = (): CvTemplateType => {
   }
 
   return mockCvContent;
+};
+
+export const resetCvContentOnStorage = () => {
+  if (isClient) {
+    localStorage.setItem("cv-content", JSON.stringify(mockCvContent));
+  }
 };

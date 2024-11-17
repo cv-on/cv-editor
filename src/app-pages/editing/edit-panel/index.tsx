@@ -10,6 +10,7 @@ import { SideProjectsSection } from "./side-projects";
 import { EditPanelContainerStyled } from "./styled";
 import { TechnicalSection } from "./technical";
 import { DisplaySectionUnion } from "./types";
+import { Scrollable } from "@usy-ui/base";
 
 export const EditPanel = () => {
   const [displaySection, setDisplaySection] =
@@ -52,7 +53,9 @@ export const EditPanel = () => {
       $isDisplayOverview={displaySection === "overview"}
     >
       <OverviewSections changeSection={changeSection} />
-      {renderOtherSections()}
+      <Scrollable heightProps={{ maxHeight: "100vh" }}>
+        {renderOtherSections()}
+      </Scrollable>
     </EditPanelContainerStyled>
   );
 };

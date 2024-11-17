@@ -25,7 +25,10 @@ export const SectionHeader: FC<SectionHeaderProps> = ({
     <Flex
       alignItems="center"
       heightProps={{ minHeight: usySpacing.px40 }}
-      marginProps={{ marginLeft: hasGoBack ? `-${usySpacing.px14}` : "0" }}
+      marginProps={{
+        marginLeft: hasGoBack ? `-${usySpacing.px14}` : "0",
+        marginBottom: usySpacing.px24,
+      }}
     >
       {hasGoBack && (
         <Button variant="invisible" onClick={() => changeSection?.("overview")}>

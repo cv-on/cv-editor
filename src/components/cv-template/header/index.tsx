@@ -1,4 +1,3 @@
-"use client";
 import { Avatar, Box, Flex, Typography, usySpacing } from "@usy-ui/base";
 import { useRecoilValue } from "recoil";
 

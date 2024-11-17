@@ -4,5 +4,5 @@ export type QualifyType = {
 };
 
 export type QualificationSectionType = {
-  paragraphs: QualifyType[];
+  qualifyItems: QualifyType[];
 };

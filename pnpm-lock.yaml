@@ -35,6 +35,9 @@ importers:
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      sortablejs:
+        specifier: ^1.15.3
+        version: 1.15.3
       styled-components:
         specifier: ^6.1.13
         version: 6.1.13(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -48,6 +51,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.1
+      '@types/sortablejs':
+        specifier: ^1.15.8
+        version: 1.15.8
       eslint:
         specifier: ^8
         version: 8.57.1
@@ -222,6 +228,9 @@ packages:
   '@types/react@18.3.12':
     resolution: {integrity: sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==}
 
+  '@types/sortablejs@1.15.8':
+    resolution: {integrity: sha512-b79830lW+RZfwaztgs1aVPgbasJ8e7AXtZYHTELNXZPsERt4ymJdjV4OccDbHQAvHrCcFpbF78jkm0R6h/pZVg==}
+
   '@types/stylis@4.2.5':
     resolution: {integrity: sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==}
 
@@ -289,7 +298,7 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
   '@usy-ui/base@file:usy-ui-base-1.0.2.tgz':
-    resolution: {integrity: sha512-N+sU2exV6k+N7ZsNhawXGF4motRrGgy7nUaxH4r6414XUjzu1f8GahYBkJnWDfcyMa0JM8Yy0PyHAByOyVhULA==, tarball: file:usy-ui-base-1.0.2.tgz}
+    resolution: {integrity: sha512-twhgkj+HfCAgHt6RY53A9Mk8aYjRVhguEx6IWa6Q68imcjEhx3YP9EslA2G09f8I5crshPhxmfrn0p0GqZCANg==, tarball: file:usy-ui-base-1.0.2.tgz}
     version: 1.0.2
     peerDependencies:
       react: '>=16.8.0'
@@ -1431,6 +1440,9 @@ packages:
     resolution: {integrity: sha512-l5x7VUUWbjVFbafGLxPWkYsHIhEvmF85tbIeFZWc8ZPtoMyybuEhL7Jye/ooC4/d48FgOjSJXgsF/AJPYCW8Zw==}
     engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
 
+  sortablejs@1.15.3:
+    resolution: {integrity: sha512-zdK3/kwwAK1cJgy1rwl1YtNTbRmc8qW/+vgXf75A7NHag5of4pyI6uK86ktmQETyWRH7IGaE73uZOOBcGxgqZg==}
+
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -1814,6 +1826,8 @@ snapshots:
     dependencies:
       '@types/prop-types': 15.7.13
       csstype: 3.1.3
+
+  '@types/sortablejs@1.15.8': {}
 
   '@types/stylis@4.2.5': {}
 
@@ -3289,6 +3303,8 @@ snapshots:
     dependencies:
       ip-address: 9.0.5
       smart-buffer: 4.2.0
+
+  sortablejs@1.15.3: {}
 
   source-map-js@1.2.1: {}
 

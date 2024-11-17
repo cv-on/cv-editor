@@ -3,6 +3,8 @@ import { FC } from "react";
 
 import { Flex, usySpacing } from "@usy-ui/base";
 
+import { useHydrated } from "@/hooks/use-hydrated";
+
 import { ContactSection } from "./contact";
 import { EducationSection } from "./education";
 import { ExperienceSection } from "./experience";
@@ -22,6 +24,12 @@ export const CvTemplate: FC<CvTemplateProps> = ({
   isRenderMode,
   className,
 }) => {
+  const { hydrated } = useHydrated();
+
+  if (!hydrated) {
+    return null;
+  }
+
   return (
     <CvPageStyled $isRenderMode={isRenderMode} className={className}>
       <HeaderSection />

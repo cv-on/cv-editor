@@ -3,11 +3,15 @@ import { ChangeEvent, FC, useRef, useState } from "react";
 import { Avatar, Button, Flex, UploadIcon, usySpacing } from "@usy-ui/base";
 
 type UploadAvatarProps = {
+  avatarSrc: string;
   syncAvatar: (base64Img: string) => void;
 };
 
-export const UploadAvatar: FC<UploadAvatarProps> = ({ syncAvatar }) => {
-  const [base64Avatar, setBase64Avatar] = useState<string>("");
+export const UploadAvatar: FC<UploadAvatarProps> = ({
+  avatarSrc,
+  syncAvatar,
+}) => {
+  const [base64Avatar, setBase64Avatar] = useState<string>(avatarSrc);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {

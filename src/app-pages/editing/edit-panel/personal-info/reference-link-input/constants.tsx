@@ -9,7 +9,6 @@ import {
   BrandWhatsappIcon,
   BrandXIcon,
   LinkIcon,
-  usySpacing,
 } from "@usy-ui/base";
 
 import { ReferenceTypeUnion } from "@/types";

@@ -2,10 +2,16 @@
 import { atom, selector } from "recoil";
 
 import { mockCvContent } from "@/mock/cv-content";
+import {
+  getCvContentFromStorage,
+  isCvContentCached,
+} from "@/utils/local-storage";
 
 export const personalInfoAtom = atom({
   key: "personalInfoAtom",
-  default: mockCvContent.personalInfo,
+  default: isCvContentCached()
+    ? getCvContentFromStorage().personalInfo
+    : mockCvContent.personalInfo,
 });
 
 export const personalInfoSelector = selector({

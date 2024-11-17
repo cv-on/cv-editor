@@ -2,10 +2,16 @@
 import { atom, selector } from "recoil";
 
 import { mockCvContent } from "@/mock/cv-content";
+import {
+  getCvContentFromStorage,
+  isCvContentCached,
+} from "@/utils/local-storage";
 
 export const sideProjectsAtom = atom({
   key: "sideProjectsAtom",
-  default: mockCvContent.sideProjects,
+  default: isCvContentCached()
+    ? getCvContentFromStorage().sideProjects
+    : mockCvContent.sideProjects,
 });
 
 export const sideProjectsSelector = selector({

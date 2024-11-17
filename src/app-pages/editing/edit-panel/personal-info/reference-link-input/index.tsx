@@ -1,13 +1,11 @@
 import { FC, useState } from "react";
 
 import {
-  Badge,
   Button,
   Flex,
   Input,
   Popover,
   PopoverContentFnParams,
-  Typography,
   usySpacing,
 } from "@usy-ui/base";
 import {
@@ -18,7 +16,7 @@ import {
   UseFieldArrayUpdate,
 } from "react-hook-form";
 
-import { PersonalInfoSectionType, ReferenceTypeUnion, Url } from "@/types";
+import { PersonalInfoSectionType, ReferenceTypeUnion } from "@/types";
 import { capitalize } from "@/utils/format";
 
 import { ReferenceIconsArray, ReferenceIconsConst } from "./constants";

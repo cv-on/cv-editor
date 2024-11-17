@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 
 import {
@@ -10,10 +11,10 @@ import {
   usySpacing,
 } from "@usy-ui/base";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { useRecoilState } from "recoil";
 
 import { personalInfoAtom } from "@/app-states";
 import { ValidateRules } from "@/constants/validation";
+import { useObserveState } from "@/hooks/use-observe-state";
 import { PersonalInfoSectionType } from "@/types";
 import { debounce } from "@/utils/helpers";
 
@@ -23,7 +24,6 @@ import { DisplaySectionUnion } from "../types";
 
 import { ReferenceLinkInput } from "./reference-link-input";
 import { UploadAvatar } from "./upload-avatar";
-import dayjs from "dayjs";
 
 type PersonalInfoSectionProps = {
   changeSection: (section: DisplaySectionUnion) => void;
@@ -32,13 +32,16 @@ type PersonalInfoSectionProps = {
 export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   changeSection,
 }) => {
-  const [personalInfo, setPersonalInfo] = useRecoilState(personalInfoAtom);
+  const [personalInfo, setPersonalInfo] =
+    useObserveState<PersonalInfoSectionType>({
+      atom: personalInfoAtom,
+      sectionType: "personalInfo",
+    });
 
   const {
     formState: { errors },
     control,
     getValues,
-    watch,
   } = useForm<PersonalInfoSectionType>({
     mode: "onBlur",
     values: personalInfo,
@@ -77,7 +80,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
           changeSection={changeSection}
           hasGoBack
         />
-        <UploadAvatar syncAvatar={syncAvatar} />
+        <UploadAvatar
+          avatarSrc={personalInfo.avatarSrc}
+          syncAvatar={syncAvatar}
+        />
         <Separator title="Info Fields" titleProps={{ weight: "semibold" }} />
         <Controller
           name="name"

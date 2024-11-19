@@ -1,5 +1,5 @@
 export type ProjectType = {
-  client?: string;
+  clientName?: string;
   projectName: string;
   techStacks: string[];
   responsibilities: string[];
@@ -8,8 +8,8 @@ export type ProjectType = {
 
 export type CompanyType = {
   companyName: string;
-  fromDate: Date;
-  toDate: Date | "present";
+  fromDate: string;
+  toDate: "present" | string;
   position: string;
   projects: ProjectType[];
 };

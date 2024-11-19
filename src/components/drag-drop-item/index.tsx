@@ -18,12 +18,14 @@ import { DragDropStyled } from "./styled";
 
 type DragDropItemProps = {
   children: ReactNode;
+  isDraggable?: boolean;
   onEdit: () => void;
   onRemove: () => void;
 };
 
 export const DragDropItem: FC<DragDropItemProps> = ({
   children,
+  isDraggable = true,
   onEdit,
   onRemove,
 }) => {
@@ -46,7 +48,9 @@ export const DragDropItem: FC<DragDropItemProps> = ({
       <Flex
         direction="column"
         justifyContent="center"
-        widthProps={{ maxWidth: usySpacing.px48 }}
+        widthProps={{
+          maxWidth: `calc(${usySpacing.px40} + ${usySpacing.px4})`,
+        }}
       >
         <Button variant="invisible" onClick={onEdit}>
           <UserEditIcon />
@@ -65,12 +69,15 @@ export const DragDropItem: FC<DragDropItemProps> = ({
       marginProps={{ margin: `${usySpacing.px6} 0` }}
       paddingProps={{
         padding: `${usySpacing.px18} ${usySpacing.px4}`,
+        paddingLeft: isDraggable ? usySpacing.px4 : usySpacing.px18,
       }}
     >
       <Flex alignItems="center" gap={usySpacing.px4}>
-        <DragDropStyled>
-          <AlignJustifyIcon />
-        </DragDropStyled>
+        {isDraggable && (
+          <DragDropStyled>
+            <AlignJustifyIcon />
+          </DragDropStyled>
+        )}
         <FlexChild grow={1}>{children}</FlexChild>
         {renderEditDeleteIcons()}
       </Flex>

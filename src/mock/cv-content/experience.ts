@@ -4,12 +4,12 @@ export const experience: ExperienceSectionType = {
   companies: [
     {
       companyName: "GBK Technologies",
-      fromDate: new Date("2020/01/01"),
+      fromDate: new Date("2020/01/01").toISOString(),
       toDate: "present",
       position: "Senior Fullstack Developer",
       projects: [
         {
-          client: "TechCorp",
+          clientName: "TechCorp",
           projectName: "Alpha System Revamp",
           techStacks: ["Angular", "Node.js", "MongoDB"],
           responsibilities: [
@@ -23,7 +23,7 @@ export const experience: ExperienceSectionType = {
           ],
         },
         {
-          client: "ShopEase",
+          clientName: "ShopEase",
           projectName: "Beta E-commerce Platform, ReFace",
           techStacks: ["ReactJS", "Express.js", "PostgreSQL"],
           responsibilities: [
@@ -40,8 +40,8 @@ export const experience: ExperienceSectionType = {
     },
     {
       companyName: "MediFlow Solutions",
-      fromDate: new Date("2018/05/01"),
-      toDate: new Date("2020/01/01"),
+      fromDate: new Date("2018/05/01").toISOString(),
+      toDate: new Date("2020/01/01").toISOString(),
       position: "Senior Fullstack Developer",
       projects: [
         {

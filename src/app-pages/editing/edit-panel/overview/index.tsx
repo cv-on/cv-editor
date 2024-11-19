@@ -1,6 +1,14 @@
 import { FC, useMemo, useState } from "react";
 
-import { Badge, Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
+import {
+  Badge,
+  Box,
+  Button,
+  Flex,
+  Popover,
+  Typography,
+  usySpacing,
+} from "@usy-ui/base";
 import Link from "next/link";
 
 import {
@@ -111,6 +119,32 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
   };
 
   const renderCta = () => {
+    const renderConfirm = () => {
+      return (
+        <Flex
+          direction="column"
+          alignItems="center"
+          gap={usySpacing.px6}
+          widthProps={{ minWidth: "200px" }}
+        >
+          <Typography size="small">
+            Are you sure to reset? Your changes will be lost forever
+          </Typography>
+          <Button
+            variant="danger"
+            size="tiny"
+            onClick={() => {
+              resetCvContentOnStorage();
+              window.location.reload();
+            }}
+            noSole
+          >
+            Confirm
+          </Button>
+        </Flex>
+      );
+    };
+
     return (
       <Flex justifyContent="center" gap={usySpacing.px20}>
         <Button
@@ -118,19 +152,14 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
           loading={isDownloading}
           onClick={handleDownloadPDF}
         >
-          Export CV
+          Export
         </Button>
         <Link href="/preview" target="_blank">
           <Button variant="outline">Preview</Button>
         </Link>
-        <Button
-          variant="outline"
-          onClick={() => {
-            resetCvContentOnStorage();
-          }}
-        >
-          Reset
-        </Button>
+        <Popover position="top" content={renderConfirm()}>
+          <Button variant="outline">Reset</Button>
+        </Popover>
       </Flex>
     );
   };

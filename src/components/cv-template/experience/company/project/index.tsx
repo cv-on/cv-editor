@@ -7,7 +7,7 @@ import { ProjectType } from "@/types";
 import { BadgeProjectName } from "./project.styled";
 
 export const Project: FC<ProjectType> = ({
-  client,
+  clientName,
   projectName,
   techStacks,
   responsibilities,
@@ -25,12 +25,12 @@ export const Project: FC<ProjectType> = ({
 
   const renderClient = () => {
     return (
-      client && (
+      clientName && (
         <Typography size="small">
           <Typography tag="span" size="small" weight="bold">
             ◾Client:&nbsp;
           </Typography>
-          {client}
+          {clientName}
         </Typography>
       )
     );

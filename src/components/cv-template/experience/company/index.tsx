@@ -49,10 +49,16 @@ export const Company: FC<CompanyProps> = ({
 
   const renderProjects = () => {
     return projects.map(
-      ({ client, projectName, techStacks, responsibilities, achievements }) => (
+      ({
+        clientName,
+        projectName,
+        techStacks,
+        responsibilities,
+        achievements,
+      }) => (
         <Project
           key={projectName}
-          client={client}
+          clientName={clientName}
           projectName={projectName}
           techStacks={techStacks}
           responsibilities={responsibilities}

@@ -8,13 +8,17 @@ type TechSkillProps = TechSkillType & {
   index: number;
 };
 
-export const TechSkill: FC<TechSkillProps> = ({ type, items, index }) => {
+export const TechSkill: FC<TechSkillProps> = ({
+  skillType,
+  techStacks,
+  index,
+}) => {
   return (
     <Box marginProps={{ marginTop: index === 0 ? "0" : usySpacing.px14 }}>
       <Typography size="small" weight="bold">
-        {type}
+        {skillType}
       </Typography>
-      <Typography size="small">{items.join(", ")}</Typography>
+      <Typography size="small">{techStacks.join(", ")}</Typography>
     </Box>
   );
 };

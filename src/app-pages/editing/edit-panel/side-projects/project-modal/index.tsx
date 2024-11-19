@@ -115,6 +115,7 @@ export const ProjectItemModal: FC<ProjectItemModalProps> = ({
             rules={{ required: ValidateRules.required }}
             render={({ field }) => (
               <Tags
+                label="Tech Stacks"
                 tags={field.value}
                 onAdd={(tags) => field.onChange(tags)}
                 onRemove={(tags) => field.onChange(tags)}

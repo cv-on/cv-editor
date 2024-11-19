@@ -1,6 +1,6 @@
 export type TechSkillType = {
-  type: string;
-  items: string[];
+  skillType: string;
+  techStacks: string[];
 };
 
 export type TechnicalSectionType = {

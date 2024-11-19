@@ -142,6 +142,7 @@ export const SideProjectsSection: FC<SideProjectsSectionProps> = ({
       );
     });
   };
+
   return (
     <>
       {isOpenModal && (

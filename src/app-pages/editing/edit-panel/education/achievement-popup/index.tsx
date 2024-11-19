@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Button, Flex, Input, Modal, TextArea, usySpacing } from "@usy-ui/base";
+import { Button, Flex, Modal, TextArea, usySpacing } from "@usy-ui/base";
 import {
   Controller,
   UseFieldArrayAppend,

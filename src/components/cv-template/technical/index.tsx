@@ -12,8 +12,13 @@ export const TechnicalSection = () => {
   return (
     <>
       <CvSection title="Technical">
-        {technical.skills.map(({ type, items }, index) => (
-          <TechSkill key={type} index={index} type={type} items={items} />
+        {technical.skills.map(({ skillType, techStacks }, index) => (
+          <TechSkill
+            key={skillType}
+            index={index}
+            skillType={skillType}
+            techStacks={techStacks}
+          />
         ))}
       </CvSection>
     </>

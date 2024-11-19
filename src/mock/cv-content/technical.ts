@@ -3,24 +3,30 @@ import { TechnicalSectionType } from "@/types";
 export const technical: TechnicalSectionType = {
   skills: [
     {
-      type: "Languages",
-      items: ["JavaScript (ES6+)", "TypeScript", "Go", "HTML5", "CSS3/Sass"],
+      skillType: "Languages",
+      techStacks: [
+        "JavaScript (ES6+)",
+        "TypeScript",
+        "Go",
+        "HTML5",
+        "CSS3/Sass",
+      ],
     },
     {
-      type: "Frontend",
-      items: ["ReactJS", "NextJS", "Vue.js"],
+      skillType: "Frontend",
+      techStacks: ["ReactJS", "NextJS", "Vue.js"],
     },
     {
-      type: "Backend",
-      items: ["Node.js", "NestJS", "Express.js", "Django", "Flask"],
+      skillType: "Backend",
+      techStacks: ["Node.js", "NestJS", "Express.js", "Django", "Flask"],
     },
     {
-      type: "Databases",
-      items: ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
+      skillType: "Databases",
+      techStacks: ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
     },
     {
-      type: "DevOps & Cloud",
-      items: [
+      skillType: "DevOps & Cloud",
+      techStacks: [
         "Docker",
         "Kubernetes",
         "AWS (Lambda, S3, EC2)",
@@ -28,8 +34,8 @@ export const technical: TechnicalSectionType = {
       ],
     },
     {
-      type: "Testing",
-      items: ["Jest", "Mocha", "Supertest", "Cypress"],
+      skillType: "Testing",
+      techStacks: ["Jest", "Mocha", "Supertest", "Cypress"],
     },
   ],
 };

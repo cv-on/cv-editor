@@ -1,5 +1,5 @@
 export type QualifyType = {
-  keyWord: string;
+  keyPoint: string;
   description: string;
 };
 

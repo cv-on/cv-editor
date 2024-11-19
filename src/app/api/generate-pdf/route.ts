@@ -1,5 +1,4 @@
-import { AppContentStorageKey } from "@/constants/app";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {

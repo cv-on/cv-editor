@@ -13,11 +13,11 @@ export const personalInfo: PersonalInfoSectionType = {
   referenceLinks: [
     {
       type: "linkedin",
-      url: "https://linkedin.com/in/john-doe",
+      url: "linkedin.com/in/john-doe",
     },
     {
       type: "github",
-      url: "https://github.com/john-doe",
+      url: "github.com/john-doe",
     },
   ],
 };

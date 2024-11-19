@@ -3,7 +3,10 @@ import { FC, useMemo, useState } from "react";
 import { Badge, Box, Button, Flex, Typography, usySpacing } from "@usy-ui/base";
 import Link from "next/link";
 
-import { resetCvContentOnStorage } from "@/utils/local-storage";
+import {
+  getCvContentFromStorage,
+  resetCvContentOnStorage,
+} from "@/utils/local-storage";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
@@ -39,11 +42,13 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
   const handleDownloadPDF = async () => {
     try {
       setIsDownloading(true);
+      const cvContent = getCvContentFromStorage();
       const response = await fetch("/api/generate-pdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(cvContent),
       });
 
       if (!response.ok) throw new Error("PDF generation failed");

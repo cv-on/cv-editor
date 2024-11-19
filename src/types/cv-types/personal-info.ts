@@ -1,5 +1,3 @@
-import { Url } from "./common";
-
 export type ReferenceTypeUnion =
   | "facebook"
   | "instagram"
@@ -12,7 +10,7 @@ export type ReferenceTypeUnion =
 
 export type ReferenceLink = {
   type: ReferenceTypeUnion;
-  url: Url;
+  url: string;
 };
 
 export type PersonalInfoSectionType = {

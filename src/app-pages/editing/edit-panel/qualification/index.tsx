@@ -94,6 +94,7 @@ export const QualificationSection: FC<QualificationSectionProps> = ({
           <Button
             variant="outline"
             widthProps={{ width: "100%" }}
+            radius="large"
             onClick={openModal}
           >
             <PlusIcon />

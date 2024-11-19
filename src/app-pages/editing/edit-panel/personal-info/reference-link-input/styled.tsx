@@ -1,9 +1,13 @@
-import { TrashBinIcon, usyColor, usySpacing } from "@usy-ui/base";
+import { Button, TrashBinIcon, usyColor, usySpacing } from "@usy-ui/base";
 import styled from "styled-components";
+
+export const SelectIconButtonStyled = styled(Button)`
+  margin-top: ${usySpacing.px20};
+`;
 
 export const TrashBinIconStyled = styled(TrashBinIcon)`
   min-width: ${usySpacing.px20};
-  margin-bottom: ${usySpacing.px10};
+  margin-top: calc(${usySpacing.px32} - ${usySpacing.px2});
   color: ${usyColor.dark5};
   cursor: pointer;
 `;

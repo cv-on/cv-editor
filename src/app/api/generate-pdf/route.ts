@@ -1,10 +1,18 @@
-import { NextResponse } from "next/server";
+import { AppContentStorageKey } from "@/constants/app";
+import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
+    const requestPayload = await request.json();
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+
+    await page.evaluateOnNewDocument((requestPayload) => {
+      if (requestPayload) {
+        localStorage.setItem("cv-content", JSON.stringify(requestPayload));
+      }
+    }, requestPayload);
 
     await page.goto("http://localhost:3000/preview", {
       waitUntil: "networkidle0",

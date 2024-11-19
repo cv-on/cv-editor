@@ -12,14 +12,13 @@ import { useRecoilValue } from "recoil";
 
 import { ReferenceIconsConst } from "@/app-pages/editing/edit-panel/personal-info/reference-link-input/constants";
 import { personalInfoSelector } from "@/app-states";
-import { Url } from "@/types";
 
 import { CvSection } from "../../cv-section";
 
 type ContactItem = {
   icon: ReactNode;
   label: string;
-  url?: Url;
+  url?: string;
 };
 
 export const ContactSection = () => {
@@ -29,7 +28,7 @@ export const ContactSection = () => {
     () =>
       personalInfo.referenceLinks.map((link) => ({
         icon: ReferenceIconsConst[link.type],
-        label: link.url.replace("www", "").split("//")[1],
+        label: link.url,
         url: link.url,
       })),
     [personalInfo]
@@ -71,8 +70,11 @@ export const ContactSection = () => {
   return (
     <>
       <CvSection title="Contact">
-        {itemsMemo.map(({ icon, label, url }) => (
-          <Flex key={label} marginProps={{ marginBottom: usySpacing.px10 }}>
+        {itemsMemo.map(({ icon, label, url }, index) => (
+          <Flex
+            key={`${label}-${index}`}
+            marginProps={{ marginBottom: usySpacing.px10 }}
+          >
             {icon}
             &nbsp;&nbsp;
             {url ? (

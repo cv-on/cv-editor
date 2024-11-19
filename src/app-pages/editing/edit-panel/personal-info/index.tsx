@@ -61,9 +61,9 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const handleAddReferenceLink = () => {
     append({
       type: "custom",
-      url: "https://...",
+      url: "",
     });
-    syncPersonalInfoState();
+    debounceSyncPersonalInfoState();
   };
 
   /**
@@ -190,7 +190,6 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
             changeState={() => debounceSyncPersonalInfoState()}
           />
         ))}
-
         <Button variant="outline" onClick={handleAddReferenceLink}>
           Add link
         </Button>

@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 
 import {
-  Button,
   Flex,
   Input,
   Popover,
@@ -16,11 +15,16 @@ import {
   UseFieldArrayUpdate,
 } from "react-hook-form";
 
+import { ValidateRules } from "@/constants/validation";
 import { PersonalInfoSectionType, ReferenceTypeUnion } from "@/types";
 import { capitalize } from "@/utils/format";
 
 import { ReferenceIconsArray, ReferenceIconsConst } from "./constants";
-import { BrandIconButton, TrashBinIconStyled } from "./styled";
+import {
+  BrandIconButton,
+  SelectIconButtonStyled,
+  TrashBinIconStyled,
+} from "./styled";
 
 type ReferenceLinkInputProps = {
   index: number;
@@ -28,7 +32,6 @@ type ReferenceLinkInputProps = {
   item: FieldArrayWithId<PersonalInfoSectionType, "referenceLinks", "id">;
   update: UseFieldArrayUpdate<PersonalInfoSectionType, "referenceLinks">;
   remove: UseFieldArrayRemove;
-
   changeState: () => void;
 };
 
@@ -41,6 +44,11 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
   changeState,
 }) => {
   const [selectIcon, setSelectIcon] = useState<ReferenceTypeUnion>(item.type);
+
+  const removeLink = () => {
+    remove(index);
+    changeState();
+  };
 
   /**
    * Render
@@ -74,30 +82,27 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
   };
 
   return (
-    <Flex alignItems="flex-end" gap={usySpacing.px4}>
+    <Flex alignItems="flex-start" gap={usySpacing.px4}>
       <Popover content={renderIconsPanel} position="top-end">
-        <Button>{ReferenceIconsConst[selectIcon]}</Button>
+        <SelectIconButtonStyled>
+          {ReferenceIconsConst[selectIcon]}
+        </SelectIconButtonStyled>
       </Popover>
       <Controller
         name={`referenceLinks.${index}.url`}
         control={control}
-        defaultValue={item.url}
-        render={({ field }) => (
+        rules={{ required: ValidateRules.required }}
+        render={({ field, fieldState: { error } }) => (
           <Input
             {...field}
             label={capitalize(selectIcon)}
-            placeholder="https://..."
-            onBlur={() => {
-              changeState();
-            }}
+            description={error?.message}
+            hasError={Boolean(error?.message)}
+            onBlur={() => changeState()}
           />
         )}
       />
-      <TrashBinIconStyled
-        onClick={() => {
-          remove(index);
-        }}
-      />
+      <TrashBinIconStyled onClick={removeLink} />
     </Flex>
   );
 };

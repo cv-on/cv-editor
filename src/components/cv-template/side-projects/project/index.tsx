@@ -13,8 +13,7 @@ export const SideProject: FC<SideProjectProps> = ({
   name,
   description,
   techStacks,
-  shortUrl,
-  fullUrl,
+  url,
   index,
 }) => {
   return (
@@ -27,8 +26,8 @@ export const SideProject: FC<SideProjectProps> = ({
       </Typography>
       <Typography size="small">- {description}</Typography>
       <Typography size="small">- {techStacks.join(", ")}</Typography>
-      <Link href={fullUrl} target="_blank">
-        <Typography size="small">- {shortUrl}</Typography>
+      <Link href={url} target="_blank">
+        <Typography size="small">- {url}</Typography>
       </Link>
     </Flex>
   );

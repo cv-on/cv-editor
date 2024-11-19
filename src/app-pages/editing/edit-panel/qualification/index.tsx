@@ -46,6 +46,7 @@ export const QualificationSection: FC<QualificationSectionProps> = ({
     });
 
   const { control, getValues, setValue } = useForm<QualificationSectionType>({
+    mode: "onBlur",
     values: qualification,
     defaultValues: qualification,
   });

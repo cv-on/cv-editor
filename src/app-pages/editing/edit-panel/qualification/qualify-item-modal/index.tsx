@@ -89,8 +89,8 @@ export const QualifyItemModal: FC<QualifyItemModalProps> = ({
                 {...field}
                 label="Description"
                 placeholder="Description about your skills"
-                description={errors.keyPoint?.message}
-                hasError={Boolean(errors.keyPoint?.message)}
+                description={errors.description?.message}
+                hasError={Boolean(errors.description?.message)}
                 heightProps={{ minHeight: "150px" }}
               />
             )}

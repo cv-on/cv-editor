@@ -64,7 +64,7 @@ export const DragDropItem: FC<DragDropItemProps> = ({
     <Panel
       marginProps={{ margin: `${usySpacing.px6} 0` }}
       paddingProps={{
-        padding: `${usySpacing.px20} ${usySpacing.px4}`,
+        padding: `${usySpacing.px18} ${usySpacing.px4}`,
       }}
     >
       <Flex alignItems="center" gap={usySpacing.px4}>

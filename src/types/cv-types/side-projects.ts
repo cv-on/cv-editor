@@ -1,11 +1,8 @@
-import { Url } from "./common";
-
 export type SideProjectType = {
   name: string;
   description: string;
   techStacks: string[];
-  shortUrl: string;
-  fullUrl: Url;
+  url: string;
 };
 
 export type SideProjectsSectionType = {

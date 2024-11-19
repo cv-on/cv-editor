@@ -13,15 +13,14 @@ export const SideProjectsSection = () => {
     <>
       <CvSection title="Side Projects">
         {sideProjects.projects.map(
-          ({ name, description, techStacks, shortUrl, fullUrl }, index) => (
+          ({ name, description, techStacks, url }, index) => (
             <SideProject
               key={name}
               index={index}
               name={name}
               description={description}
               techStacks={techStacks}
-              shortUrl={shortUrl}
-              fullUrl={fullUrl}
+              url={url}
             />
           )
         )}

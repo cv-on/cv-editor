@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 import {
-  AccordionItemType,
   Box,
   Button,
   Flex,
@@ -46,6 +45,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
   });
 
   const { control, getValues, setValue } = useForm<EducationSectionType>({
+    mode: "onBlur",
     values: education,
     defaultValues: education,
   });

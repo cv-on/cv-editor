@@ -1,3 +1,7 @@
+export type AchievementType = {
+  content: string;
+};
+
 export type EducationSectionType = {
-  paragraphs: string[];
+  achievements: AchievementType[];
 };

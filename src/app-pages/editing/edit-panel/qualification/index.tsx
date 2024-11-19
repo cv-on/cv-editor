@@ -81,7 +81,7 @@ export const QualificationSection: FC<QualificationSectionProps> = ({
             typeof evt.newIndex === "number"
           ) {
             const orderedQualifyItems = changeItemOrder<QualifyType>({
-              array: qualification.qualifyItems,
+              array: getValues().qualifyItems,
               fromIndex: evt.oldIndex,
               toIndex: evt.newIndex,
             });
@@ -92,7 +92,7 @@ export const QualificationSection: FC<QualificationSectionProps> = ({
         },
       });
     }
-  }, [qualification.qualifyItems, setValue, syncQualificationState]);
+  }, [getValues, setValue, syncQualificationState]);
 
   /**
    * Render

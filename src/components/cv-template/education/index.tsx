@@ -4,7 +4,7 @@ import { educationSelector } from "@/app-states/education";
 
 import { CvSection } from "../../cv-section";
 
-import { Paragraph } from "./paragraph";
+import { Achievement } from "./achievement";
 
 export const EducationSection = () => {
   const education = useRecoilValue(educationSelector);
@@ -12,8 +12,8 @@ export const EducationSection = () => {
   return (
     <>
       <CvSection title="Education">
-        {education.paragraphs.map((content) => (
-          <Paragraph key={content.substring(0, 10)} content={content} />
+        {education.achievements.map(({ content }) => (
+          <Achievement key={content.substring(0, 10)} content={content} />
         ))}
       </CvSection>
     </>

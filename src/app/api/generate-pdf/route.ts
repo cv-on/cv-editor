@@ -1,10 +1,16 @@
+import chromium from "@sparticuz/chromium";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {
   try {
     const requestPayload = await request.json();
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
     const page = await browser.newPage();
 
     await page.evaluateOnNewDocument((requestPayload) => {
@@ -13,7 +19,7 @@ export async function POST(request: Request) {
       }
     }, requestPayload);
 
-    await page.goto("http://localhost:3000/preview", {
+    await page.goto(`${process.env.CVON_URL}/preview`, {
       waitUntil: "networkidle0",
     });
 

@@ -6,23 +6,15 @@ import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {
   try {
-    console.log(
-      "PUPPETEER_EXECUTABLE_PATH",
-      path.resolve(process.env.PUPPETEER_EXECUTABLE_PATH as string)
-    );
-    console.log(
-      "executablePath",
-      path.resolve(await chromium.executablePath())
-    );
+    const exePath = await chromium.executablePath();
+    console.log("executablePath", exePath);
 
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: path.resolve(
-        (process.env.PUPPETEER_EXECUTABLE_PATH as string) ||
-          (await chromium.executablePath())
-      ),
+      executablePath:
+        "/var/task/node_modules/.pnpm/@sparticuz/chromium/bin/chromium",
       headless: chromium.headless,
     });
     const page = await browser.newPage();

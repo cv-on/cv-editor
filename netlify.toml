@@ -9,4 +9,4 @@
   directory = "functions"
   included_files = ["node_modules/**"]
   external_node_modules = ["@sparticuz/chromium", "puppeteer-core"]
-  timeout = 26
+  [functions.timeout]

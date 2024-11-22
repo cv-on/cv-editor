@@ -1,16 +1,29 @@
+import path from "path";
+
 import chromium from "@sparticuz/chromium";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {
   try {
+    console.log(
+      "PUPPETEER_EXECUTABLE_PATH",
+      path.resolve(process.env.PUPPETEER_EXECUTABLE_PATH as string)
+    );
+    console.log(
+      "executablePath",
+      path.resolve(__dirname, await chromium.executablePath())
+    );
+
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath:
-        process.env.PUPPETEER_EXECUTABLE_PATH ||
-        (await chromium.executablePath()),
+      executablePath: path.resolve(
+        __dirname,
+        (process.env.PUPPETEER_EXECUTABLE_PATH as string) ||
+          (await chromium.executablePath())
+      ),
       headless: chromium.headless,
     });
     const page = await browser.newPage();

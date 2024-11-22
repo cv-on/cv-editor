@@ -25,7 +25,6 @@
     "library"
   ],
   "scripts": {
-    "postinstall": "npx puppeteer browsers install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

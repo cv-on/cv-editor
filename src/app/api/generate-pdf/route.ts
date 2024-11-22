@@ -1,5 +1,3 @@
-import path from "path";
-
 import chromium from "@sparticuz/chromium";
 import { NextResponse } from "next/server";
 import puppeteer from "puppeteer";

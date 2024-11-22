@@ -4,15 +4,11 @@ import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {
   try {
-    const exePath = await chromium.executablePath();
-    console.log("executablePath", exePath);
-
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath:
-        "/var/task/node_modules/.pnpm/@sparticuz/chromium/bin/chromium",
+      executablePath: await chromium.executablePath(),
       headless: chromium.headless,
     });
     const page = await browser.newPage();
@@ -51,9 +47,6 @@ export async function POST(request: Request) {
     });
   } catch (error: any) {
     console.log(error);
-    return NextResponse.json(
-      { error: "Error on generating PDF" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error }, { status: 500 });
   }
 }

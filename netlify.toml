@@ -6,4 +6,5 @@
   package = "@netlify/plugin-nextjs"
 
 [functions]
-  external_node_modules = ["@sparticuz/chromium"]
+  directory = "functions"
+  included_files = ["node_modules/**"]

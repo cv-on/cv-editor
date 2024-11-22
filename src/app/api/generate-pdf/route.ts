@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     );
     console.log(
       "executablePath",
-      path.resolve(__dirname, await chromium.executablePath())
+      path.resolve(await chromium.executablePath())
     );
 
     const requestPayload = await request.json();
@@ -20,7 +20,6 @@ export async function POST(request: Request) {
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: path.resolve(
-        __dirname,
         (process.env.PUPPETEER_EXECUTABLE_PATH as string) ||
           (await chromium.executablePath())
       ),

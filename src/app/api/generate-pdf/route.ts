@@ -9,12 +9,12 @@ export async function POST(request: Request) {
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
       args: chromium.args,
+      headless: true,
       defaultViewport: chromium.defaultViewport,
       executablePath:
         process.env.NODE_ENV === "development"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : await chromium.executablePath(),
-      headless: chromium.headless,
     });
     const page = await browser.newPage();
 

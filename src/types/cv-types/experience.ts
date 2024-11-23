@@ -1,9 +1,17 @@
+export type ProjResponsibilityType = {
+  content: string;
+};
+
+export type ProjAchievementType = {
+  content: string;
+};
+
 export type ProjectType = {
   clientName?: string;
   projectName: string;
   techStacks: string[];
-  responsibilities: string[];
-  achievements: string[];
+  responsibilities: ProjResponsibilityType[];
+  achievements: ProjAchievementType[];
 };
 
 export type CompanyType = {

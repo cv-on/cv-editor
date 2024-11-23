@@ -1,7 +1,7 @@
-export type AchievementType = {
+export type EduAchievementType = {
   content: string;
 };
 
 export type EducationSectionType = {
-  achievements: AchievementType[];
+  achievements: EduAchievementType[];
 };

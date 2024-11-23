@@ -4,7 +4,6 @@ import {
   Badge,
   Button,
   Flex,
-  Modal,
   PlusIcon,
   Scrollable,
   Typography,

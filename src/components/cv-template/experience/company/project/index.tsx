@@ -54,9 +54,9 @@ export const Project: FC<ProjectType> = ({
           ◾Responsibilities:
         </Typography>
         <Box paddingProps={{ paddingLeft: usySpacing.px14 }}>
-          {responsibilities.map((res) => (
-            <Typography key={res.substring(0, 10)} size="small">
-              {`- ${res}`}
+          {responsibilities.map(({ content }) => (
+            <Typography key={content.substring(0, 10)} size="small">
+              {`- ${content}`}
             </Typography>
           ))}
         </Box>
@@ -71,11 +71,10 @@ export const Project: FC<ProjectType> = ({
           ◾Achievements:
         </Typography>
         <Box paddingProps={{ paddingLeft: usySpacing.px14 }}>
-          {achievements.map((res) => (
-            <Typography
-              key={res.substring(0, 10)}
-              size="small"
-            >{`- ${res}`}</Typography>
+          {achievements.map(({ content }) => (
+            <Typography key={content.substring(0, 10)} size="small">
+              {`- ${content}`}
+            </Typography>
           ))}
         </Box>
       </>

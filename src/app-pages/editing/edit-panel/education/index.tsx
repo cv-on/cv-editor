@@ -14,7 +14,7 @@ import Sortable from "sortablejs";
 import { educationAtom } from "@/app-states/education";
 import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
-import { AchievementType, EducationSectionType } from "@/types";
+import { EduAchievementType, EducationSectionType } from "@/types";
 import { changeItemOrder } from "@/utils/helpers";
 
 import { SectionHeader } from "../_header";
@@ -23,7 +23,7 @@ import { DisplaySectionUnion } from "../types";
 
 import { AchievementItemModal } from "./achievement-popup";
 
-export type AchieveTypeWithIndex = AchievementType & {
+export type AchieveTypeWithIndex = EduAchievementType & {
   index?: number;
 };
 
@@ -80,7 +80,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
             typeof evt.oldIndex === "number" &&
             typeof evt.newIndex === "number"
           ) {
-            const orderedAchieveItems = changeItemOrder<AchievementType>({
+            const orderedAchieveItems = changeItemOrder<EduAchievementType>({
               array: getValues().achievements,
               fromIndex: evt.oldIndex,
               toIndex: evt.newIndex,

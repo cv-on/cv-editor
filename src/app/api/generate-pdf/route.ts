@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       }
     }, requestPayload);
 
-    await page.goto(`${process.env.SITE_URL}/preview`, {
+    await page.goto(`${process.env.NEXT_PUBLIC_SITE_URL}/preview`, {
       waitUntil: "networkidle0",
     });
 

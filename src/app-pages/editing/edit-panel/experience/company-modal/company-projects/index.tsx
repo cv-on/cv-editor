@@ -1,4 +1,4 @@
-import { Flex, usySpacing } from "@usy-ui/base";
+import { Flex, Typography, usySpacing } from "@usy-ui/base";
 
 export const CompanyProjects = () => {
   return (
@@ -7,7 +7,7 @@ export const CompanyProjects = () => {
       gap={usySpacing.px24}
       paddingProps={{ paddingTop: usySpacing.px16 }}
     >
-      company projects
+      <Typography weight="semibold">Company Projects</Typography>
     </Flex>
   );
 };

@@ -110,7 +110,7 @@ export const SideProjectsSection: FC<SideProjectsSectionProps> = ({
           onClick={openModal}
         >
           <PlusIcon />
-          &nbsp; Add Item
+          &nbsp; Add Project
         </Button>
       </Box>
     );

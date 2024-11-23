@@ -108,7 +108,7 @@ export const TechnicalSection: FC<TechnicalSectionProps> = ({
           onClick={openModal}
         >
           <PlusIcon />
-          &nbsp; Add Item
+          &nbsp; Add Skill
         </Button>
       </Box>
     );

@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     const pdfBuffer = await page.pdf({
       scale: scaleDownRate,
       format: "a4",
-      printBackground: true,
+      printBackground: false,
       margin: {
         top: 40 * scaleDownRate,
         right: 40 * scaleDownRate,

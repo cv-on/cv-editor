@@ -84,7 +84,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
           onClick={openModal}
         >
           <PlusIcon />
-          &nbsp; Add Item
+          &nbsp; Add Company
         </Button>
       </Box>
     );

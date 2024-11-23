@@ -12,7 +12,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import Sortable from "sortablejs";
 
 import { educationAtom } from "@/app-states/education";
-import { DragDropItem } from "@/components/drag-drop-item";
+import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
 import { AchievementType, EducationSectionType } from "@/types";
 import { changeItemOrder } from "@/utils/helpers";
@@ -117,7 +117,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
   const renderAchievementsList = () => {
     return fields.map((item, index) => {
       return (
-        <DragDropItem
+        <DragDropPanel
           key={item.id}
           onEdit={() => {
             setSelectedItem({ ...item, index });
@@ -129,7 +129,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
           }}
         >
           <Typography size="small">{item.content}</Typography>
-        </DragDropItem>
+        </DragDropPanel>
       );
     });
   };

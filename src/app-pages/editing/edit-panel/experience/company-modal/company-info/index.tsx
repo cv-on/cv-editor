@@ -178,9 +178,18 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
       >
         {renderCompanyNameAndPosition()}
         {renderFromAndToDate()}
-        <Button type="submit" variant="primary">
-          {isUpdateMode ? "Update" : "Create"}
-        </Button>
+        <Flex
+          justifyContent="center"
+          marginProps={{ marginTop: usySpacing.px10 }}
+        >
+          <Button
+            type="submit"
+            variant="primary"
+            widthProps={{ width: "200px" }}
+          >
+            {isUpdateMode ? "Update" : "Create"}
+          </Button>
+        </Flex>
       </Flex>
     </form>
   );

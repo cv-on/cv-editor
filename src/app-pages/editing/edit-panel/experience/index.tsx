@@ -12,7 +12,7 @@ import {
 import { useFieldArray, useForm } from "react-hook-form";
 
 import { experienceAtom } from "@/app-states/experience";
-import { DragDropItem } from "@/components/drag-drop-item";
+import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
 import { CompanyType, ExperienceSectionType } from "@/types";
 
@@ -103,7 +103,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
       }, [] as string[]);
 
       return (
-        <DragDropItem
+        <DragDropPanel
           key={item.id}
           isDraggable={false}
           onEdit={() => {
@@ -137,7 +137,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
               ))}
             </Flex>
           </Flex>
-        </DragDropItem>
+        </DragDropPanel>
       );
     });
   };

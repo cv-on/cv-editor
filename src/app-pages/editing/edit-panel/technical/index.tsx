@@ -12,7 +12,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import Sortable from "sortablejs";
 
 import { technicalAtom } from "@/app-states/technical";
-import { DragDropItem } from "@/components/drag-drop-item";
+import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
 import { TechnicalSectionType, TechSkillType } from "@/types";
 import { changeItemOrder } from "@/utils/helpers";
@@ -117,7 +117,7 @@ export const TechnicalSection: FC<TechnicalSectionProps> = ({
   const renderTechSkillList = () => {
     return fields.map((item, index) => {
       return (
-        <DragDropItem
+        <DragDropPanel
           key={item.id}
           onEdit={() => {
             setSelectedItem({ ...item, index });
@@ -132,7 +132,7 @@ export const TechnicalSection: FC<TechnicalSectionProps> = ({
             <Typography weight="bold">{item.skillType}</Typography>
             <Typography size="small">{item.techStacks.join(", ")}</Typography>
           </Flex>
-        </DragDropItem>
+        </DragDropPanel>
       );
     });
   };

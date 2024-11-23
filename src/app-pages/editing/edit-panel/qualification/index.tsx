@@ -12,7 +12,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import Sortable from "sortablejs";
 
 import { qualificationAtom } from "@/app-states/qualification";
-import { DragDropItem } from "@/components/drag-drop-item";
+import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
 import { QualificationSectionType, QualifyType } from "@/types";
 import { changeItemOrder } from "@/utils/helpers";
@@ -118,7 +118,7 @@ export const QualificationSection: FC<QualificationSectionProps> = ({
   const renderQualifyItemList = () => {
     return fields.map((item, index) => {
       return (
-        <DragDropItem
+        <DragDropPanel
           key={item.id}
           onEdit={() => {
             setSelectedItem({ ...item, index });
@@ -133,7 +133,7 @@ export const QualificationSection: FC<QualificationSectionProps> = ({
             <Typography tag="strong">{`${item.keyPoint}: `}</Typography>
             {item.description}
           </Typography>
-        </DragDropItem>
+        </DragDropPanel>
       );
     });
   };

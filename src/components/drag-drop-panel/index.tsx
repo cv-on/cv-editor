@@ -5,6 +5,8 @@ import {
   Button,
   Flex,
   FlexChild,
+  MarginProps,
+  PaddingProps,
   Panel,
   Popover,
   TrashBinIcon,
@@ -16,27 +18,32 @@ import {
 
 import { DragDropStyled } from "./styled";
 
-type DragDropItemProps = {
+type DragDropPanelProps = {
   children: ReactNode;
   isDraggable?: boolean;
   onEdit: () => void;
   onRemove: () => void;
-};
+} & MarginProps &
+  PaddingProps;
 
-export const DragDropItem: FC<DragDropItemProps> = ({
+export const DragDropPanel: FC<DragDropPanelProps> = ({
   children,
   isDraggable = true,
   onEdit,
   onRemove,
+  marginProps,
+  paddingProps,
 }) => {
   const renderConfirmQuestion = () => (
     <Flex
       direction="column"
       alignItems="center"
-      gap={usySpacing.px6}
+      gap={usySpacing.px12}
       widthProps={{ minWidth: "160px" }}
     >
-      <Typography size="small">Are you sure to remove?</Typography>
+      <Typography size="small" color="white">
+        Are you sure to remove?
+      </Typography>
       <Button variant="danger" size="tiny" onClick={onRemove} noSole>
         Confirm
       </Button>
@@ -55,7 +62,11 @@ export const DragDropItem: FC<DragDropItemProps> = ({
         <Button variant="invisible" onClick={onEdit}>
           <UserEditIcon />
         </Button>
-        <Popover position="top-start" content={renderConfirmQuestion()}>
+        <Popover
+          position="left"
+          color="dark-8"
+          content={renderConfirmQuestion()}
+        >
           <Button variant="invisible">
             <TrashBinIcon color={usyColor.red7} />
           </Button>
@@ -66,8 +77,9 @@ export const DragDropItem: FC<DragDropItemProps> = ({
 
   return (
     <Panel
-      marginProps={{ margin: `${usySpacing.px6} 0` }}
+      marginProps={{ ...marginProps, margin: `${usySpacing.px6} 0` }}
       paddingProps={{
+        ...paddingProps,
         padding: `${usySpacing.px18} ${usySpacing.px4}`,
         paddingLeft: isDraggable ? usySpacing.px4 : usySpacing.px18,
       }}

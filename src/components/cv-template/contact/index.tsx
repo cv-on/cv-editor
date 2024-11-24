@@ -29,7 +29,7 @@ export const ContactSection = () => {
       personalInfo.referenceLinks.map((link) => ({
         icon: ReferenceIconsConst[link.type],
         label: link.url,
-        url: link.url,
+        url: link.url.includes("https://") ? link.url : `https://${link.url}`,
       })),
     [personalInfo]
   );

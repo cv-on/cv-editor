@@ -16,6 +16,8 @@ export const SideProject: FC<SideProjectProps> = ({
   url,
   index,
 }) => {
+  const urlAddress = url.includes("https://") ? url : `https://${url}`;
+
   return (
     <Flex
       direction="column"
@@ -26,7 +28,7 @@ export const SideProject: FC<SideProjectProps> = ({
       </Typography>
       <Typography size="small">- {description}</Typography>
       <Typography size="small">- {techStacks.join(", ")}</Typography>
-      <Link href={url} target="_blank">
+      <Link href={urlAddress} target="_blank">
         <Typography size="small">- {url}</Typography>
       </Link>
     </Flex>

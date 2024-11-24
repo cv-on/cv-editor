@@ -140,7 +140,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
           <Input
             {...field}
             label="Project Name"
-            value={field.value[0]}
+            value={Array.isArray(field.value) ? field.value[0] : ""}
             onChange={(name) => field.onChange([name])}
             description={errors.projectNames?.message}
             hasError={Boolean(errors.projectNames?.message)}

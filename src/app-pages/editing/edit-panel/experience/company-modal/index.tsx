@@ -5,27 +5,27 @@ import { UseFieldArrayAppend, UseFieldArrayUpdate } from "react-hook-form";
 
 import { ExperienceSectionType } from "@/types";
 
-import { CompanyTypeWithIndex } from "..";
+import { CompanyTypeWithIdIndex } from "..";
 
 import { CompanyInfo } from "./company-info";
 import { CompanyProjects } from "./company-projects";
 
 type CompanyModalProps = {
-  selectedItem?: CompanyTypeWithIndex;
-  append: UseFieldArrayAppend<ExperienceSectionType, "companies">;
-  update: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
+  selectedCompany?: CompanyTypeWithIdIndex;
+  appendCompany: UseFieldArrayAppend<ExperienceSectionType, "companies">;
+  updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
   syncExperienceState: () => void;
   onClose: () => void;
 };
 
 export const CompanyModal: FC<CompanyModalProps> = ({
-  selectedItem,
-  append,
-  update,
+  selectedCompany,
+  appendCompany,
+  updateCompany,
   syncExperienceState,
   onClose,
 }) => {
-  const isUpdateMode = Boolean(selectedItem);
+  const isUpdateMode = Boolean(selectedCompany);
 
   return (
     <Modal
@@ -36,15 +36,19 @@ export const CompanyModal: FC<CompanyModalProps> = ({
     >
       <Flex direction="row" gap={usySpacing.px4}>
         <CompanyInfo
-          selectedItem={selectedItem}
+          selectedCompany={selectedCompany}
           isUpdateMode={isUpdateMode}
-          append={append}
-          update={update}
+          appendCompany={appendCompany}
+          updateCompany={updateCompany}
           syncExperienceState={syncExperienceState}
           onClose={onClose}
         />
         <Separator direction="vertical" heightProps={{ height: "unset" }} />
-        <CompanyProjects projects={selectedItem?.projects} />
+        <CompanyProjects
+          selectedCompany={selectedCompany}
+          updateCompany={updateCompany}
+          syncExperienceState={syncExperienceState}
+        />
       </Flex>
     </Modal>
   );

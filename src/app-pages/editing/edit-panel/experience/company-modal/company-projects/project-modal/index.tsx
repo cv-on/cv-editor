@@ -15,17 +15,20 @@ import {
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 
 import { ValidateRules } from "@/constants/validation";
-import { ProjectType } from "@/types";
+
+import { ProjectTypeWithIdIndex } from "..";
 
 import { DragDropTextArea } from "./drag-drop-textarea";
 
 type ProjectModalProps = {
-  selectedProject?: ProjectType;
+  selectedProject?: ProjectTypeWithIdIndex;
+  onProjectUpdate: (updatedProject: ProjectTypeWithIdIndex) => void;
   onClose: () => void;
 };
 
 export const ProjectModal: FC<ProjectModalProps> = ({
   selectedProject,
+  onProjectUpdate,
   onClose,
 }) => {
   const isUpdateMode = Boolean(selectedProject);
@@ -35,7 +38,8 @@ export const ProjectModal: FC<ProjectModalProps> = ({
   const {
     formState: { errors },
     control,
-  } = useForm<ProjectType>({
+    handleSubmit,
+  } = useForm<ProjectTypeWithIdIndex>({
     mode: "onBlur",
     values: selectedProject,
     defaultValues: selectedProject,
@@ -51,6 +55,11 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     name: "achievements",
   });
 
+  const onSubmit = (projectValues: ProjectTypeWithIdIndex) => {
+    onProjectUpdate(projectValues);
+    onClose();
+  };
+
   /**
    * Render
    */
@@ -60,7 +69,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
       <>
         <Flex justifyContent="space-between" alignItems="center">
           <Typography weight="semibold">
-            This project(s) belong to a client
+            Project(s) belong to a client
           </Typography>
           <Switch
             name="belong-to-client"
@@ -84,6 +93,64 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     );
   };
 
+  const renderClientName = () => {
+    if (!isBelongToClient) {
+      return null;
+    }
+
+    return (
+      <Controller
+        name="clientName"
+        control={control}
+        rules={{ required: ValidateRules.required }}
+        render={({ field }) => (
+          <Input
+            {...field}
+            label="Client Name"
+            description={errors.clientName?.message}
+            hasError={Boolean(errors.clientName?.message)}
+          />
+        )}
+      />
+    );
+  };
+
+  const renderProjectName = () => {
+    if (isAppliedToMultipleProjects) {
+      return (
+        <Controller
+          name="projectName"
+          control={control}
+          rules={{ required: ValidateRules.required }}
+          render={({ field }) => (
+            <Tags
+              tags={field.value.split(",")}
+              label="Project Names"
+              description={errors.projectName?.message}
+              hasError={Boolean(errors.projectName?.message)}
+            />
+          )}
+        />
+      );
+    }
+
+    return (
+      <Controller
+        name="projectName"
+        control={control}
+        rules={{ required: ValidateRules.required }}
+        render={({ field }) => (
+          <Input
+            {...field}
+            label="Project Name"
+            description={errors.projectName?.message}
+            hasError={Boolean(errors.projectName?.message)}
+          />
+        )}
+      />
+    );
+  };
+
   const renderResponsibilities = () => {
     return (
       <Flex direction="column" gap={usySpacing.px10}>
@@ -96,7 +163,9 @@ export const ProjectModal: FC<ProjectModalProps> = ({
               control={control}
               rules={{ required: ValidateRules.required }}
               render={({ field, fieldState: { error } }) => (
-                <DragDropTextArea onRemove={() => ""}>
+                <DragDropTextArea
+                  onRemove={() => responsibilitiesField.remove(index)}
+                >
                   <TextArea
                     {...field}
                     size="small"
@@ -124,7 +193,9 @@ export const ProjectModal: FC<ProjectModalProps> = ({
               control={control}
               rules={{ required: ValidateRules.required }}
               render={({ field, fieldState: { error } }) => (
-                <DragDropTextArea onRemove={() => ""}>
+                <DragDropTextArea
+                  onRemove={() => achievementsField.remove(index)}
+                >
                   <TextArea
                     {...field}
                     size="small"
@@ -153,46 +224,17 @@ export const ProjectModal: FC<ProjectModalProps> = ({
         paddingProps={{ paddingRight: usySpacing.px14 }}
         marginProps={{ marginRight: `-${usySpacing.px18}` }}
       >
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction="column" gap={usySpacing.px24}>
             {renderSwitchQuestions()}
-            {isBelongToClient && (
-              <Controller
-                name="clientName"
-                control={control}
-                rules={{ required: ValidateRules.required }}
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    label="Client Name"
-                    description={errors.clientName?.message}
-                    hasError={Boolean(errors.clientName?.message)}
-                  />
-                )}
-              />
-            )}
-            <Controller
-              name="projectName"
-              control={control}
-              rules={{ required: ValidateRules.required }}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  label="Project Name"
-                  placeholder={
-                    isAppliedToMultipleProjects
-                      ? "Use comma “,” to separate projects"
-                      : ""
-                  }
-                  description={errors.projectName?.message}
-                  hasError={Boolean(errors.projectName?.message)}
-                />
-              )}
-            />
+            {renderClientName()}
+            {renderProjectName()}
             <Controller
               name="techStacks"
               control={control}
-              rules={{ required: ValidateRules.required }}
+              rules={{
+                required: ValidateRules.required,
+              }}
               render={({ field }) => (
                 <Tags
                   label="Tech Stacks"

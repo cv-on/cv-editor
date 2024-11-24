@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 
 import { Box, Button, Checkbox, Flex, Input, usySpacing } from "@usy-ui/base";
 import dayjs from "dayjs";
@@ -12,53 +12,53 @@ import {
 import { ValidateRules } from "@/constants/validation";
 import { ExperienceSectionType, CompanyType } from "@/types";
 
-import { CompanyTypeWithIndex } from "../..";
+import { CompanyTypeWithIdIndex } from "../..";
 
 type CompanyInfoProps = {
-  selectedItem?: CompanyTypeWithIndex;
   isUpdateMode: boolean;
-  append: UseFieldArrayAppend<ExperienceSectionType, "companies">;
-  update: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
+  selectedCompany?: CompanyTypeWithIdIndex;
+  appendCompany: UseFieldArrayAppend<ExperienceSectionType, "companies">;
+  updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
   syncExperienceState: () => void;
   onClose: () => void;
 };
 
 export const CompanyInfo: FC<CompanyInfoProps> = ({
-  selectedItem,
   isUpdateMode,
-  append,
-  update,
+  selectedCompany,
+  appendCompany,
+  updateCompany,
   syncExperienceState,
   onClose,
 }) => {
   const [isStillWorking, setIsStillWorking] = useState(
-    selectedItem?.toDate === "present"
+    selectedCompany?.toDate === "present"
   );
   const {
     formState: { errors },
     control,
     handleSubmit,
-  } = useForm<CompanyTypeWithIndex>({
+  } = useForm<CompanyTypeWithIdIndex>({
     defaultValues: {
-      ...selectedItem,
-      fromDate: selectedItem?.fromDate || new Date().toISOString(),
-      toDate: selectedItem?.fromDate || new Date().toISOString(),
+      ...selectedCompany,
+      fromDate: selectedCompany?.fromDate || new Date().toISOString(),
+      toDate: selectedCompany?.fromDate || new Date().toISOString(),
     },
   });
 
-  const onSubmit = (formValues: CompanyTypeWithIndex) => {
-    const data: CompanyType = {
+  const onSubmit = (formValues: CompanyTypeWithIdIndex) => {
+    const updatedCompany: CompanyType = {
       companyName: formValues.companyName,
       fromDate: formValues.fromDate,
       toDate: isStillWorking ? "present" : formValues.toDate,
       position: formValues.position,
-      projects: selectedItem?.projects || [],
+      projects: selectedCompany?.projects || [],
     };
 
-    if (isUpdateMode && typeof selectedItem?.index === "number") {
-      update(selectedItem.index, data);
+    if (isUpdateMode && typeof selectedCompany?.index === "number") {
+      updateCompany(selectedCompany.index, updatedCompany);
     } else {
-      append(data);
+      appendCompany(updatedCompany);
     }
 
     syncExperienceState();

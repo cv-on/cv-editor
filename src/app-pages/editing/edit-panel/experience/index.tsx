@@ -21,8 +21,10 @@ import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { CompanyModal } from "./company-modal";
+import { transformProjectNamesStrToArray } from "./utils";
 
-export type CompanyTypeWithIndex = CompanyType & {
+export type CompanyTypeWithIdIndex = CompanyType & {
+  id: string;
   index: number;
 };
 
@@ -35,7 +37,8 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
 }) => {
   const dragAreaRef = useRef(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<CompanyTypeWithIndex>();
+  const [selectedCompany, setSelectedCompany] =
+    useState<CompanyTypeWithIdIndex>();
   const setExperienceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [experience, setExperience] = useObserveState<ExperienceSectionType>({
@@ -49,7 +52,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
     defaultValues: experience,
   });
 
-  const { fields, append, update, remove } = useFieldArray({
+  const companiesFieldArray = useFieldArray({
     control,
     name: "companies",
   });
@@ -67,7 +70,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => {
     setIsOpenModal(false);
-    setSelectedItem(undefined);
+    setSelectedCompany(undefined);
   };
 
   /**
@@ -91,27 +94,19 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
   };
 
   const renderCompanyList = () => {
-    return fields.map((item, index) => {
-      const projectNames = item.projects.reduce((acc, project) => {
-        if (project.projectName.includes(",")) {
-          acc = acc.concat(project.projectName.split(","));
-        } else {
-          acc.push(project.projectName);
-        }
-
-        return acc;
-      }, [] as string[]);
+    return companiesFieldArray.fields.map((company, index) => {
+      const projectNames = transformProjectNamesStrToArray(company.projects);
 
       return (
         <DragDropPanel
-          key={item.id}
+          key={company.id}
           isDraggable={false}
           onEdit={() => {
-            setSelectedItem({ ...item, index });
+            setSelectedCompany({ ...company, index });
             setIsOpenModal(true);
           }}
           onRemove={() => {
-            remove(index);
+            companiesFieldArray.remove(index);
             syncExperienceState();
           }}
         >
@@ -120,9 +115,9 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
             justifyContent="center"
             alignItems="baseline"
           >
-            <Typography weight="bold">{item.companyName}</Typography>
+            <Typography weight="bold">{company.companyName}</Typography>
             <Typography tag="em" weight="semibold" size="small">
-              {item.position}
+              {company.position}
             </Typography>
             <Flex wrap="wrap" gap={usySpacing.px4}>
               {projectNames.map((projName) => (
@@ -146,10 +141,11 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
     <>
       {isOpenModal && (
         <CompanyModal
-          selectedItem={selectedItem}
+          selectedCompany={selectedCompany}
+          setSelectedCompany={setSelectedCompany}
+          appendCompany={companiesFieldArray.append}
+          updateCompany={companiesFieldArray.update}
           syncExperienceState={syncExperienceState}
-          append={append}
-          update={update}
           onClose={closeModal}
         />
       )}

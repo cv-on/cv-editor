@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
-      args: chromium.args,
+      args: [...chromium.args, "--disable-gpu"],
       headless: true,
       defaultViewport: chromium.defaultViewport,
       executablePath:
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     const pdfBuffer = await page.pdf({
       scale: scaleDownRate,
       format: "a4",
-      printBackground: false,
+      printBackground: true,
       margin: {
         top: 40 * scaleDownRate,
         right: 40 * scaleDownRate,

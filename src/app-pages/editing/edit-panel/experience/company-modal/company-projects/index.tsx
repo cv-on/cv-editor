@@ -9,26 +9,127 @@ import {
   Typography,
   usySpacing,
 } from "@usy-ui/base";
+import { useFieldArray, UseFieldArrayUpdate, useForm } from "react-hook-form";
 
 import { DragDropPanel } from "@/components/drag-drop-panel";
-import { ProjectType } from "@/types";
+import { ExperienceSectionType, ProjectType } from "@/types";
+
+import { CompanyTypeWithIdIndex } from "../..";
 
 import { ProjectModal } from "./project-modal";
 
-type CompanyProjectsProps = {
-  projects?: ProjectType[];
+export type ProjectTypeWithIdIndex = ProjectType & {
+  id: string;
+  index: number;
 };
 
-export const CompanyProjects: FC<CompanyProjectsProps> = ({ projects }) => {
-  const [selectedProject, setSelectedProject] = useState<ProjectType>();
+type CompanyProjectsProps = {
+  selectedCompany?: CompanyTypeWithIdIndex;
+  updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
+  syncExperienceState: () => void;
+};
+
+export const CompanyProjects: FC<CompanyProjectsProps> = ({
+  selectedCompany,
+  updateCompany,
+  syncExperienceState,
+}) => {
+  const [selectedProject, setSelectedProject] =
+    useState<ProjectTypeWithIdIndex>();
   const [isProjectModalOpen, setIsProjectModalOpen] = useState<boolean>(false);
+
+  const { control, getValues } = useForm<CompanyTypeWithIdIndex>({
+    mode: "onBlur",
+    values: selectedCompany,
+    defaultValues: selectedCompany,
+  });
+  const projectsFieldArray = useFieldArray({ control, name: "projects" });
 
   const openProjectModal = () => setIsProjectModalOpen(true);
   const closeProjectModal = () => setIsProjectModalOpen(false);
 
-  const handleEditClick = (project: ProjectType) => {
+  const handleEdit = (project: ProjectTypeWithIdIndex) => {
     setSelectedProject(project);
     openProjectModal();
+  };
+
+  const handleRemove = (index: number) => {
+    if (typeof selectedCompany?.index === "number") {
+      projectsFieldArray.remove(index);
+      updateCompany(selectedCompany?.index, { ...getValues() });
+      syncExperienceState();
+    }
+  };
+
+  const handleSelectedProjectUpdate = (newProject: ProjectTypeWithIdIndex) => {
+    if (typeof selectedCompany?.index === "number") {
+      const updatedProject = projectsFieldArray.fields.map((prevProject) =>
+        prevProject.id === newProject.id ? newProject : prevProject
+      );
+      updateCompany(selectedCompany?.index, {
+        ...selectedCompany,
+        projects: updatedProject,
+      });
+      syncExperienceState();
+    }
+  };
+
+  /**
+   * Render
+   */
+
+  const renderProjectsList = () => {
+    return projectsFieldArray.fields.map((project, index) => {
+      const { projectName, clientName, techStacks } = project;
+
+      return (
+        <DragDropPanel
+          key={projectName}
+          isDraggable={false}
+          onEdit={() => handleEdit({ ...project, index })}
+          onRemove={() => handleRemove(index)}
+          marginProps={{
+            marginBottom: usySpacing.px10,
+            marginRight: usySpacing.px4,
+          }}
+          paddingProps={{
+            padding: `${usySpacing.px14} ${usySpacing.px16} ${usySpacing.px10}`,
+          }}
+        >
+          <Flex direction="column">
+            <Flex
+              gap={usySpacing.px4}
+              marginProps={{ marginBottom: usySpacing.px6 }}
+            >
+              {projectName.split(",").map((name) => (
+                <Badge
+                  key={name.trim()}
+                  variant="filled"
+                  radius="full"
+                  size="small"
+                >
+                  {name.trim()}
+                </Badge>
+              ))}
+            </Flex>
+            {clientName && (
+              <Typography size="small">
+                <Typography tag="span" size="small" weight="bold">
+                  ◾Client:&nbsp;
+                </Typography>
+                {clientName}
+              </Typography>
+            )}
+            <Typography size="small">
+              <Typography tag="span" size="small" weight="bold">
+                ◾Tech stacks:&nbsp;
+              </Typography>
+              {techStacks.join(", ")}
+            </Typography>
+          </Flex>
+        </DragDropPanel>
+      );
+    });
   };
 
   return (
@@ -36,6 +137,7 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({ projects }) => {
       {isProjectModalOpen && (
         <ProjectModal
           selectedProject={selectedProject}
+          onProjectUpdate={handleSelectedProjectUpdate}
           onClose={closeProjectModal}
         />
       )}
@@ -54,57 +156,7 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({ projects }) => {
           heightProps={{ maxHeight: "420px" }}
           paddingProps={{ paddingRight: usySpacing.px4 }}
         >
-          {(projects || []).map((project) => {
-            const { projectName, clientName, techStacks } = project;
-
-            return (
-              <DragDropPanel
-                key={projectName}
-                isDraggable={false}
-                onEdit={() => handleEditClick(project)}
-                onRemove={() => ""}
-                marginProps={{
-                  marginBottom: usySpacing.px10,
-                  marginRight: usySpacing.px4,
-                }}
-                paddingProps={{
-                  padding: `${usySpacing.px14} ${usySpacing.px16} ${usySpacing.px10}`,
-                }}
-              >
-                <Flex direction="column">
-                  <Flex
-                    gap={usySpacing.px4}
-                    marginProps={{ marginBottom: usySpacing.px6 }}
-                  >
-                    {projectName.split(",").map((name) => (
-                      <Badge
-                        key={name.trim()}
-                        variant="filled"
-                        radius="full"
-                        size="small"
-                      >
-                        {name.trim()}
-                      </Badge>
-                    ))}
-                  </Flex>
-                  {clientName && (
-                    <Typography size="small">
-                      <Typography tag="span" size="small" weight="bold">
-                        ◾Client:&nbsp;
-                      </Typography>
-                      {clientName}
-                    </Typography>
-                  )}
-                  <Typography size="small">
-                    <Typography tag="span" size="small" weight="bold">
-                      ◾Tech stacks:&nbsp;
-                    </Typography>
-                    {techStacks.join(", ")}
-                  </Typography>
-                </Flex>
-              </DragDropPanel>
-            );
-          })}
+          {renderProjectsList()}
         </Scrollable>
       </Flex>
     </>

@@ -8,7 +8,7 @@ import { BadgeProjectName } from "./project.styled";
 
 export const Project: FC<ProjectType> = ({
   clientName,
-  projectName,
+  projectNames,
   techStacks,
   responsibilities,
   achievements,
@@ -16,8 +16,8 @@ export const Project: FC<ProjectType> = ({
   const renderProjects = () => {
     return (
       <Flex alignItems="center" marginProps={{ marginBottom: usySpacing.px4 }}>
-        {projectName.split(",").map((proj) => (
-          <BadgeProjectName key={proj.trim()}>{proj.trim()}</BadgeProjectName>
+        {projectNames.map((name) => (
+          <BadgeProjectName key={name}>{name}</BadgeProjectName>
         ))}
       </Flex>
     );
@@ -83,7 +83,7 @@ export const Project: FC<ProjectType> = ({
 
   return (
     <Flex
-      key={projectName}
+      key={projectNames[0]}
       direction="column"
       marginProps={{ marginTop: usySpacing.px8, marginBottom: usySpacing.px10 }}
     >

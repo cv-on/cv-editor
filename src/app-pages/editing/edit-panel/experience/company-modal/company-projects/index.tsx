@@ -1,4 +1,11 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import {
   Badge,
@@ -10,10 +17,12 @@ import {
   usySpacing,
 } from "@usy-ui/base";
 import { useFieldArray, UseFieldArrayReturn, useForm } from "react-hook-form";
+import Sortable from "sortablejs";
 
 import { DragDropPanel } from "@/components/drag-drop-panel";
 import { Notes } from "@/components/notes";
 import { ExperienceSectionType, ProjectType } from "@/types";
+import { changeItemOrder } from "@/utils/helpers";
 
 import { CompanyTypeWithIdIndex } from "../..";
 
@@ -47,13 +56,47 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
   const [selectedProject, setSelectedProject] =
     useState<ProjectTypeWithIdIndex>();
   const [isProjectModalOpen, setIsProjectModalOpen] = useState<boolean>(false);
+  const dragAreaRef = useRef(null);
 
-  const { control, getValues } = useForm<CompanyTypeWithIdIndex>({
+  const { control, getValues, setValue } = useForm<CompanyTypeWithIdIndex>({
     mode: "onBlur",
     values: selectedCompany,
     defaultValues: selectedCompany,
   });
   const projectsFieldArray = useFieldArray({ control, name: "projects" });
+
+  useEffect(() => {
+    if (dragAreaRef.current) {
+      new Sortable(dragAreaRef.current, {
+        animation: 350,
+        onEnd: (evt) => {
+          if (
+            typeof evt.oldIndex === "number" &&
+            typeof evt.newIndex === "number" &&
+            typeof selectedCompany?.index === "number"
+          ) {
+            const orderedProjects = changeItemOrder<ProjectType>({
+              array: getValues().projects,
+              fromIndex: evt.oldIndex,
+              toIndex: evt.newIndex,
+            });
+
+            setValue("projects", orderedProjects);
+            companiesFieldArray.update(selectedCompany?.index, getValues());
+            setSelectedCompany(getValues());
+            syncExperienceState();
+          }
+        },
+      });
+    }
+  }, [
+    getValues,
+    setValue,
+    selectedCompany?.index,
+    setSelectedCompany,
+    companiesFieldArray,
+    syncExperienceState,
+  ]);
 
   const openProjectModal = () => setIsProjectModalOpen(true);
   const closeProjectModal = () => setIsProjectModalOpen(false);
@@ -91,8 +134,6 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
         : [...projectsFieldArray.fields, project],
     };
 
-    console.log("updatedCompany", updatedCompany);
-
     companiesFieldArray.update(
       selectedCompany?.index,
       updatedCompany as CompanyTypeWithIdIndex
@@ -127,12 +168,11 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
 
   const renderProjectsList = () => {
     return projectsFieldArray.fields.map((project, index) => {
-      const { projectName, clientName, techStacks } = project;
+      const { projectNames, clientName, techStacks } = project;
 
       return (
         <DragDropPanel
-          key={projectName}
-          isDraggable={false}
+          key={projectNames[0]}
           onEdit={() => handleEdit({ ...project, index })}
           onRemove={() => handleRemove(index)}
           marginProps={{
@@ -148,7 +188,7 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
               gap={usySpacing.px4}
               marginProps={{ marginBottom: usySpacing.px6 }}
             >
-              {projectName.split(",").map((name) => (
+              {projectNames.map((name) => (
                 <Badge
                   key={name.trim()}
                   variant="filled"
@@ -195,7 +235,9 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
           heightProps={{ maxHeight: "420px" }}
           paddingProps={{ paddingRight: usySpacing.px4 }}
         >
-          {renderProjectsList()}
+          <Flex ref={dragAreaRef} direction="column">
+            {renderProjectsList()}
+          </Flex>
         </Scrollable>
       </Flex>
     </>

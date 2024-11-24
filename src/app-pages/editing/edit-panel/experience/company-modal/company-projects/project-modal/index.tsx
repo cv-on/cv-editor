@@ -35,9 +35,10 @@ export const ProjectModal: FC<ProjectModalProps> = ({
   onClose,
 }) => {
   const isUpdateMode = Boolean(selectedProject);
+  const hasMultiProjects = (selectedProject?.projectNames || []).length > 1;
   const [isBelongToClient, setIsBelongToClient] = useState(false);
   const [isAppliedToMultipleProjects, setIsAppliedToMultipleProjects] =
-    useState(false);
+    useState(hasMultiProjects);
   const {
     formState: { errors },
     control,
@@ -113,15 +114,17 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     if (isAppliedToMultipleProjects) {
       return (
         <Controller
-          name="projectName"
+          name="projectNames"
           control={control}
           rules={{ required: ValidateRules.required }}
           render={({ field }) => (
             <Tags
-              tags={field.value.split(",")}
+              tags={field.value}
               label="Project Names"
-              description={errors.projectName?.message}
-              hasError={Boolean(errors.projectName?.message)}
+              onAdd={(tags) => field.onChange(tags)}
+              onRemove={(tags) => field.onChange(tags)}
+              description={errors.projectNames?.message}
+              hasError={Boolean(errors.projectNames?.message)}
             />
           )}
         />
@@ -130,15 +133,17 @@ export const ProjectModal: FC<ProjectModalProps> = ({
 
     return (
       <Controller
-        name="projectName"
+        name="projectNames"
         control={control}
         rules={{ required: ValidateRules.required }}
         render={({ field }) => (
           <Input
             {...field}
             label="Project Name"
-            description={errors.projectName?.message}
-            hasError={Boolean(errors.projectName?.message)}
+            value={field.value[0]}
+            onChange={(name) => field.onChange([name])}
+            description={errors.projectNames?.message}
+            hasError={Boolean(errors.projectNames?.message)}
           />
         )}
       />

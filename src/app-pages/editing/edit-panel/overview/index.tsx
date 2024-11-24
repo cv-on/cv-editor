@@ -10,7 +10,6 @@ import {
 } from "@usy-ui/base";
 import Link from "next/link";
 
-import { Notes } from "@/components/notes";
 import {
   getCvContentFromStorage,
   resetCvContentOnStorage,
@@ -84,7 +83,6 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
     return (
       <Box>
         <SectionHeader sectionTitle="Editing Sections" />
-        <Notes content="This tool is still in development, and some functions are not yet available." />
         <Flex
           justifyContent="space-between"
           alignItems="flex-start"

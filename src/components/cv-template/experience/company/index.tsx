@@ -51,15 +51,15 @@ export const Company: FC<CompanyProps> = ({
     return projects.map(
       ({
         clientName,
-        projectName,
+        projectNames,
         techStacks,
         responsibilities,
         achievements,
       }) => (
         <Project
-          key={projectName}
+          key={projectNames[0]}
           clientName={clientName}
-          projectName={projectName}
+          projectNames={projectNames}
           techStacks={techStacks}
           responsibilities={responsibilities}
           achievements={achievements}

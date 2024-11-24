@@ -10,7 +10,7 @@ export const experience: ExperienceSectionType = {
       projects: [
         {
           clientName: "TechCorp",
-          projectName: "Alpha System Revamp",
+          projectNames: ["Alpha System Revamp"],
           techStacks: ["Angular", "Node.js", "MongoDB"],
           responsibilities: [
             {
@@ -39,7 +39,7 @@ export const experience: ExperienceSectionType = {
         },
         {
           clientName: "ShopEase",
-          projectName: "Beta E-commerce Platform, ReFace",
+          projectNames: ["Beta E-commerce Platform", "ReFace"],
           techStacks: ["ReactJS", "Express.js", "PostgreSQL"],
           responsibilities: [
             {
@@ -75,7 +75,7 @@ export const experience: ExperienceSectionType = {
       position: "Senior Fullstack Developer",
       projects: [
         {
-          projectName: "Gamma Healthcare Dashboard",
+          projectNames: ["Gamma Healthcare Dashboard"],
           techStacks: ["Vue.js", "Firebase", "Python (Flask)"],
           responsibilities: [
             {

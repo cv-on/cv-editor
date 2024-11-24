@@ -21,7 +21,6 @@ import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { CompanyModal } from "./company-modal";
-import { transformProjectNamesStrToArray } from "./utils";
 
 export type CompanyTypeWithIdIndex = CompanyType & {
   id: string;
@@ -95,8 +94,6 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
 
   const renderCompanyList = () => {
     return companiesFieldArray.fields.map((company, index) => {
-      const projectNames = transformProjectNamesStrToArray(company.projects);
-
       return (
         <DragDropPanel
           key={company.id}
@@ -120,14 +117,14 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
               {company.position}
             </Typography>
             <Flex wrap="wrap" gap={usySpacing.px4}>
-              {projectNames.map((projName) => (
+              {company.projects.map(({ projectNames }, index) => (
                 <Badge
-                  key={projName}
+                  key={projectNames[index]}
                   size="small"
                   variant="filled"
                   radius="full"
                 >
-                  {projName}
+                  {projectNames[index]}
                 </Badge>
               ))}
             </Flex>

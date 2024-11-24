@@ -36,7 +36,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
   changeSection,
 }) => {
   const dragAreaRef = useRef(null);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isCompanyModalOpen, setIsCompanyModalOpen] = useState(false);
   const [selectedCompany, setSelectedCompany] =
     useState<CompanyTypeWithIdIndex>();
   const setExperienceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -67,9 +67,9 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
     }, 200);
   }, [getValues, setExperience]);
 
-  const openModal = () => setIsOpenModal(true);
+  const openModal = () => setIsCompanyModalOpen(true);
   const closeModal = () => {
-    setIsOpenModal(false);
+    setIsCompanyModalOpen(false);
     setSelectedCompany(undefined);
   };
 
@@ -103,7 +103,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
           isDraggable={false}
           onEdit={() => {
             setSelectedCompany({ ...company, index });
-            setIsOpenModal(true);
+            setIsCompanyModalOpen(true);
           }}
           onRemove={() => {
             companiesFieldArray.remove(index);
@@ -139,7 +139,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
 
   return (
     <>
-      {isOpenModal && (
+      {isCompanyModalOpen && (
         <CompanyModal
           selectedCompany={selectedCompany}
           setSelectedCompany={setSelectedCompany}

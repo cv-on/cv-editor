@@ -8,17 +8,17 @@ import {
   Scrollable,
   Switch,
   Tags,
-  TextArea,
   Typography,
   usySpacing,
 } from "@usy-ui/base";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import { ValidateRules } from "@/constants/validation";
 
 import { ProjectTypeWithIdIndex } from "..";
 
-import { DragDropTextArea } from "./drag-drop-textarea";
+import { Achievements } from "./achievements";
+import { Responsibilities } from "./responsibilities";
 
 type ProjectModalProps = {
   selectedProject?: ProjectTypeWithIdIndex;
@@ -43,16 +43,6 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     mode: "onBlur",
     values: selectedProject,
     defaultValues: selectedProject,
-  });
-
-  const responsibilitiesField = useFieldArray({
-    control,
-    name: "responsibilities",
-  });
-
-  const achievementsField = useFieldArray({
-    control,
-    name: "achievements",
   });
 
   const onSubmit = (projectValues: ProjectTypeWithIdIndex) => {
@@ -151,63 +141,25 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     );
   };
 
-  const renderResponsibilities = () => {
+  const renderTechStacks = () => {
     return (
-      <Flex direction="column" gap={usySpacing.px10}>
-        <Typography weight="semibold">Responsibilities</Typography>
-        {responsibilitiesField.fields.map(({ content }, index) => {
-          return (
-            <Controller
-              key={content.substring(0, 10)}
-              name={`responsibilities.${index}.content`}
-              control={control}
-              rules={{ required: ValidateRules.required }}
-              render={({ field, fieldState: { error } }) => (
-                <DragDropTextArea
-                  onRemove={() => responsibilitiesField.remove(index)}
-                >
-                  <TextArea
-                    {...field}
-                    size="small"
-                    description={error?.message}
-                    hasError={Boolean(error?.message)}
-                  />
-                </DragDropTextArea>
-              )}
-            />
-          );
-        })}
-      </Flex>
-    );
-  };
-
-  const renderAchievements = () => {
-    return (
-      <Flex direction="column" gap={usySpacing.px10}>
-        <Typography weight="semibold">Achievements</Typography>
-        {achievementsField.fields.map(({ content }, index) => {
-          return (
-            <Controller
-              key={content.substring(0, 10)}
-              name={`responsibilities.${index}.content`}
-              control={control}
-              rules={{ required: ValidateRules.required }}
-              render={({ field, fieldState: { error } }) => (
-                <DragDropTextArea
-                  onRemove={() => achievementsField.remove(index)}
-                >
-                  <TextArea
-                    {...field}
-                    size="small"
-                    description={error?.message}
-                    hasError={Boolean(error?.message)}
-                  />
-                </DragDropTextArea>
-              )}
-            />
-          );
-        })}
-      </Flex>
+      <Controller
+        name="techStacks"
+        control={control}
+        rules={{
+          required: ValidateRules.required,
+        }}
+        render={({ field }) => (
+          <Tags
+            label="Tech Stacks"
+            tags={field.value}
+            onAdd={(tags) => field.onChange(tags)}
+            onRemove={(tags) => field.onChange(tags)}
+            description={errors.techStacks?.message}
+            hasError={Boolean(errors.techStacks?.message)}
+          />
+        )}
+      />
     );
   };
 
@@ -229,25 +181,9 @@ export const ProjectModal: FC<ProjectModalProps> = ({
             {renderSwitchQuestions()}
             {renderClientName()}
             {renderProjectName()}
-            <Controller
-              name="techStacks"
-              control={control}
-              rules={{
-                required: ValidateRules.required,
-              }}
-              render={({ field }) => (
-                <Tags
-                  label="Tech Stacks"
-                  tags={field.value}
-                  onAdd={(tags) => field.onChange(tags)}
-                  onRemove={(tags) => field.onChange(tags)}
-                  description={errors.techStacks?.message}
-                  hasError={Boolean(errors.techStacks?.message)}
-                />
-              )}
-            />
-            {renderResponsibilities()}
-            {renderAchievements()}
+            {renderTechStacks()}
+            <Responsibilities control={control} />
+            <Achievements control={control} />
             <Flex
               justifyContent="center"
               marginProps={{ marginTop: usySpacing.px10 }}

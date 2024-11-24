@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 
 import {
   Badge,
@@ -25,12 +25,16 @@ export type ProjectTypeWithIdIndex = ProjectType & {
 
 type CompanyProjectsProps = {
   selectedCompany?: CompanyTypeWithIdIndex;
+  setSelectedCompany: Dispatch<
+    SetStateAction<CompanyTypeWithIdIndex | undefined>
+  >;
   updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
   syncExperienceState: () => void;
 };
 
 export const CompanyProjects: FC<CompanyProjectsProps> = ({
   selectedCompany,
+  setSelectedCompany,
   updateCompany,
   syncExperienceState,
 }) => {
@@ -55,8 +59,11 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
 
   const handleRemove = (index: number) => {
     if (typeof selectedCompany?.index === "number") {
+      const updatedCompany = getValues();
+
       projectsFieldArray.remove(index);
-      updateCompany(selectedCompany?.index, { ...getValues() });
+      updateCompany(selectedCompany?.index, updatedCompany);
+      setSelectedCompany(updatedCompany);
       syncExperienceState();
     }
   };
@@ -66,10 +73,13 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
       const updatedProject = projectsFieldArray.fields.map((prevProject) =>
         prevProject.id === newProject.id ? newProject : prevProject
       );
-      updateCompany(selectedCompany?.index, {
+      const updatedCompany = {
         ...selectedCompany,
         projects: updatedProject,
-      });
+      };
+
+      updateCompany(selectedCompany?.index, updatedCompany);
+      setSelectedCompany(updatedCompany);
       syncExperienceState();
     }
   };

@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
-      args: [...chromium.args, "--disable-gpu"],
+      args: ["--disable-gpu"],
       headless: true,
       defaultViewport: chromium.defaultViewport,
       executablePath:

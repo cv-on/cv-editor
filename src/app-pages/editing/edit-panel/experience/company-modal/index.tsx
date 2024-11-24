@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 import { Flex, Modal, Separator, usySpacing } from "@usy-ui/base";
 import { UseFieldArrayAppend, UseFieldArrayUpdate } from "react-hook-form";
@@ -12,6 +12,9 @@ import { CompanyProjects } from "./company-projects";
 
 type CompanyModalProps = {
   selectedCompany?: CompanyTypeWithIdIndex;
+  setSelectedCompany: Dispatch<
+    SetStateAction<CompanyTypeWithIdIndex | undefined>
+  >;
   appendCompany: UseFieldArrayAppend<ExperienceSectionType, "companies">;
   updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
   syncExperienceState: () => void;
@@ -20,6 +23,7 @@ type CompanyModalProps = {
 
 export const CompanyModal: FC<CompanyModalProps> = ({
   selectedCompany,
+  setSelectedCompany,
   appendCompany,
   updateCompany,
   syncExperienceState,
@@ -46,6 +50,7 @@ export const CompanyModal: FC<CompanyModalProps> = ({
         <Separator direction="vertical" heightProps={{ height: "unset" }} />
         <CompanyProjects
           selectedCompany={selectedCompany}
+          setSelectedCompany={setSelectedCompany}
           updateCompany={updateCompany}
           syncExperienceState={syncExperienceState}
         />

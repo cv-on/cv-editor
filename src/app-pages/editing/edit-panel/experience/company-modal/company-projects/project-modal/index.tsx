@@ -22,7 +22,10 @@ import { Responsibilities } from "./responsibilities";
 
 type ProjectModalProps = {
   selectedProject?: ProjectTypeWithIdIndex;
-  onProjectUpdate: (updatedProject: ProjectTypeWithIdIndex) => void;
+  onProjectUpdate: (
+    updatedProject: ProjectTypeWithIdIndex,
+    isUpdateMode: boolean
+  ) => void;
   onClose: () => void;
 };
 
@@ -46,7 +49,8 @@ export const ProjectModal: FC<ProjectModalProps> = ({
   });
 
   const onSubmit = (projectValues: ProjectTypeWithIdIndex) => {
-    onProjectUpdate(projectValues);
+    console.log("project modal submit", projectValues);
+    onProjectUpdate(projectValues, isUpdateMode);
     onClose();
   };
 

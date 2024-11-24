@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 
 import { Flex, Modal, Separator, usySpacing } from "@usy-ui/base";
-import { UseFieldArrayAppend, UseFieldArrayUpdate } from "react-hook-form";
+import { UseFieldArrayReturn } from "react-hook-form";
 
 import { ExperienceSectionType } from "@/types";
 
@@ -15,8 +15,11 @@ type CompanyModalProps = {
   setSelectedCompany: Dispatch<
     SetStateAction<CompanyTypeWithIdIndex | undefined>
   >;
-  appendCompany: UseFieldArrayAppend<ExperienceSectionType, "companies">;
-  updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
+  companiesFieldArray: UseFieldArrayReturn<
+    ExperienceSectionType,
+    "companies",
+    "id"
+  >;
   syncExperienceState: () => void;
   onClose: () => void;
 };
@@ -24,8 +27,7 @@ type CompanyModalProps = {
 export const CompanyModal: FC<CompanyModalProps> = ({
   selectedCompany,
   setSelectedCompany,
-  appendCompany,
-  updateCompany,
+  companiesFieldArray,
   syncExperienceState,
   onClose,
 }) => {
@@ -42,8 +44,7 @@ export const CompanyModal: FC<CompanyModalProps> = ({
         <CompanyInfo
           selectedCompany={selectedCompany}
           isUpdateMode={isUpdateMode}
-          appendCompany={appendCompany}
-          updateCompany={updateCompany}
+          companiesFieldArray={companiesFieldArray}
           syncExperienceState={syncExperienceState}
           onClose={onClose}
         />
@@ -51,7 +52,7 @@ export const CompanyModal: FC<CompanyModalProps> = ({
         <CompanyProjects
           selectedCompany={selectedCompany}
           setSelectedCompany={setSelectedCompany}
-          updateCompany={updateCompany}
+          companiesFieldArray={companiesFieldArray}
           syncExperienceState={syncExperienceState}
         />
       </Flex>

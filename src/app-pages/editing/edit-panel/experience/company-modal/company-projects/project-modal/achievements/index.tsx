@@ -25,10 +25,10 @@ export const Achievements: FC<AchievementsProps> = ({ control }) => {
   return (
     <Flex direction="column" gap={usySpacing.px10}>
       <Typography weight="semibold">Achievements</Typography>
-      {achievementsField.fields.map(({ content }, index) => {
+      {achievementsField.fields.map(({ id }, index) => {
         return (
           <Controller
-            key={content.substring(0, 10)}
+            key={id}
             name={`achievements.${index}.content`}
             control={control}
             rules={{ required: ValidateRules.required }}

@@ -9,9 +9,10 @@ import {
   Typography,
   usySpacing,
 } from "@usy-ui/base";
-import { useFieldArray, UseFieldArrayUpdate, useForm } from "react-hook-form";
+import { useFieldArray, UseFieldArrayReturn, useForm } from "react-hook-form";
 
 import { DragDropPanel } from "@/components/drag-drop-panel";
+import { Notes } from "@/components/notes";
 import { ExperienceSectionType, ProjectType } from "@/types";
 
 import { CompanyTypeWithIdIndex } from "../..";
@@ -28,16 +29,21 @@ type CompanyProjectsProps = {
   setSelectedCompany: Dispatch<
     SetStateAction<CompanyTypeWithIdIndex | undefined>
   >;
-  updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
+  companiesFieldArray: UseFieldArrayReturn<
+    ExperienceSectionType,
+    "companies",
+    "id"
+  >;
   syncExperienceState: () => void;
 };
 
 export const CompanyProjects: FC<CompanyProjectsProps> = ({
   selectedCompany,
   setSelectedCompany,
-  updateCompany,
+  companiesFieldArray,
   syncExperienceState,
 }) => {
+  const isUpdateMode = Boolean(selectedCompany);
   const [selectedProject, setSelectedProject] =
     useState<ProjectTypeWithIdIndex>();
   const [isProjectModalOpen, setIsProjectModalOpen] = useState<boolean>(false);
@@ -62,31 +68,62 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
       const updatedCompany = getValues();
 
       projectsFieldArray.remove(index);
-      updateCompany(selectedCompany?.index, updatedCompany);
+      companiesFieldArray.update(selectedCompany?.index, updatedCompany);
       setSelectedCompany(updatedCompany);
       syncExperienceState();
     }
   };
 
-  const handleSelectedProjectUpdate = (newProject: ProjectTypeWithIdIndex) => {
-    if (typeof selectedCompany?.index === "number") {
-      const updatedProject = projectsFieldArray.fields.map((prevProject) =>
-        prevProject.id === newProject.id ? newProject : prevProject
-      );
-      const updatedCompany = {
-        ...selectedCompany,
-        projects: updatedProject,
-      };
-
-      updateCompany(selectedCompany?.index, updatedCompany);
-      setSelectedCompany(updatedCompany);
-      syncExperienceState();
+  const handleSelectedProjectUpdate = (
+    project: ProjectTypeWithIdIndex,
+    isUpdateMode: boolean
+  ) => {
+    if (typeof selectedCompany?.index !== "number") {
+      return;
     }
+
+    const updatedCompany = {
+      ...selectedCompany,
+      projects: isUpdateMode
+        ? projectsFieldArray.fields.map((prevProject) =>
+            prevProject.id === project.id ? project : prevProject
+          )
+        : [...projectsFieldArray.fields, project],
+    };
+
+    console.log("updatedCompany", updatedCompany);
+
+    companiesFieldArray.update(
+      selectedCompany?.index,
+      updatedCompany as CompanyTypeWithIdIndex
+    );
+    setSelectedCompany(updatedCompany as CompanyTypeWithIdIndex);
+    syncExperienceState();
   };
 
   /**
    * Render
    */
+
+  const renderAddProject = () => {
+    return (
+      <>
+        {!isUpdateMode && (
+          <Notes content="Projects can be added once the company has been created." />
+        )}
+        <Button
+          variant="outline"
+          radius="large"
+          disabled={!isUpdateMode}
+          widthProps={{ width: "100%" }}
+          onClick={openProjectModal}
+        >
+          <PlusIcon />
+          &nbsp; Add Project
+        </Button>
+      </>
+    );
+  };
 
   const renderProjectsList = () => {
     return projectsFieldArray.fields.map((project, index) => {
@@ -153,15 +190,7 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
       )}
       <Flex direction="column" gap={usySpacing.px10}>
         <Typography weight="bold">Contributed to Projects</Typography>
-        <Button
-          variant="outline"
-          widthProps={{ width: "100%" }}
-          radius="large"
-          onClick={openProjectModal}
-        >
-          <PlusIcon />
-          &nbsp; Add Project
-        </Button>
+        {renderAddProject()}
         <Scrollable
           heightProps={{ maxHeight: "420px" }}
           paddingProps={{ paddingRight: usySpacing.px4 }}

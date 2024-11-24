@@ -25,10 +25,10 @@ export const Responsibilities: FC<ResponsibilitiesProps> = ({ control }) => {
   return (
     <Flex direction="column" gap={usySpacing.px10}>
       <Typography weight="semibold">Responsibilities</Typography>
-      {responsibilitiesField.fields.map(({ content }, index) => {
+      {responsibilitiesField.fields.map(({ id }, index) => {
         return (
           <Controller
-            key={content.substring(0, 10)}
+            key={id}
             name={`responsibilities.${index}.content`}
             control={control}
             rules={{ required: ValidateRules.required }}

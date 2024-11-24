@@ -2,12 +2,7 @@ import { FC, useState } from "react";
 
 import { Box, Button, Checkbox, Flex, Input, usySpacing } from "@usy-ui/base";
 import dayjs from "dayjs";
-import {
-  Controller,
-  UseFieldArrayAppend,
-  UseFieldArrayUpdate,
-  useForm,
-} from "react-hook-form";
+import { Controller, UseFieldArrayReturn, useForm } from "react-hook-form";
 
 import { ValidateRules } from "@/constants/validation";
 import { ExperienceSectionType, CompanyType } from "@/types";
@@ -17,8 +12,11 @@ import { CompanyTypeWithIdIndex } from "../..";
 type CompanyInfoProps = {
   isUpdateMode: boolean;
   selectedCompany?: CompanyTypeWithIdIndex;
-  appendCompany: UseFieldArrayAppend<ExperienceSectionType, "companies">;
-  updateCompany: UseFieldArrayUpdate<ExperienceSectionType, "companies">;
+  companiesFieldArray: UseFieldArrayReturn<
+    ExperienceSectionType,
+    "companies",
+    "id"
+  >;
   syncExperienceState: () => void;
   onClose: () => void;
 };
@@ -26,8 +24,7 @@ type CompanyInfoProps = {
 export const CompanyInfo: FC<CompanyInfoProps> = ({
   isUpdateMode,
   selectedCompany,
-  appendCompany,
-  updateCompany,
+  companiesFieldArray,
   syncExperienceState,
   onClose,
 }) => {
@@ -56,9 +53,9 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
     };
 
     if (isUpdateMode && typeof selectedCompany?.index === "number") {
-      updateCompany(selectedCompany.index, updatedCompany);
+      companiesFieldArray.update(selectedCompany.index, updatedCompany);
     } else {
-      appendCompany(updatedCompany);
+      companiesFieldArray.append(updatedCompany);
     }
 
     syncExperienceState();

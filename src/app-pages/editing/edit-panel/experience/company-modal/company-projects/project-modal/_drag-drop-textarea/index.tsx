@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 
 import {
   AlignJustifyIcon,
+  Box,
   Button,
   Flex,
   Popover,
@@ -40,7 +41,7 @@ export const DragDropTextArea: FC<DragDropTextAreaProps> = ({
 
   return (
     <Flex
-      alignItems="center"
+      alignItems="flex-start"
       gap={usySpacing.px4}
       widthProps={{ width: "unset" }}
       marginProps={{
@@ -52,11 +53,20 @@ export const DragDropTextArea: FC<DragDropTextAreaProps> = ({
         <AlignJustifyIcon />
       </DragDropStyled>
       {children}
-      <Popover position="left" color="dark-8" content={renderConfirmQuestion()}>
-        <Button variant="invisible">
-          <TrashBinIcon color={usyColor.red7} />
-        </Button>
-      </Popover>
+      <Box
+        widthProps={{ maxWidth: usySpacing.px40 }}
+        paddingProps={{ paddingTop: usySpacing.px14 }}
+      >
+        <Popover
+          position="left"
+          color="dark-8"
+          content={renderConfirmQuestion()}
+        >
+          <Button variant="invisible">
+            <TrashBinIcon color={usyColor.red7} />
+          </Button>
+        </Popover>
+      </Box>
     </Flex>
   );
 };

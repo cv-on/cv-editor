@@ -143,8 +143,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
         <CompanyModal
           selectedCompany={selectedCompany}
           setSelectedCompany={setSelectedCompany}
-          appendCompany={companiesFieldArray.append}
-          updateCompany={companiesFieldArray.update}
+          companiesFieldArray={companiesFieldArray}
           syncExperienceState={syncExperienceState}
           onClose={closeModal}
         />

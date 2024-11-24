@@ -4,11 +4,9 @@ import puppeteer from "puppeteer-core";
 
 export async function POST(request: Request) {
   try {
-    console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
-      args: ["--disable-gpu"],
+      args: chromium.args,
       headless: true,
       defaultViewport: chromium.defaultViewport,
       executablePath:

@@ -1,18 +1,18 @@
 {
-  "name": "@cv-on/tool",
+  "name": "@cv-on/editor",
   "version": "0.1.0",
   "description": "A free tool for create CV",
   "private": true,
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/cv-on/tool#readme",
+  "homepage": "https://github.com/cv-on/editor#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cv-on/tool.git"
+    "url": "git+https://github.com/cv-on/editor.git"
   },
   "bugs": {
-    "url": "https://github.com/cv-on/tool/issues"
+    "url": "https://github.com/cv-on/editor/issues"
   },
   "author": "anhthi.ieig",
   "license": "ISC",

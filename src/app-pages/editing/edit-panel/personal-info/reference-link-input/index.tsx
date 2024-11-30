@@ -11,8 +11,7 @@ import {
   Control,
   Controller,
   FieldArrayWithId,
-  UseFieldArrayRemove,
-  UseFieldArrayUpdate,
+  UseFieldArrayReturn,
 } from "react-hook-form";
 
 import { ValidateRules } from "@/constants/validation";
@@ -28,26 +27,28 @@ import {
 
 type ReferenceLinkInputProps = {
   index: number;
-  control: Control<PersonalInfoSectionType, any>;
+  control: Control<PersonalInfoSectionType> | undefined;
   item: FieldArrayWithId<PersonalInfoSectionType, "referenceLinks", "id">;
-  update: UseFieldArrayUpdate<PersonalInfoSectionType, "referenceLinks">;
-  remove: UseFieldArrayRemove;
-  changeState: () => void;
+  referenceLinksFieldArray: UseFieldArrayReturn<
+    PersonalInfoSectionType,
+    "referenceLinks",
+    "id"
+  >;
+  debounceSyncPersonalInfoState: () => void;
 };
 
 export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
   index,
   control,
   item,
-  update,
-  remove,
-  changeState,
+  referenceLinksFieldArray,
+  debounceSyncPersonalInfoState,
 }) => {
   const [selectIcon, setSelectIcon] = useState<ReferenceTypeUnion>(item.type);
 
   const removeLink = () => {
-    remove(index);
-    changeState();
+    referenceLinksFieldArray.remove(index);
+    debounceSyncPersonalInfoState();
   };
 
   /**
@@ -68,10 +69,10 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
             key={type}
             type="button"
             onClick={() => {
-              update(index, { ...item, type });
+              referenceLinksFieldArray.update(index, { ...item, type });
               setSelectIcon(type);
               closePopover();
-              changeState();
+              debounceSyncPersonalInfoState();
             }}
           >
             {iconElement}
@@ -92,13 +93,14 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
         name={`referenceLinks.${index}.url`}
         control={control}
         rules={{ required: ValidateRules.required }}
-        render={({ field, fieldState: { error } }) => (
+        render={({ field }) => (
           <Input
             {...field}
             label={capitalize(selectIcon)}
-            description={error?.message}
-            hasError={Boolean(error?.message)}
-            onBlur={() => changeState()}
+            onChange={(value) => {
+              field.onChange(value);
+              debounceSyncPersonalInfoState();
+            }}
           />
         )}
       />

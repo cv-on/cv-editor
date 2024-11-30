@@ -42,11 +42,10 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
     getValues,
   } = useForm<PersonalInfoSectionType>({
     mode: "onBlur",
-    values: personalInfo,
     defaultValues: personalInfo,
   });
 
-  const { fields, update, append, remove } = useFieldArray({
+  const referenceLinksFieldArray = useFieldArray({
     control,
     name: "referenceLinks",
   });
@@ -55,11 +54,11 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const debounceSyncPersonalInfoState = debounce(syncPersonalInfoState, 300);
 
   const syncAvatar = (base64Img: string) => {
-    setPersonalInfo({ ...personalInfo, avatarSrc: base64Img });
+    setPersonalInfo({ ...getValues(), avatarSrc: base64Img });
   };
 
   const handleAddReferenceLink = () => {
-    append({
+    referenceLinksFieldArray.append({
       type: "custom",
       url: "",
     });
@@ -179,15 +178,14 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
   const renderReferenceLinks = () => {
     return (
       <Flex direction="column" alignItems="center" gap={usySpacing.px20}>
-        {fields.map((item, index) => (
+        {referenceLinksFieldArray.fields.map((item, index) => (
           <ReferenceLinkInput
             key={item.id}
             index={index}
-            control={control}
             item={item}
-            update={update}
-            remove={remove}
-            changeState={() => debounceSyncPersonalInfoState()}
+            control={control}
+            referenceLinksFieldArray={referenceLinksFieldArray}
+            debounceSyncPersonalInfoState={debounceSyncPersonalInfoState}
           />
         ))}
         <Button variant="outline" onClick={handleAddReferenceLink}>

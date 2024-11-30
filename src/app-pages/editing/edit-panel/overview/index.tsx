@@ -8,17 +8,15 @@ import {
   Typography,
   usySpacing,
 } from "@usy-ui/base";
-import Link from "next/link";
 
-import {
-  getCvContentFromStorage,
-  resetCvContentOnStorage,
-} from "@/utils/local-storage";
+import { resetCvContentOnStorage } from "@/utils/local-storage";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
+import { ExportModal } from "./export-modal";
+import { ImportModal } from "./import-modal";
 import { EditSectionStyled } from "./styled";
 
 type SectionThumbType = {
@@ -33,7 +31,9 @@ type OverviewSectionsProps = {
 export const OverviewSections: FC<OverviewSectionsProps> = ({
   changeSection,
 }) => {
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+
   const sectionThumbsMemo = useMemo<SectionThumbType[]>(
     () => [
       { id: "personal-info", name: "Personal Info" },
@@ -46,34 +46,11 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
     []
   );
 
-  const handleDownloadPDF = async () => {
-    try {
-      setIsDownloading(true);
-      const cvContent = getCvContentFromStorage();
-      const response = await fetch("/api/generate-pdf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cvContent),
-      });
+  const openExportModal = () => setIsExportModalOpen(true);
+  const closeExportModal = () => setIsExportModalOpen(false);
 
-      if (!response.ok) throw new Error("PDF generation failed");
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(new Blob([blob]));
-      const link = document.createElement("a");
-
-      link.href = url;
-      link.setAttribute("download", "generated.pdf");
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setIsDownloading(false);
-    } catch (error) {
-      console.error("Error downloading PDF:", error);
-    }
-  };
+  const openImportModal = () => setIsImportModalOpen(true);
+  const closeImportModal = () => setIsImportModalOpen(false);
 
   /**
    * Render
@@ -131,16 +108,18 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
 
     return (
       <Flex justifyContent="center" gap={usySpacing.px20}>
-        <Button
-          variant="primary"
-          loading={isDownloading}
-          onClick={handleDownloadPDF}
-        >
-          Export
-        </Button>
-        <Link href="/preview" target="_blank">
-          <Button variant="outline">Preview</Button>
-        </Link>
+        <>
+          {isExportModalOpen && <ExportModal onClose={closeExportModal} />}
+          <Button variant="primary" onClick={openExportModal}>
+            Export
+          </Button>
+        </>
+        <>
+          {isImportModalOpen && <ImportModal onClose={closeImportModal} />}
+          <Button variant="primary" onClick={openImportModal}>
+            Import
+          </Button>
+        </>
         <Popover position="top" content={renderConfirm()}>
           <Button variant="outline">Reset</Button>
         </Popover>

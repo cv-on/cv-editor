@@ -7,13 +7,14 @@ import {
   Typography,
   usySpacing,
 } from "@usy-ui/base";
-import Link from "next/link";
 import { useRecoilValue } from "recoil";
 
 import { ReferenceIconsConst } from "@/app-pages/editing/edit-panel/personal-info/reference-link-input/constants";
 import { personalInfoSelector } from "@/app-states";
 
 import { CvSection } from "../../cv-section";
+
+import { LinkStyled } from "./styled";
 
 type ContactItem = {
   icon: ReactNode;
@@ -78,9 +79,9 @@ export const ContactSection = () => {
             {icon}
             &nbsp;&nbsp;
             {url ? (
-              <Link href={url} target="_blank">
+              <LinkStyled href={url} target="_blank">
                 <Typography size="small">{label}</Typography>
-              </Link>
+              </LinkStyled>
             ) : (
               <Typography size="small">{label}</Typography>
             )}

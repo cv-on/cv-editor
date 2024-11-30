@@ -1,3 +1,5 @@
+import { Toast } from "@usy-ui/base";
+
 import { EditPanel } from "@/app-pages/editing/edit-panel";
 
 import {
@@ -9,14 +11,17 @@ import {
 
 const EditingPage = () => {
   return (
-    <EditingPageContainerStyled>
-      <PreviewContainerStyled>
-        <CvTemplateStyled />
-      </PreviewContainerStyled>
-      <EditPanelContainerStyled>
-        <EditPanel />
-      </EditPanelContainerStyled>
-    </EditingPageContainerStyled>
+    <>
+      <Toast />
+      <EditingPageContainerStyled>
+        <PreviewContainerStyled>
+          <CvTemplateStyled />
+        </PreviewContainerStyled>
+        <EditPanelContainerStyled>
+          <EditPanel />
+        </EditPanelContainerStyled>
+      </EditingPageContainerStyled>
+    </>
   );
 };
 

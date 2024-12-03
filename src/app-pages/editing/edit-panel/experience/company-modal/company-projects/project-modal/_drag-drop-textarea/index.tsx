@@ -4,6 +4,7 @@ import {
   AlignJustifyIcon,
   Box,
   Button,
+  ConfirmContent,
   Flex,
   Popover,
   TrashBinIcon,
@@ -23,22 +24,6 @@ export const DragDropTextArea: FC<DragDropTextAreaProps> = ({
   children,
   onRemove,
 }) => {
-  const renderConfirmQuestion = () => (
-    <Flex
-      direction="column"
-      alignItems="center"
-      gap={usySpacing.px12}
-      widthProps={{ minWidth: "160px" }}
-    >
-      <Typography size="small" color="white">
-        Are you sure to remove?
-      </Typography>
-      <Button variant="danger" size="tiny" onClick={onRemove} noSole>
-        Confirm
-      </Button>
-    </Flex>
-  );
-
   return (
     <Flex
       alignItems="flex-start"
@@ -60,7 +45,12 @@ export const DragDropTextArea: FC<DragDropTextAreaProps> = ({
         <Popover
           position="left"
           color="dark-8"
-          content={renderConfirmQuestion()}
+          content={
+            <ConfirmContent
+              description="Are you sure to remove"
+              onConfirm={onRemove}
+            />
+          }
         >
           <Button variant="invisible">
             <TrashBinIcon color={usyColor.red7} />

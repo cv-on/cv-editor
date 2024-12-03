@@ -3,6 +3,7 @@ import { FC, useMemo, useState } from "react";
 import {
   Box,
   Button,
+  ConfirmContent,
   Flex,
   Popover,
   Typography,
@@ -80,32 +81,6 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
   };
 
   const renderCta = () => {
-    const renderConfirm = () => {
-      return (
-        <Flex
-          direction="column"
-          alignItems="center"
-          gap={usySpacing.px6}
-          widthProps={{ minWidth: "200px" }}
-        >
-          <Typography size="small">
-            Remember to backup your changes by export Json file before reset!
-          </Typography>
-          <Button
-            variant="danger"
-            size="tiny"
-            onClick={() => {
-              resetCvContentOnStorage();
-              window.location.reload();
-            }}
-            noSole
-          >
-            Apply
-          </Button>
-        </Flex>
-      );
-    };
-
     return (
       <Flex justifyContent="center" gap={usySpacing.px20}>
         <>
@@ -120,7 +95,18 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
             Import
           </Button>
         </>
-        <Popover position="top" content={renderConfirm()}>
+        <Popover
+          position="top"
+          content={
+            <ConfirmContent
+              description="Remember to backup your changes by export Json file before reset!"
+              onConfirm={() => {
+                resetCvContentOnStorage();
+                window.location.reload();
+              }}
+            />
+          }
+        >
           <Button variant="outline">Reset</Button>
         </Popover>
       </Flex>

@@ -3,6 +3,7 @@ import { FC, ReactNode } from "react";
 import {
   AlignJustifyIcon,
   Button,
+  ConfirmContent,
   Flex,
   FlexChild,
   MarginProps,
@@ -21,8 +22,8 @@ import { DragDropStyled } from "./styled";
 type DragDropPanelProps = {
   children: ReactNode;
   isDraggable?: boolean;
-  onEdit: () => void;
-  onRemove: () => void;
+  onEdit?: () => void;
+  onRemove?: () => void;
 } & MarginProps &
   PaddingProps;
 
@@ -34,22 +35,6 @@ export const DragDropPanel: FC<DragDropPanelProps> = ({
   marginProps,
   paddingProps,
 }) => {
-  const renderConfirmQuestion = () => (
-    <Flex
-      direction="column"
-      alignItems="center"
-      gap={usySpacing.px12}
-      widthProps={{ minWidth: "160px" }}
-    >
-      <Typography size="small" color="white">
-        Are you sure to remove?
-      </Typography>
-      <Button variant="danger" size="tiny" onClick={onRemove} noSole>
-        Confirm
-      </Button>
-    </Flex>
-  );
-
   const renderEditDeleteIcons = () => {
     return (
       <Flex
@@ -59,18 +44,27 @@ export const DragDropPanel: FC<DragDropPanelProps> = ({
           maxWidth: `calc(${usySpacing.px40} + ${usySpacing.px4})`,
         }}
       >
-        <Button variant="invisible" onClick={onEdit}>
-          <UserEditIcon />
-        </Button>
-        <Popover
-          position="left"
-          color="dark-8"
-          content={renderConfirmQuestion()}
-        >
-          <Button variant="invisible">
-            <TrashBinIcon color={usyColor.red7} />
+        {onEdit && (
+          <Button variant="invisible" onClick={onEdit}>
+            <UserEditIcon />
           </Button>
-        </Popover>
+        )}
+        {onRemove && (
+          <Popover
+            position="left"
+            color="dark-8"
+            content={
+              <ConfirmContent
+                description="Are you sure to remove"
+                onConfirm={onRemove}
+              />
+            }
+          >
+            <Button variant="invisible">
+              <TrashBinIcon color={usyColor.red7} />
+            </Button>
+          </Popover>
+        )}
       </Flex>
     );
   };

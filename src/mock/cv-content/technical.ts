@@ -5,37 +5,47 @@ export const technical: TechnicalSectionType = {
     {
       skillType: "Languages",
       techStacks: [
-        "JavaScript (ES6+)",
-        "TypeScript",
-        "Go",
-        "HTML5",
-        "CSS3/Sass",
+        {
+          items: [
+            "JavaScript (ES6+)",
+            "TypeScript",
+            "Go",
+            "HTML5",
+            "CSS3/Sass",
+          ],
+        },
       ],
     },
     {
       skillType: "Frontend",
-      techStacks: ["ReactJS", "NextJS", "Vue.js"],
+      techStacks: [{ items: ["ReactJS", "NextJS", "Vue.js"] }],
     },
     {
       skillType: "Backend",
-      techStacks: ["Node.js", "NestJS", "Express.js", "Django", "Flask"],
+      techStacks: [
+        { items: ["Node.js", "NestJS", "Express.js", "Django", "Flask"] },
+      ],
     },
     {
       skillType: "Databases",
-      techStacks: ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
+      techStacks: [{ items: ["MongoDB", "PostgreSQL", "MySQL", "Redis"] }],
     },
     {
       skillType: "DevOps & Cloud",
       techStacks: [
-        "Docker",
-        "Kubernetes",
-        "AWS (Lambda, S3, EC2)",
-        "CI/CD Pipelines",
+        {
+          items: [
+            "Docker",
+            "Kubernetes",
+            "AWS (Lambda, S3, EC2)",
+            "CI/CD Pipelines",
+          ],
+        },
       ],
     },
     {
       skillType: "Testing",
-      techStacks: ["Jest", "Mocha", "Supertest", "Cypress"],
+      techStacks: [{ items: ["Jest", "Mocha", "Supertest", "Cypress"] }],
     },
   ],
 };

@@ -130,7 +130,9 @@ export const TechnicalSection: FC<TechnicalSectionProps> = ({
         >
           <Flex direction="column" justifyContent="center">
             <Typography weight="bold">{item.skillType}</Typography>
-            <Typography size="small">{item.techStacks.join(", ")}</Typography>
+            <Typography size="small">
+              {item.techStacks[0].items.join(", ")}
+            </Typography>
           </Flex>
         </DragDropPanel>
       );

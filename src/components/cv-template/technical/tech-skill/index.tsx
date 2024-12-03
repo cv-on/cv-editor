@@ -18,7 +18,9 @@ export const TechSkill: FC<TechSkillProps> = ({
       <Typography size="small" weight="bold">
         {skillType}
       </Typography>
-      <Typography size="small">{techStacks.join(", ")}</Typography>
+      <Box paddingProps={{ paddingLeft: usySpacing.px6 }}>
+        <Typography size="small">{techStacks.join(", ")}</Typography>
+      </Box>
     </Box>
   );
 };

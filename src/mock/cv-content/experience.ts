@@ -11,6 +11,7 @@ export const experience: ExperienceSectionType = {
         {
           clientName: "TechCorp",
           projectNames: ["Alpha System Revamp"],
+          description: "A platform to biotech management",
           techStacks: ["Angular", "Node.js", "MongoDB"],
           responsibilities: [
             {
@@ -40,6 +41,7 @@ export const experience: ExperienceSectionType = {
         {
           clientName: "ShopEase",
           projectNames: ["Beta E-commerce Platform", "ReFace"],
+          description: "An online e-commerce which connect clients and sellers",
           techStacks: ["ReactJS", "Express.js", "PostgreSQL"],
           responsibilities: [
             {
@@ -76,6 +78,7 @@ export const experience: ExperienceSectionType = {
       projects: [
         {
           projectNames: ["Gamma Healthcare Dashboard"],
+          description: "Book health check and manage client health info",
           techStacks: ["Vue.js", "Firebase", "Python (Flask)"],
           responsibilities: [
             {

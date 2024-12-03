@@ -16,7 +16,7 @@ import {
 
 import { ValidateRules } from "@/constants/validation";
 import { PersonalInfoSectionType, ReferenceTypeUnion } from "@/types";
-import { capitalize } from "@/utils/format";
+import { capitalize, getShortUrl } from "@/utils/format";
 
 import { ReferenceIconsArray, ReferenceIconsConst } from "./constants";
 import {
@@ -97,8 +97,8 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
           <Input
             {...field}
             label={capitalize(selectIcon)}
-            onChange={(value) => {
-              field.onChange(value);
+            transformOnChange={(value) => getShortUrl(value)}
+            onBlur={() => {
               debounceSyncPersonalInfoState();
             }}
           />

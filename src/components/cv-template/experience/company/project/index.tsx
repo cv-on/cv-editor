@@ -9,6 +9,7 @@ import { BadgeProjectName } from "./project.styled";
 export const Project: FC<ProjectType> = ({
   clientName,
   projectNames,
+  description,
   techStacks,
   responsibilities,
   achievements,
@@ -31,6 +32,19 @@ export const Project: FC<ProjectType> = ({
             ◾Client:&nbsp;
           </Typography>
           {clientName}
+        </Typography>
+      )
+    );
+  };
+
+  const renderDescription = () => {
+    return (
+      description && (
+        <Typography size="small">
+          <Typography tag="span" size="small" weight="bold">
+            ◾Description:&nbsp;
+          </Typography>
+          {description}
         </Typography>
       )
     );
@@ -89,6 +103,7 @@ export const Project: FC<ProjectType> = ({
     >
       {renderProjects()}
       {renderClient()}
+      {renderDescription()}
       {renderTechStacks()}
       {renderResponsibilities()}
       {renderAchievements()}

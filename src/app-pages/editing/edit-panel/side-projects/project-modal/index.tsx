@@ -18,6 +18,7 @@ import {
 
 import { ValidateRules } from "@/constants/validation";
 import { SideProjectsSectionType, SideProjectType } from "@/types";
+import { getShortUrl } from "@/utils/format";
 
 import { SideProjectTypeWithIndex } from "..";
 
@@ -51,7 +52,7 @@ export const ProjectItemModal: FC<ProjectItemModalProps> = ({
       name: formValues.name,
       description: formValues.description,
       techStacks: formValues.techStacks,
-      url: formValues.url,
+      url: getShortUrl(formValues.url),
     };
 
     if (isUpdateMode && typeof selectedItem?.index === "number") {

@@ -89,7 +89,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
           widthProps={{ minWidth: "200px" }}
         >
           <Typography size="small">
-            Are you sure to reset? Your changes will be lost forever
+            Remember to backup your changes by export Json file before reset!
           </Typography>
           <Button
             variant="danger"
@@ -100,7 +100,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
             }}
             noSole
           >
-            Confirm
+            Apply
           </Button>
         </Flex>
       );

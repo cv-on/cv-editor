@@ -150,6 +150,24 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     );
   };
 
+  const renderDescription = () => {
+    return (
+      <Controller
+        name="description"
+        control={control}
+        rules={{ required: ValidateRules.required }}
+        render={({ field }) => (
+          <Input
+            {...field}
+            label="Description"
+            description={errors.description?.message}
+            hasError={Boolean(errors.description?.message)}
+          />
+        )}
+      />
+    );
+  };
+
   const renderTechStacks = () => {
     return (
       <Controller
@@ -190,6 +208,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
             {renderSwitchQuestions()}
             {renderClientName()}
             {renderProjectName()}
+            {renderDescription()}
             {renderTechStacks()}
             <Responsibilities control={control} />
             <Achievements control={control} />

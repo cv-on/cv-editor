@@ -168,7 +168,7 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
 
   const renderProjectsList = () => {
     return projectsFieldArray.fields.map((project, index) => {
-      const { projectNames, clientName, techStacks } = project;
+      const { projectNames, clientName, description } = project;
 
       return (
         <DragDropPanel
@@ -209,9 +209,9 @@ export const CompanyProjects: FC<CompanyProjectsProps> = ({
             )}
             <Typography size="small">
               <Typography tag="span" size="small" weight="bold">
-                ◾Tech stacks:&nbsp;
+                ◾Description:&nbsp;
               </Typography>
-              {techStacks.join(", ")}
+              {description}
             </Typography>
           </Flex>
         </DragDropPanel>

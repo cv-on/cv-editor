@@ -9,6 +9,7 @@ export type ProjAchievementType = {
 export type ProjectType = {
   clientName?: string;
   projectNames: string[];
+  description: string;
   techStacks: string[];
   responsibilities: ProjResponsibilityType[];
   achievements: ProjAchievementType[];

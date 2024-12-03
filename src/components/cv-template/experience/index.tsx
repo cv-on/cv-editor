@@ -11,7 +11,7 @@ export const ExperienceSection = () => {
 
   return (
     <>
-      <CvSection title="Experience">
+      <CvSection title="Working Experience">
         {experience.companies.map(
           ({ companyName, fromDate, toDate, position, projects }, index) => (
             <Company

@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import { Flex, Typography, usySpacing } from "@usy-ui/base";
+import { Box, Flex, Typography, usySpacing } from "@usy-ui/base";
 import Link from "next/link";
 
 import { SideProjectType } from "@/types";
+import { getClickableUrl } from "@/utils/format";
 
 type SideProjectProps = SideProjectType & {
   index: number;
@@ -16,8 +17,6 @@ export const SideProject: FC<SideProjectProps> = ({
   url,
   index,
 }) => {
-  const urlAddress = url.includes("https://") ? url : `https://${url}`;
-
   return (
     <Flex
       direction="column"
@@ -26,11 +25,13 @@ export const SideProject: FC<SideProjectProps> = ({
       <Typography size="small" weight="bold">
         {name}
       </Typography>
-      <Typography size="small">- {description}</Typography>
-      <Typography size="small">- {techStacks.join(", ")}</Typography>
-      <Link href={urlAddress} target="_blank">
-        <Typography size="small">- {url}</Typography>
-      </Link>
+      <Box paddingProps={{ paddingLeft: usySpacing.px6 }}>
+        <Typography size="small">- {description}</Typography>
+        <Typography size="small">- {techStacks.join(", ")}</Typography>
+        <Link href={getClickableUrl(url)} target="_blank">
+          <Typography size="small">- {url}</Typography>
+        </Link>
+      </Box>
     </Flex>
   );
 };

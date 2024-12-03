@@ -52,6 +52,7 @@ export const Company: FC<CompanyProps> = ({
       ({
         clientName,
         projectNames,
+        description,
         techStacks,
         responsibilities,
         achievements,
@@ -60,6 +61,7 @@ export const Company: FC<CompanyProps> = ({
           key={projectNames[0]}
           clientName={clientName}
           projectNames={projectNames}
+          description={description}
           techStacks={techStacks}
           responsibilities={responsibilities}
           achievements={achievements}

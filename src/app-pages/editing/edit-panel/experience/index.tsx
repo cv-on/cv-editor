@@ -147,7 +147,7 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
       )}
       <Flex direction="column" paddingProps={{ ...SectionPaddingConst }}>
         <SectionHeader
-          sectionTitle="Experience"
+          sectionTitle="Working Experience"
           changeSection={changeSection}
           hasGoBack
         />

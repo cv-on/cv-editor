@@ -11,7 +11,6 @@ import {
   Panel,
   Popover,
   TrashBinIcon,
-  Typography,
   UserEditIcon,
   usyColor,
   usySpacing,

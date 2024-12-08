@@ -1,4 +1,4 @@
-export type ProjResponsibilityType = {
+export type ProjContributionType = {
   content: string;
 };
 
@@ -11,7 +11,7 @@ export type ProjectType = {
   projectNames: string[];
   description: string;
   techStacks: string[];
-  responsibilities: ProjResponsibilityType[];
+  contributions: ProjContributionType[];
   achievements: ProjAchievementType[];
 };
 

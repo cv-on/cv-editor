@@ -93,14 +93,14 @@ export const ReferenceLinkInput: FC<ReferenceLinkInputProps> = ({
         name={`referenceLinks.${index}.url`}
         control={control}
         rules={{ required: ValidateRules.required }}
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <Input
             {...field}
             label={capitalize(selectIcon)}
+            description={error?.message}
+            hasError={Boolean(error?.message)}
             transformOnChange={(value) => getShortUrl(value)}
-            onBlur={() => {
-              debounceSyncPersonalInfoState();
-            }}
+            onBlur={() => debounceSyncPersonalInfoState()}
           />
         )}
       />

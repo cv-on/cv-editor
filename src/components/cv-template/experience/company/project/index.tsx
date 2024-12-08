@@ -11,12 +11,12 @@ export const Project: FC<ProjectType> = ({
   projectNames,
   description,
   techStacks,
-  responsibilities,
+  contributions,
   achievements,
 }) => {
-  const renderProjects = () => {
+  const renderProjectsName = () => {
     return (
-      <Flex alignItems="center" marginProps={{ marginBottom: usySpacing.px4 }}>
+      <Flex alignItems="center" marginProps={{ marginBottom: usySpacing.px8 }}>
         {projectNames.map((name) => (
           <BadgeProjectName key={name}>{name}</BadgeProjectName>
         ))}
@@ -61,26 +61,26 @@ export const Project: FC<ProjectType> = ({
     );
   };
 
-  const renderResponsibilities = () => {
+  const renderContributions = () => {
     return (
-      <>
-        <Typography tag="span" size="small" weight="bold">
-          ◾Responsibilities:
+      <Box>
+        <Typography tag="strong" size="small" weight="bold">
+          ◾Contributions:
         </Typography>
         <Box paddingProps={{ paddingLeft: usySpacing.px14 }}>
-          {responsibilities.map(({ content }) => (
+          {contributions.map(({ content }) => (
             <Typography key={content.substring(0, 10)} size="small">
               {`- ${content}`}
             </Typography>
           ))}
         </Box>
-      </>
+      </Box>
     );
   };
 
   const renderAchievements = () => {
     return (
-      <>
+      <Box>
         <Typography tag="span" size="small" weight="bold">
           ◾Achievements:
         </Typography>
@@ -91,7 +91,7 @@ export const Project: FC<ProjectType> = ({
             </Typography>
           ))}
         </Box>
-      </>
+      </Box>
     );
   };
 
@@ -99,14 +99,19 @@ export const Project: FC<ProjectType> = ({
     <Flex
       key={projectNames[0]}
       direction="column"
-      marginProps={{ marginTop: usySpacing.px8, marginBottom: usySpacing.px10 }}
+      marginProps={{
+        marginTop: usySpacing.px16,
+        marginBottom: usySpacing.px12,
+      }}
     >
-      {renderProjects()}
-      {renderClient()}
-      {renderDescription()}
-      {renderTechStacks()}
-      {renderResponsibilities()}
-      {renderAchievements()}
+      {renderProjectsName()}
+      <Flex direction="column" gap={usySpacing.px4}>
+        {renderClient()}
+        {renderDescription()}
+        {renderTechStacks()}
+        {renderContributions()}
+        {renderAchievements()}
+      </Flex>
     </Flex>
   );
 };

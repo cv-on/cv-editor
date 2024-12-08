@@ -13,7 +13,7 @@ export const experience: ExperienceSectionType = {
           projectNames: ["Alpha System Revamp"],
           description: "A platform to biotech management",
           techStacks: ["Angular", "Node.js", "MongoDB"],
-          responsibilities: [
+          contributions: [
             {
               content:
                 "Collaborated with a team to design and implement new features for the Customer Management module in a modular architecture.",
@@ -43,7 +43,7 @@ export const experience: ExperienceSectionType = {
           projectNames: ["Beta E-commerce Platform", "ReFace"],
           description: "An online e-commerce which connect clients and sellers",
           techStacks: ["ReactJS", "Express.js", "PostgreSQL"],
-          responsibilities: [
+          contributions: [
             {
               content:
                 "Developed and maintained the Product Catalog and Search modules, ensuring seamless user experience.",
@@ -80,7 +80,7 @@ export const experience: ExperienceSectionType = {
           projectNames: ["Gamma Healthcare Dashboard"],
           description: "Book health check and manage client health info",
           techStacks: ["Vue.js", "Firebase", "Python (Flask)"],
-          responsibilities: [
+          contributions: [
             {
               content:
                 "Designed and implemented real-time data visualization dashboards for healthcare analytics.",

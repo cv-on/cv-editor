@@ -149,7 +149,7 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
               <Box paddingProps={{ paddingBottom: usySpacing.px6 }}>
                 <Checkbox
                   checked={isStillWorking}
-                  label="Still working"
+                  label="Currently Working"
                   onChange={(checked) => {
                     setIsStillWorking(checked);
                     if (checked) {

@@ -63,6 +63,7 @@ export const QualifyItemModal: FC<QualifyItemModalProps> = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex
           direction="column"
+          alignItems="center"
           gap={usySpacing.px24}
           paddingProps={{ paddingTop: usySpacing.px16 }}
         >
@@ -95,7 +96,11 @@ export const QualifyItemModal: FC<QualifyItemModalProps> = ({
               />
             )}
           />
-          <Button type="submit" variant="primary">
+          <Button
+            type="submit"
+            variant="primary"
+            widthProps={{ minWidth: "200px" }}
+          >
             {isUpdateMode ? "Update" : "Create"}
           </Button>
         </Flex>

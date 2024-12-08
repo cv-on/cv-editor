@@ -2,6 +2,8 @@
  * Debounce
  */
 
+import { CompanyType } from "@/types";
+
 type DebounceFunction = <T extends (...args: any[]) => any>(
   func: T,
   delay: number
@@ -49,4 +51,23 @@ export const changeItemOrder = <T>({
   }
 
   return array;
+};
+
+/**
+ * Sort company timeline
+ */
+
+export const sortCompaniesTimeline = (
+  companies: CompanyType[]
+): CompanyType[] => {
+  const cloneCompanies = [...companies];
+  cloneCompanies.sort((a, b) => {
+    if (b.toDate === "present") {
+      return -1;
+    }
+
+    return new Date(b.toDate).getTime() - new Date(a.toDate).getTime();
+  });
+
+  return cloneCompanies;
 };

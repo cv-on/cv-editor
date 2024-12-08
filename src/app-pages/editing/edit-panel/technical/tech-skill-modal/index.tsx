@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Button, Flex, Input, Modal, usySpacing } from "@usy-ui/base";
+import { Box, Button, Flex, Input, Modal, usySpacing } from "@usy-ui/base";
 import {
   Controller,
   useFieldArray,
@@ -100,7 +100,14 @@ export const TechSkillModal: FC<TechSkillModalProps> = ({
           gap={usySpacing.px24}
           paddingProps={{ paddingTop: usySpacing.px16 }}
         >
-          {renderSkillType()}
+          <Box
+            paddingProps={{
+              paddingLeft: usySpacing.px12,
+              paddingRight: usySpacing.px12,
+            }}
+          >
+            {renderSkillType()}
+          </Box>
           <TechStacks
             getValues={getValues}
             setValue={setValue}

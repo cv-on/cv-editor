@@ -54,7 +54,7 @@ export const Company: FC<CompanyProps> = ({
         projectNames,
         description,
         techStacks,
-        responsibilities,
+        contributions,
         achievements,
       }) => (
         <Project
@@ -63,7 +63,7 @@ export const Company: FC<CompanyProps> = ({
           projectNames={projectNames}
           description={description}
           techStacks={techStacks}
-          responsibilities={responsibilities}
+          contributions={contributions}
           achievements={achievements}
         />
       )

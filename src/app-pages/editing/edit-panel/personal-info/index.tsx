@@ -42,6 +42,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
     getValues,
   } = useForm<PersonalInfoSectionType>({
     mode: "onBlur",
+    values: personalInfo,
     defaultValues: personalInfo,
   });
 
@@ -88,10 +89,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="John Doe"
               description={errors.name?.message}
               hasError={Boolean(errors.name?.message)}
-              onChange={(value) => {
-                field.onChange(value);
-                debounceSyncPersonalInfoState();
-              }}
+              onBlur={() => debounceSyncPersonalInfoState()}
             />
           )}
         />
@@ -106,10 +104,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="Senior Fullstack Developer"
               description={errors.position?.message}
               hasError={Boolean(errors.position?.message)}
-              onChange={(value) => {
-                field.onChange(value);
-                debounceSyncPersonalInfoState();
-              }}
+              onBlur={() => debounceSyncPersonalInfoState()}
             />
           )}
         />
@@ -127,10 +122,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="john-doe@gmail.com"
               description={errors.email?.message}
               hasError={Boolean(errors.email?.message)}
-              onChange={(value) => {
-                field.onChange(value);
-                debounceSyncPersonalInfoState();
-              }}
+              onBlur={() => debounceSyncPersonalInfoState()}
             />
           )}
         />
@@ -145,10 +137,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               placeholder="+84 111 222 333"
               description={errors.phone?.message}
               hasError={Boolean(errors.phone?.message)}
-              onChange={(value) => {
-                field.onChange(value);
-                debounceSyncPersonalInfoState();
-              }}
+              onBlur={() => debounceSyncPersonalInfoState()}
             />
           )}
         />
@@ -164,10 +153,7 @@ export const PersonalInfoSection: FC<PersonalInfoSectionProps> = ({
               heightProps={{ minHeight: "150px" }}
               description={errors.summary?.message}
               hasError={Boolean(errors.summary?.message)}
-              onChange={(value) => {
-                field.onChange(value);
-                debounceSyncPersonalInfoState();
-              }}
+              onBlur={() => debounceSyncPersonalInfoState()}
             />
           )}
         />

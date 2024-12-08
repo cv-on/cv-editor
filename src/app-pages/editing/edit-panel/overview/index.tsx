@@ -97,6 +97,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
         </>
         <Popover
           position="top"
+          color="dark-8"
           content={
             <ConfirmContent
               description="Remember to backup your changes by export Json file before reset!"

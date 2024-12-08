@@ -18,7 +18,7 @@ import { ValidateRules } from "@/constants/validation";
 import { ProjectTypeWithIdIndex } from "..";
 
 import { Achievements } from "./achievements";
-import { Responsibilities } from "./responsibilities";
+import { Contributions } from "./contributions";
 
 type ProjectModalProps = {
   selectedProject?: ProjectTypeWithIdIndex;
@@ -194,7 +194,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     <Modal
       title={isUpdateMode ? "Update Project" : "Create Project"}
       onClose={onClose}
-      widthProps={{ minWidth: "600px" }}
+      widthProps={{ minWidth: "700px", maxWidth: "700px" }}
       preventOutsideClose
     >
       <Scrollable
@@ -210,11 +210,12 @@ export const ProjectModal: FC<ProjectModalProps> = ({
             {renderProjectName()}
             {renderDescription()}
             {renderTechStacks()}
-            <Responsibilities control={control} />
+            <Contributions control={control} />
             <Achievements control={control} />
             <Flex
               justifyContent="center"
               marginProps={{ marginTop: usySpacing.px10 }}
+              paddingProps={{ paddingBottom: usySpacing.px32 }}
             >
               <Button
                 type="submit"

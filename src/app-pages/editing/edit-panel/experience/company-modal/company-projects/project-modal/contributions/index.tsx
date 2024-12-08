@@ -8,33 +8,33 @@ import { ValidateRules } from "@/constants/validation";
 import { ProjectTypeWithIdIndex } from "../..";
 import { DragDropTextArea } from "../_drag-drop-textarea";
 
-type ResponsibilitiesProps = {
+type ContributionsProps = {
   control: Control<ProjectTypeWithIdIndex> | undefined;
 };
 
-export const Responsibilities: FC<ResponsibilitiesProps> = ({ control }) => {
-  const responsibilitiesField = useFieldArray({
+export const Contributions: FC<ContributionsProps> = ({ control }) => {
+  const contributionsField = useFieldArray({
     control,
-    name: "responsibilities",
+    name: "contributions",
   });
 
-  const addResponsibility = () => {
-    responsibilitiesField.append({ content: "" });
+  const addContribution = () => {
+    contributionsField.append({ content: "" });
   };
 
   return (
     <Flex direction="column" gap={usySpacing.px10}>
-      <Typography weight="semibold">Responsibilities</Typography>
-      {responsibilitiesField.fields.map(({ id }, index) => {
+      <Typography weight="semibold">Contributions</Typography>
+      {contributionsField.fields.map(({ id }, index) => {
         return (
           <Controller
             key={id}
-            name={`responsibilities.${index}.content`}
+            name={`contributions.${index}.content`}
             control={control}
             rules={{ required: ValidateRules.required }}
             render={({ field, fieldState: { error } }) => (
               <DragDropTextArea
-                onRemove={() => responsibilitiesField.remove(index)}
+                onRemove={() => contributionsField.remove(index)}
               >
                 <TextArea
                   {...field}
@@ -48,8 +48,8 @@ export const Responsibilities: FC<ResponsibilitiesProps> = ({ control }) => {
         );
       })}
       <Flex justifyContent="center">
-        <Button variant="outline" size="small" onClick={addResponsibility}>
-          Add Responsibility
+        <Button variant="outline" size="small" onClick={addContribution}>
+          Add Contribution
         </Button>
       </Flex>
     </Flex>

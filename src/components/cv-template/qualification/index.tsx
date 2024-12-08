@@ -1,3 +1,4 @@
+import { Flex, usySpacing } from "@usy-ui/base";
 import { useRecoilValue } from "recoil";
 
 import { qualificationSelector } from "@/app-states/qualification";
@@ -12,13 +13,15 @@ export const QualificationSection = () => {
   return (
     <>
       <CvSection title="Qualification">
-        {qualification.qualifyItems.map(({ keyPoint, description }) => (
-          <QualifyItem
-            key={keyPoint}
-            keyPoint={keyPoint}
-            description={description}
-          />
-        ))}
+        <Flex direction="column" gap={usySpacing.px8}>
+          {qualification.qualifyItems.map(({ keyPoint, description }) => (
+            <QualifyItem
+              key={keyPoint}
+              keyPoint={keyPoint}
+              description={description}
+            />
+          ))}
+        </Flex>
       </CvSection>
     </>
   );

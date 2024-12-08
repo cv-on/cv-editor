@@ -21,6 +21,7 @@ import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { CompanyModal } from "./company-modal";
+import { sortCompaniesTimeline } from "@/utils/helpers";
 
 export type CompanyTypeWithIdIndex = CompanyType & {
   id: string;

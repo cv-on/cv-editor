@@ -8,7 +8,6 @@ import {
   Flex,
   Popover,
   TrashBinIcon,
-  Typography,
   usyColor,
   usySpacing,
 } from "@usy-ui/base";

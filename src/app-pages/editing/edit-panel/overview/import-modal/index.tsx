@@ -67,7 +67,7 @@ export const ImportModal: FC<ImportModalProps> = ({ onClose }) => {
     <Modal
       title="Restore CV"
       onClose={onClose}
-      widthProps={{ minWidth: "400px" }}
+      widthProps={{ minWidth: "400px", maxWidth: "400px" }}
     >
       <Flex
         direction="column"

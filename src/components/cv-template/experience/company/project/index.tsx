@@ -105,13 +105,11 @@ export const Project: FC<ProjectType> = ({
       }}
     >
       {renderProjectsName()}
-      <Flex direction="column" gap={usySpacing.px4}>
-        {renderClient()}
-        {renderDescription()}
-        {renderTechStacks()}
-        {renderContributions()}
-        {renderAchievements()}
-      </Flex>
+      {renderClient()}
+      {renderDescription()}
+      {renderTechStacks()}
+      {renderContributions()}
+      {renderAchievements()}
     </Flex>
   );
 };

@@ -13,15 +13,13 @@ export const QualificationSection = () => {
   return (
     <>
       <CvSection title="Qualification">
-        <Flex direction="column" gap={usySpacing.px8}>
-          {qualification.qualifyItems.map(({ keyPoint, description }) => (
-            <QualifyItem
-              key={keyPoint}
-              keyPoint={keyPoint}
-              description={description}
-            />
-          ))}
-        </Flex>
+        {qualification.qualifyItems.map(({ keyPoint, description }) => (
+          <QualifyItem
+            key={keyPoint}
+            keyPoint={keyPoint}
+            description={description}
+          />
+        ))}
       </CvSection>
     </>
   );

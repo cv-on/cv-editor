@@ -72,6 +72,7 @@ export const ProjectItemModal: FC<ProjectItemModalProps> = ({
   return (
     <Modal
       title={isUpdateMode ? "Update Project" : "Create Project"}
+      widthProps={{ maxWidth: "500px", minWidth: "500px" }}
       onClose={onClose}
       preventOutsideClose
     >

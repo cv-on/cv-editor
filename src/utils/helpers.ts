@@ -62,11 +62,9 @@ export const sortCompaniesTimeline = (
 ): CompanyType[] => {
   const cloneCompanies = [...companies];
   cloneCompanies.sort((a, b) => {
-    if (b.toDate === "present") {
-      return -1;
-    }
-
-    return new Date(b.toDate).getTime() - new Date(a.toDate).getTime();
+    return b.toDate === "present"
+      ? 1
+      : new Date(b.toDate).getTime() - new Date(a.toDate).getTime();
   });
 
   return cloneCompanies;

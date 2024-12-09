@@ -15,13 +15,13 @@ import { experienceAtom } from "@/app-states/experience";
 import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
 import { CompanyType, ExperienceSectionType } from "@/types";
+import { sortCompaniesTimeline } from "@/utils/helpers";
 
 import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
 import { CompanyModal } from "./company-modal";
-import { sortCompaniesTimeline } from "@/utils/helpers";
 
 export type CompanyTypeWithIdIndex = CompanyType & {
   id: string;
@@ -46,10 +46,15 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
     sectionType: "experience",
   });
 
+  const sortedCompaniesInExperience: ExperienceSectionType = {
+    ...experience,
+    companies: sortCompaniesTimeline(experience.companies),
+  };
+
   const { control, getValues } = useForm<ExperienceSectionType>({
     mode: "onBlur",
-    values: experience,
-    defaultValues: experience,
+    values: sortedCompaniesInExperience,
+    defaultValues: sortedCompaniesInExperience,
   });
 
   const companiesFieldArray = useFieldArray({

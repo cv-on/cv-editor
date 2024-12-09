@@ -36,7 +36,9 @@ export const ProjectModal: FC<ProjectModalProps> = ({
 }) => {
   const isUpdateMode = Boolean(selectedProject);
   const hasMultiProjects = (selectedProject?.projectNames || []).length > 1;
-  const [isBelongToClient, setIsBelongToClient] = useState(false);
+  const [isBelongToClient, setIsBelongToClient] = useState(
+    Boolean(selectedProject?.clientName)
+  );
   const [isAppliedToMultipleProjects, setIsAppliedToMultipleProjects] =
     useState(hasMultiProjects);
   const {
@@ -69,6 +71,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
           <Switch
             name="belong-to-client"
             size="small"
+            value={isBelongToClient}
             onChange={(checked) => setIsBelongToClient(checked)}
           />
         </Flex>
@@ -81,6 +84,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
           <Switch
             name="multiple-projects"
             size="small"
+            value={isAppliedToMultipleProjects}
             onChange={(checked) => setIsAppliedToMultipleProjects(checked)}
           />
         </Flex>

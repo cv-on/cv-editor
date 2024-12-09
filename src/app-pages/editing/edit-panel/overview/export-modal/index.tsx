@@ -67,7 +67,7 @@ export const ExportModal: FC<ExportModalProps> = ({ onClose }) => {
     <Modal
       title="Download File"
       onClose={onClose}
-      widthProps={{ minWidth: "400px" }}
+      widthProps={{ minWidth: "400px", maxWidth: "400px" }}
       preventOutsideClose
     >
       <Flex

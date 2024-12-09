@@ -1,4 +1,3 @@
-import { Flex, usySpacing } from "@usy-ui/base";
 import { useRecoilValue } from "recoil";
 
 import { qualificationSelector } from "@/app-states/qualification";

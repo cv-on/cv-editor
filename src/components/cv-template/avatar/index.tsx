@@ -11,7 +11,7 @@ export const AvatarSection = () => {
       src={personalInfo.avatarSrc}
       alt={personalInfo.name}
       width={230}
-      height={302}
+      height={256}
     />
   );
 };

@@ -18,7 +18,7 @@ export const MainColumnStyled = styled.div`
 `;
 
 export const SubColumnStyled = styled.div`
-  min-width: 31%;
-  max-width: 31%;
+  min-width: 250px;
+  max-width: 250px;
   padding-left: ${usySpacing.px20};
 `;

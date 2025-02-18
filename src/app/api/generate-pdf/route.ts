@@ -29,6 +29,7 @@ export async function POST(request: Request) {
     await page.emulateMediaType("print");
     const scaleDownRate = 0.85;
     const pdfBuffer = await page.pdf({
+      width: 1000,
       scale: scaleDownRate,
       format: "a4",
       printBackground: true,

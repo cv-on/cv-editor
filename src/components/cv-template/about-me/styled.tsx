@@ -1,7 +1,7 @@
 import { usyColor, usySpacing } from "@usy-ui/base";
 import styled from "styled-components";
 
-export const SummaryBoard = styled.div`
+export const AboutMeBoard = styled.div`
   background-color: rgba(0, 0, 0, 0.03);
   padding: ${usySpacing.px14};
   margin-bottom: ${usySpacing.px32};
@@ -9,19 +9,19 @@ export const SummaryBoard = styled.div`
 
   &::before,
   &::after {
-    content: "”";
-    font-size: 60px;
-    color: ${usyColor.blue8};
+    content: "❟❟";
+    font-size: 40px;
+    color: ${usyColor.blue7};
     position: absolute;
   }
 
   &::before {
-    top: -${usySpacing.px12};
+    top: -${usySpacing.px32};
     left: -${usySpacing.px4};
   }
 
   &::after {
-    bottom: -${usySpacing.px48};
-    right: -${usySpacing.px4};
+    bottom: -${usySpacing.px6};
+    right: ${usySpacing.px2};
   }
 `;

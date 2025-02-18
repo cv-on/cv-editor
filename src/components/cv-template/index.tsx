@@ -1,19 +1,20 @@
 "use client";
 import { FC } from "react";
 
-import { Flex, usySpacing } from "@usy-ui/base";
+import { Flex } from "@usy-ui/base";
 
 import { useHydrated } from "@/hooks/use-hydrated";
 
+import { AboutMeSection } from "./about-me";
+import { AvatarSection } from "./avatar";
 import { ContactSection } from "./contact";
 import { EducationSection } from "./education";
 import { ExperienceSection } from "./experience";
 import { QualificationSection } from "./qualification";
 import { SideProjectsSection } from "./side-projects";
 import { CvPageStyled, MainColumnStyled, SubColumnStyled } from "./styled";
-import { SummarySection } from "./summary";
 import { TechnicalSection } from "./technical";
-import { AvatarSection } from "./avatar";
+import { NameAndPosition } from "./name-and-position";
 
 type CvTemplateProps = {
   isRenderMode?: boolean;
@@ -34,12 +35,13 @@ export const CvTemplate: FC<CvTemplateProps> = ({
     <CvPageStyled $isRenderMode={isRenderMode} className={className}>
       <Flex>
         <MainColumnStyled>
+          <NameAndPosition />
           <QualificationSection />
           <ExperienceSection />
         </MainColumnStyled>
         <SubColumnStyled>
           <AvatarSection />
-          <SummarySection />
+          <AboutMeSection />
           <ContactSection />
           <TechnicalSection />
           <SideProjectsSection />

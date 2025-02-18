@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export const BadgeProjectName = styled.span`
   font-size: ${usyFontSize.small};
-  background-color: ${usyColor.primary};
+  background-color: ${usyColor.blue7};
   color: ${usyColor.white};
-  padding: ${usySpacing.px4} ${usySpacing.px8};
-  border-radius: ${usySpacing.px16};
+  padding: ${usySpacing.px6} ${usySpacing.px8};
+  border-radius: ${usySpacing.px4};
   margin-right: ${usySpacing.px4};
 `;

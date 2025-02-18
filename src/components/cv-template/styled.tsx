@@ -15,7 +15,6 @@ export const CvPageStyled = styled.div<{ $isRenderMode?: boolean }>`
 export const MainColumnStyled = styled.div`
   flex-grow: 1;
   padding-right: ${usySpacing.px20};
-  border-right: 1px solid ${usyColor.light1};
 `;
 
 export const SubColumnStyled = styled.div`

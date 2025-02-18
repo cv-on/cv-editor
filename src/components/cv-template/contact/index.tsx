@@ -11,8 +11,7 @@ import { useRecoilValue } from "recoil";
 
 import { ReferenceIconsConst } from "@/app-pages/editing/edit-panel/personal-info/reference-link-input/constants";
 import { personalInfoSelector } from "@/app-states";
-
-import { CvSection } from "../../cv-section";
+import { GrayBoard } from "@/components/gray-board";
 
 import { LinkStyled } from "./styled";
 
@@ -69,25 +68,20 @@ export const ContactSection = () => {
   );
 
   return (
-    <>
-      <CvSection title="Contact">
-        {itemsMemo.map(({ icon, label, url }, index) => (
-          <Flex
-            key={`${label}-${index}`}
-            marginProps={{ marginBottom: usySpacing.px10 }}
-          >
-            {icon}
-            &nbsp;&nbsp;
-            {url ? (
-              <LinkStyled href={url} target="_blank">
-                <Typography size="small">{label}</Typography>
-              </LinkStyled>
-            ) : (
+    <GrayBoard title="Contact">
+      {itemsMemo.map(({ icon, label, url }) => (
+        <Flex key={label} marginProps={{ marginBottom: usySpacing.px6 }}>
+          {icon}
+          &nbsp;&nbsp;
+          {url ? (
+            <LinkStyled href={url} target="_blank">
               <Typography size="small">{label}</Typography>
-            )}
-          </Flex>
-        ))}
-      </CvSection>
-    </>
+            </LinkStyled>
+          ) : (
+            <Typography size="small">{label}</Typography>
+          )}
+        </Flex>
+      ))}
+    </GrayBoard>
   );
 };

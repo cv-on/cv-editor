@@ -3,16 +3,14 @@ import { useRecoilValue } from "recoil";
 
 import { personalInfoSelector } from "@/app-states";
 
-import { CvSection } from "../../cv-section";
+import { SummaryBoard } from "./styled";
 
 export const SummarySection = () => {
   const personalInfo = useRecoilValue(personalInfoSelector);
 
   return (
-    <>
-      <CvSection title="Summary">
-        <Typography size="small">{personalInfo.summary}</Typography>
-      </CvSection>
-    </>
+    <SummaryBoard>
+      <Typography size="small">{personalInfo.summary}</Typography>
+    </SummaryBoard>
   );
 };

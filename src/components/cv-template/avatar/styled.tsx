@@ -6,8 +6,9 @@ export const ImageStyled = styled(Image)`
   width: 100%;
   min-width: 230px;
   max-width: 230px;
-  min-height: 256px;
-  max-height: 256px;
   margin-bottom: ${usySpacing.px32};
+  margin-top: ${usySpacing.px24};
   border-radius: ${usySpacing.px2};
+  object-fit: cover;
+  object-position: center;
 `;

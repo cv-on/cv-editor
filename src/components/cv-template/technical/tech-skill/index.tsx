@@ -25,7 +25,7 @@ export const TechSkill: FC<TechSkillProps> = ({
       >
         {techStacks.map(({ items }) => (
           <Typography key={items.join("-")} size="small">
-            {`◾ ${items.join(", ")}`}
+            {`- ${items.join(", ")}`}
           </Typography>
         ))}
       </Flex>

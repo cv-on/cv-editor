@@ -4,16 +4,16 @@ import { Typography } from "@usy-ui/base";
 
 import { QualifyType } from "@/types";
 
+import { QualifyItemTypography } from "./styled";
+
 export const QualifyItem: FC<QualifyType> = ({ keyPoint, description }) => {
   return (
-    <Typography size="small">
+    <QualifyItemTypography size="small">
       {"- "}
-      <Typography
-        tag="strong"
-        size="small"
-        weight="bold"
-      >{`${keyPoint}: `}</Typography>
+      <Typography tag="strong" size="small" weight="bold">
+        {`${keyPoint}: `}
+      </Typography>
       {description}
-    </Typography>
+    </QualifyItemTypography>
   );
 };

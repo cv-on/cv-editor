@@ -70,7 +70,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
         >
           {sectionThumbsMemo.map(({ id, name }) => (
             <EditSectionStyled key={id} onClick={() => changeSection(id)}>
-              <Typography align="center" weight="bold">
+              <Typography align="center" weight="semibold">
                 {name}
               </Typography>
             </EditSectionStyled>

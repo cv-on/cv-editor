@@ -3,6 +3,7 @@
  */
 
 import { CompanyType } from "@/types";
+import dayjs, { Dayjs } from "dayjs";
 
 type DebounceFunction = <T extends (...args: any[]) => any>(
   func: T,
@@ -68,4 +69,19 @@ export const sortCompaniesTimeline = (
   });
 
   return cloneCompanies;
+};
+
+/**
+ * Get Time Duration
+ */
+
+export const getTimeDuration = (startDate: Dayjs, endDate: Dayjs): string => {
+  const years = endDate.diff(startDate, "year");
+  const months = endDate.diff(startDate.add(years, "year"), "month");
+
+  const result = [] as string[];
+  if (years > 0) result.push(`${years} yr${years > 1 ? "s" : ""}`);
+  if (months > 0) result.push(`${months} mo${months > 1 ? "s" : ""}`);
+
+  return result.length > 0 ? result.join(" ") : "0 months";
 };

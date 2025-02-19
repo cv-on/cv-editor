@@ -24,7 +24,7 @@ export const ExperienceSection = () => {
           ({ companyName, fromDate, toDate, position, projects }, index) => (
             <Company
               key={companyName}
-              companyName={companyName}
+              companyName={`${index + 1}. ${companyName}`}
               fromDate={fromDate}
               toDate={toDate}
               position={position}

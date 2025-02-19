@@ -1,20 +1,13 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
-import { Lora, Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 import RecoilRootProvider from "@/providers/recoil-root";
 import StyledComponentsRegistry from "@/providers/styled-components";
 
 import "@usy-ui/base/dist/styles.css";
 
-const lora = Lora({
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const montserrat = Montserrat({
+const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
@@ -33,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(lora.className, montserrat.className)}>
+      <body className={clsx(poppins.className)}>
         <StyledComponentsRegistry>
           <RecoilRootProvider>{children}</RecoilRootProvider>
         </StyledComponentsRegistry>

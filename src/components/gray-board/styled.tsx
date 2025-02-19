@@ -15,5 +15,4 @@ export const TitleTypography = styled(Typography)`
   margin-bottom: ${usySpacing.px14};
   position: relative;
   text-transform: uppercase;
-  font-family: Lora;
 `;

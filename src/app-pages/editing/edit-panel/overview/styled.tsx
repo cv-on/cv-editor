@@ -4,9 +4,9 @@ import styled from "styled-components";
 export const EditSectionStyled = styled.div`
   width: 120px;
   height: 120px;
-  padding: ${usySpacing.px10};
+  padding: ${usySpacing.px20};
   border: 1px dashed ${usyColor.light7};
-  border-radius: ${usySpacing.px2};
+  border-radius: ${usySpacing.px8};
   text-align: center;
   display: flex;
   justify-content: center;

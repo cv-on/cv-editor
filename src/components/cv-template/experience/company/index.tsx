@@ -4,6 +4,7 @@ import { Flex, Typography, usySpacing } from "@usy-ui/base";
 import dayjs from "dayjs";
 
 import { CompanyType } from "@/types";
+import { getTimeDuration } from "@/utils/helpers";
 
 import { CompanyFlexStyled } from "./company.styled";
 import { Project } from "./project";
@@ -20,9 +21,13 @@ export const Company: FC<CompanyProps> = ({
   projects,
   index,
 }) => {
-  const fromDateStr = dayjs(fromDate).format("MMM YYYY");
-  const toDateStr =
+  const fromDateDayJs = dayjs(fromDate);
+  const fromDateFormatted = fromDateDayJs.format("MMM YYYY");
+  const toDateDayjs = toDate === "present" ? dayjs() : dayjs(toDate);
+  const toDateFormatted =
     toDate === "present" ? "Present" : dayjs(toDate).format("MMM YYYY");
+  const timeDuration = getTimeDuration(fromDateDayJs, toDateDayjs);
+  const workingTime = `${fromDateFormatted} - ${toDateFormatted} • ${timeDuration}`;
 
   /**
    * Render
@@ -35,10 +40,9 @@ export const Company: FC<CompanyProps> = ({
           <Typography size="large" weight="bold">
             {companyName}
           </Typography>
-          <Typography
-            tag="em"
-            size="tiny"
-          >{`${fromDateStr} - ${toDateStr}`}</Typography>
+          <Typography tag="em" size="tiny">
+            {workingTime}
+          </Typography>
         </Flex>
         <Typography tag="em" size="small" weight="semibold">
           {position}

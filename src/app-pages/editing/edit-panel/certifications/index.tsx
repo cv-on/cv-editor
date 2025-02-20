@@ -21,7 +21,7 @@ import { SectionHeader } from "../_header";
 import { SectionPaddingConst } from "../constants";
 import { DisplaySectionUnion } from "../types";
 
-import { AchievementItemModal } from "./achievement-popup";
+import { CertificationItemModal } from "./certification-item-modal";
 
 export type CertificationItemWithIndexType = CertificationItemType & {
   index?: number;
@@ -140,7 +140,7 @@ export const CertificationsSection: FC<CertificationsSectionProps> = ({
   return (
     <>
       {isOpenModal && (
-        <AchievementItemModal
+        <CertificationItemModal
           selectedItem={selectedItem}
           syncCertificationsState={syncCertificationsState}
           append={append}

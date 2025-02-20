@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { certificationsSelector } from "@/app-states/certifications";
 import { GrayBoard } from "@/components/gray-board";
 
-import { Achievement } from "./achievement";
+import { CertificationItem } from "./certification-item";
 
 export const CertificationsSection = () => {
   const certifications = useRecoilValue(certificationsSelector);
@@ -11,7 +11,7 @@ export const CertificationsSection = () => {
   return (
     <GrayBoard title="Certifications">
       {certifications.certificationItems.map(({ content }) => (
-        <Achievement key={content.substring(0, 10)} content={content} />
+        <CertificationItem key={content.substring(0, 10)} content={content} />
       ))}
     </GrayBoard>
   );

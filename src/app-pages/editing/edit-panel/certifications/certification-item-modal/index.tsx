@@ -13,7 +13,7 @@ import { CertificationsSectionType } from "@/types";
 
 import { CertificationItemWithIndexType } from "..";
 
-type AchievementItemModalProps = {
+type CertificationItemModalProps = {
   selectedItem?: CertificationItemWithIndexType;
   append: UseFieldArrayAppend<CertificationsSectionType, "certificationItems">;
   update: UseFieldArrayUpdate<CertificationsSectionType, "certificationItems">;
@@ -21,7 +21,7 @@ type AchievementItemModalProps = {
   onClose: () => void;
 };
 
-export const AchievementItemModal: FC<AchievementItemModalProps> = ({
+export const CertificationItemModal: FC<CertificationItemModalProps> = ({
   selectedItem,
   append,
   update,
@@ -55,13 +55,14 @@ export const AchievementItemModal: FC<AchievementItemModalProps> = ({
 
   return (
     <Modal
-      title={isUpdateMode ? "Update Achievement" : "Create Achievement"}
+      title={isUpdateMode ? "Update Certification" : "Create Certification"}
       onClose={onClose}
       preventOutsideClose
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex
           direction="column"
+          alignItems="center"
           gap={usySpacing.px24}
           paddingProps={{ paddingTop: usySpacing.px16 }}
         >
@@ -80,7 +81,11 @@ export const AchievementItemModal: FC<AchievementItemModalProps> = ({
               />
             )}
           />
-          <Button type="submit" variant="primary">
+          <Button
+            type="submit"
+            variant="primary"
+            widthProps={{ minWidth: "200px" }}
+          >
             {isUpdateMode ? "Update" : "Create"}
           </Button>
         </Flex>

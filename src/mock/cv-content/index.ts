@@ -1,6 +1,6 @@
 import { CvTemplateType } from "@/types";
 
-import { education } from "./education";
+import { certifications } from "./certifications";
 import { experience } from "./experience";
 import { personalInfo } from "./personal-info";
 import { qualification } from "./qualification";
@@ -13,5 +13,5 @@ export const mockCvContent: CvTemplateType = {
   technical: technical,
   experience: experience,
   sideProjects: sideProjects,
-  education: education,
+  certifications: certifications,
 };

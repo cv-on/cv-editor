@@ -1,4 +1,4 @@
-import { Box, Flex, Typography, usySpacing } from "@usy-ui/base";
+import { Box, Typography } from "@usy-ui/base";
 import { useRecoilValue } from "recoil";
 
 import { personalInfoSelector } from "@/app-states";

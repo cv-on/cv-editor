@@ -1,4 +1,4 @@
-import { EducationSectionType } from "./education";
+import { CertificationsSectionType } from "./certifications";
 import { ExperienceSectionType } from "./experience";
 import { PersonalInfoSectionType } from "./personal-info";
 import { QualificationSectionType } from "./qualification";
@@ -11,5 +11,5 @@ export type CvTemplateType = {
   technical: TechnicalSectionType;
   experience: ExperienceSectionType;
   sideProjects: SideProjectsSectionType;
-  education: EducationSectionType;
+  certifications: CertificationsSectionType;
 };

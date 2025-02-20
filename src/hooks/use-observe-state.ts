@@ -9,7 +9,7 @@ import {
 } from "recoil";
 
 import { personalInfoSelector } from "@/app-states";
-import { educationSelector } from "@/app-states/education";
+import { certificationsSelector } from "@/app-states/certifications";
 import { experienceSelector } from "@/app-states/experience";
 import { qualificationSelector } from "@/app-states/qualification";
 import { sideProjectsSelector } from "@/app-states/side-projects";
@@ -33,7 +33,7 @@ export const useObserveState = <T>({
   const technicalState = useRecoilValue(technicalSelector);
   const experienceState = useRecoilValue(experienceSelector);
   const sideProjectsState = useRecoilValue(sideProjectsSelector);
-  const educationState = useRecoilValue(educationSelector);
+  const certificationsState = useRecoilValue(certificationsSelector);
 
   useEffect(() => {
     setCvContentToStorage({
@@ -42,7 +42,7 @@ export const useObserveState = <T>({
       technical: technicalState,
       experience: experienceState,
       sideProjects: sideProjectsState,
-      education: educationState,
+      certifications: certificationsState,
       [sectionType]: state,
     });
   }, [
@@ -51,7 +51,7 @@ export const useObserveState = <T>({
     technicalState,
     experienceState,
     sideProjectsState,
-    educationState,
+    certificationsState,
     sectionType,
     state,
   ]);

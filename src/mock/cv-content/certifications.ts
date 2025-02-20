@@ -1,7 +1,7 @@
-import { EducationSectionType } from "@/types";
+import { CertificationsSectionType } from "@/types";
 
-export const education: EducationSectionType = {
-  achievements: [
+export const certifications: CertificationsSectionType = {
+  certificationItems: [
     {
       content: `Earned a Bachelor's Degree in Computer Science from Yale University`,
     },

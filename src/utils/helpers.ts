@@ -2,8 +2,9 @@
  * Debounce
  */
 
+import { Dayjs } from "dayjs";
+
 import { CompanyType } from "@/types";
-import dayjs, { Dayjs } from "dayjs";
 
 type DebounceFunction = <T extends (...args: any[]) => any>(
   func: T,

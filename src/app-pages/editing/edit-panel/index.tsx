@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Scrollable } from "@usy-ui/base";
 
-import { EducationSection } from "./education";
+import { CertificationsSection } from "./certifications";
 import { ExperienceSection } from "./experience";
 import { OverviewSections } from "./overview";
 import { PersonalInfoSection } from "./personal-info";
@@ -43,8 +43,8 @@ export const EditPanel = () => {
         return <SideProjectsSection changeSection={changeSection} />;
       }
 
-      case "education": {
-        return <EducationSection changeSection={changeSection} />;
+      case "certifications": {
+        return <CertificationsSection changeSection={changeSection} />;
       }
     }
   };

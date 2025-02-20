@@ -5,4 +5,4 @@ export type DisplaySectionUnion =
   | "technical"
   | "experience"
   | "side-projects"
-  | "education";
+  | "certifications";

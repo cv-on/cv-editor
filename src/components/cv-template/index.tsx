@@ -7,14 +7,14 @@ import { useHydrated } from "@/hooks/use-hydrated";
 
 import { AboutMeSection } from "./about-me";
 import { AvatarSection } from "./avatar";
+import { CertificationsSection } from "./certifications";
 import { ContactSection } from "./contact";
-import { EducationSection } from "./education";
 import { ExperienceSection } from "./experience";
+import { NameAndPosition } from "./name-and-position";
 import { QualificationSection } from "./qualification";
 import { SideProjectsSection } from "./side-projects";
 import { CvPageStyled, MainColumnStyled, SubColumnStyled } from "./styled";
 import { TechnicalSection } from "./technical";
-import { NameAndPosition } from "./name-and-position";
 
 type CvTemplateProps = {
   isRenderMode?: boolean;
@@ -45,7 +45,7 @@ export const CvTemplate: FC<CvTemplateProps> = ({
           <ContactSection />
           <TechnicalSection />
           <SideProjectsSection />
-          <EducationSection />
+          <CertificationsSection />
         </SubColumnStyled>
       </Flex>
     </CvPageStyled>

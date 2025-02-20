@@ -11,10 +11,10 @@ import {
 import { useFieldArray, useForm } from "react-hook-form";
 import Sortable from "sortablejs";
 
-import { educationAtom } from "@/app-states/education";
+import { certificationsAtom } from "@/app-states/certifications";
 import { DragDropPanel } from "@/components/drag-drop-panel";
 import { useObserveState } from "@/hooks/use-observe-state";
-import { EduAchievementType, EducationSectionType } from "@/types";
+import { CertificationItemType, CertificationsSectionType } from "@/types";
 import { changeItemOrder } from "@/utils/helpers";
 
 import { SectionHeader } from "../_header";
@@ -23,47 +23,49 @@ import { DisplaySectionUnion } from "../types";
 
 import { AchievementItemModal } from "./achievement-popup";
 
-export type AchieveTypeWithIndex = EduAchievementType & {
+export type CertificationItemWithIndexType = CertificationItemType & {
   index?: number;
 };
 
-type EducationSectionProps = {
+type CertificationsSectionProps = {
   changeSection: (section: DisplaySectionUnion) => void;
 };
 
-export const EducationSection: FC<EducationSectionProps> = ({
+export const CertificationsSection: FC<CertificationsSectionProps> = ({
   changeSection,
 }) => {
   const dragAreaRef = useRef(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<AchieveTypeWithIndex>();
+  const [selectedItem, setSelectedItem] =
+    useState<CertificationItemWithIndexType>();
   const setAchieveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const [education, setEducation] = useObserveState<EducationSectionType>({
-    atom: educationAtom,
-    sectionType: "education",
-  });
+  const [certifications, setCertifications] =
+    useObserveState<CertificationsSectionType>({
+      atom: certificationsAtom,
+      sectionType: "certifications",
+    });
 
-  const { control, getValues, setValue } = useForm<EducationSectionType>({
+  const { control, getValues, setValue } = useForm<CertificationsSectionType>({
     mode: "onBlur",
-    values: education,
-    defaultValues: education,
+    values: certifications,
+    defaultValues: certifications,
   });
 
   const { fields, append, update, remove } = useFieldArray({
     control,
-    name: "achievements",
+    name: "certificationItems",
   });
 
-  const syncEducationState = useCallback(() => {
+  const syncCertificationsState = useCallback(() => {
     if (setAchieveTimeoutRef.current) {
       clearTimeout(setAchieveTimeoutRef.current);
     }
 
     setAchieveTimeoutRef.current = setTimeout(() => {
-      setEducation({ ...getValues() });
+      setCertifications({ ...getValues() });
     }, 200);
-  }, [getValues, setEducation]);
+  }, [getValues, setCertifications]);
 
   const openModal = () => setIsOpenModal(true);
   const closeModal = () => {
@@ -80,19 +82,20 @@ export const EducationSection: FC<EducationSectionProps> = ({
             typeof evt.oldIndex === "number" &&
             typeof evt.newIndex === "number"
           ) {
-            const orderedAchieveItems = changeItemOrder<EduAchievementType>({
-              array: getValues().achievements,
-              fromIndex: evt.oldIndex,
-              toIndex: evt.newIndex,
-            });
+            const orderedAchieveItems =
+              changeItemOrder<CertificationItemWithIndexType>({
+                array: getValues().certificationItems,
+                fromIndex: evt.oldIndex,
+                toIndex: evt.newIndex,
+              });
 
-            setValue("achievements", orderedAchieveItems);
-            syncEducationState();
+            setValue("certificationItems", orderedAchieveItems);
+            syncCertificationsState();
           }
         },
       });
     }
-  }, [getValues, setValue, syncEducationState]);
+  }, [getValues, setValue, syncCertificationsState]);
 
   /**
    * Render
@@ -125,7 +128,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
           }}
           onRemove={() => {
             remove(index);
-            syncEducationState();
+            syncCertificationsState();
           }}
         >
           <Typography size="small">{item.content}</Typography>
@@ -139,7 +142,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
       {isOpenModal && (
         <AchievementItemModal
           selectedItem={selectedItem}
-          syncEducationState={syncEducationState}
+          syncCertificationsState={syncCertificationsState}
           append={append}
           update={update}
           onClose={closeModal}
@@ -147,7 +150,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
       )}
       <Flex direction="column" paddingProps={{ ...SectionPaddingConst }}>
         <SectionHeader
-          sectionTitle="Education"
+          sectionTitle="Certifications"
           changeSection={changeSection}
           hasGoBack
         />

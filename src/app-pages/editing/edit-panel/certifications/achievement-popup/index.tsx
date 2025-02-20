@@ -9,15 +9,15 @@ import {
 } from "react-hook-form";
 
 import { ValidateRules } from "@/constants/validation";
-import { EducationSectionType } from "@/types";
+import { CertificationsSectionType } from "@/types";
 
-import { AchieveTypeWithIndex } from "..";
+import { CertificationItemWithIndexType } from "..";
 
 type AchievementItemModalProps = {
-  selectedItem?: AchieveTypeWithIndex;
-  append: UseFieldArrayAppend<EducationSectionType, "achievements">;
-  update: UseFieldArrayUpdate<EducationSectionType, "achievements">;
-  syncEducationState: () => void;
+  selectedItem?: CertificationItemWithIndexType;
+  append: UseFieldArrayAppend<CertificationsSectionType, "certificationItems">;
+  update: UseFieldArrayUpdate<CertificationsSectionType, "certificationItems">;
+  syncCertificationsState: () => void;
   onClose: () => void;
 };
 
@@ -25,20 +25,20 @@ export const AchievementItemModal: FC<AchievementItemModalProps> = ({
   selectedItem,
   append,
   update,
-  syncEducationState,
+  syncCertificationsState,
   onClose,
 }) => {
   const {
     formState: { errors },
     control,
     handleSubmit,
-  } = useForm<AchieveTypeWithIndex>({
+  } = useForm<CertificationItemWithIndexType>({
     defaultValues: selectedItem,
   });
 
   const isUpdateMode = Boolean(selectedItem);
 
-  const onSubmit = (formValues: AchieveTypeWithIndex) => {
+  const onSubmit = (formValues: CertificationItemWithIndexType) => {
     const data = {
       content: formValues.content,
     };
@@ -49,7 +49,7 @@ export const AchievementItemModal: FC<AchievementItemModalProps> = ({
       append(data);
     }
 
-    syncEducationState();
+    syncCertificationsState();
     onClose();
   };
 

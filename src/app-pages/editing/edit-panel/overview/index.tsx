@@ -42,7 +42,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
       { id: "technical", name: "Technical" },
       { id: "experience", name: "Experience" },
       { id: "side-projects", name: "Side Projects" },
-      { id: "education", name: "Education" },
+      { id: "certifications", name: "Certifications" },
     ],
     []
   );

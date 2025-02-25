@@ -1,4 +1,4 @@
-import { Box, Typography } from "@usy-ui/base";
+import { Typography } from "@usy-ui/base";
 import { useRecoilValue } from "recoil";
 
 import { personalInfoSelector } from "@/app-states";
@@ -11,15 +11,15 @@ export const NameAndPosition = () => {
 
   return (
     <NameAndPositionContainer>
-      <Box>
-        <NameTypography tag="span" size="gigant-2" weight="heavy">
+      <NameTypography>
+        <Typography tag="strong" size="gigant-2" weight="heavy">
           {firstName}
-        </NameTypography>
+        </Typography>
         &nbsp;&nbsp;
-        <NameTypography tag="span" size="gigant-2" weight="thin">
-          {lastName}
-        </NameTypography>
-      </Box>
+        <Typography tag="span" size="gigant-2" weight="thin">
+          {lastName.join(" ")}
+        </Typography>
+      </NameTypography>
       <Typography size="medium" weight="semibold" color="dark-5">
         {personalInfo.position}
       </Typography>

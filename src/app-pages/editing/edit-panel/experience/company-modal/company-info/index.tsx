@@ -39,7 +39,7 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
     defaultValues: {
       ...selectedCompany,
       fromDate: selectedCompany?.fromDate || new Date().toISOString(),
-      toDate: selectedCompany?.fromDate || new Date().toISOString(),
+      toDate: selectedCompany?.toDate || new Date().toISOString(),
     },
   });
 
@@ -142,24 +142,15 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
               />
             )}
           />
-          <Controller
-            name="toDate"
-            control={control}
-            render={({ field }) => (
-              <Box paddingProps={{ paddingBottom: usySpacing.px6 }}>
-                <Checkbox
-                  checked={isStillWorking}
-                  label="Currently Working"
-                  onChange={(checked) => {
-                    setIsStillWorking(checked);
-                    if (checked) {
-                      field.onChange("present");
-                    }
-                  }}
-                />
-              </Box>
-            )}
-          />
+          <Box paddingProps={{ paddingBottom: usySpacing.px6 }}>
+            <Checkbox
+              checked={isStillWorking}
+              label="Working"
+              onChange={(checked) => {
+                setIsStillWorking(checked);
+              }}
+            />
+          </Box>
         </Flex>
       </>
     );

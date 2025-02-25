@@ -107,7 +107,7 @@ export const ProjectItemModal: FC<ProjectItemModalProps> = ({
                 placeholder="Description about your skills"
                 description={errors.description?.message}
                 hasError={Boolean(errors.description?.message)}
-                heightProps={{ minHeight: "150px" }}
+                heightProps={{ minHeight: "100px" }}
               />
             )}
           />
@@ -129,15 +129,8 @@ export const ProjectItemModal: FC<ProjectItemModalProps> = ({
           <Controller
             name="url"
             control={control}
-            rules={{ required: ValidateRules.required }}
             render={({ field }) => (
-              <Input
-                {...field}
-                label="Url"
-                placeholder=""
-                description={errors.url?.message}
-                hasError={Boolean(errors.url?.message)}
-              />
+              <Input {...field} label="Url" placeholder="" />
             )}
           />
           <Button type="submit" variant="primary">

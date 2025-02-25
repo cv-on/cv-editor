@@ -28,9 +28,11 @@ export const SideProject: FC<SideProjectProps> = ({
       <Box paddingProps={{ paddingLeft: usySpacing.px6 }}>
         <Typography size="small">- {description}</Typography>
         <Typography size="small">- {techStacks.join(", ")}</Typography>
-        <Link href={getClickableUrl(url)} target="_blank">
-          <Typography size="small">- {url}</Typography>
-        </Link>
+        {url && (
+          <Link href={getClickableUrl(url)} target="_blank">
+            <Typography size="small">- {url}</Typography>
+          </Link>
+        )}
       </Box>
     </Flex>
   );

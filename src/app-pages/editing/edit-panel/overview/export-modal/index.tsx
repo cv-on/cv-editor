@@ -24,6 +24,9 @@ export const ExportModal: FC<ExportModalProps> = ({ onClose }) => {
     try {
       setIsDownloading(true);
       const cvContent = getCvContentFromStorage();
+      const filename = `${cvContent.personalInfo.name
+        .toLocaleLowerCase()
+        .replaceAll(" ", "-")}-cv.pdf`;
       const response = await fetch("/api/generate-pdf", {
         method: "POST",
         headers: {
@@ -39,28 +42,34 @@ export const ExportModal: FC<ExportModalProps> = ({ onClose }) => {
       const link = document.createElement("a");
 
       link.href = url;
-      link.setAttribute("download", "pdf-generated.pdf");
+      link.setAttribute("download", filename);
       document.body.appendChild(link);
       link.click();
       link.remove();
       setIsDownloading(false);
+      onClose();
     } catch (error) {
       console.error("Error downloading PDF:", error);
     }
   };
 
   const downloadJson = () => {
-    const jsonData = JSON.stringify(getCvContentFromStorage());
+    const cvContent = getCvContentFromStorage();
+    const filename = `${cvContent.personalInfo.name
+      .toLocaleLowerCase()
+      .replaceAll(" ", "-")}-cv.json`;
+    const jsonData = JSON.stringify(cvContent);
     const blob = new Blob([jsonData], { type: "application/json" });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = "cv-generated.json";
+    link.download = filename;
 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    onClose();
   };
 
   return (

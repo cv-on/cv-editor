@@ -100,6 +100,11 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
 
   const renderCompanyList = () => {
     return companiesFieldArray.fields.map((company, index) => {
+      const allProjects = company.projects.reduce((acc, item) => {
+        const combinedProjects = acc.concat(item.projectNames);
+        return combinedProjects;
+      }, [] as string[]);
+
       return (
         <DragDropPanel
           key={company.id}
@@ -118,19 +123,21 @@ export const ExperienceSection: FC<ExperienceSectionProps> = ({
             justifyContent="center"
             alignItems="baseline"
           >
-            <Typography weight="bold">{company.companyName}</Typography>
+            <Typography weight="bold">
+              {`${index + 1}. ${company.companyName}`}
+            </Typography>
             <Typography tag="em" weight="semibold" size="small">
               {company.position}
             </Typography>
             <Flex wrap="wrap" gap={usySpacing.px4}>
-              {company.projects.map(({ projectNames }, index) => (
+              {allProjects.map((projectName) => (
                 <Badge
-                  key={projectNames[index]}
+                  key={projectName}
                   size="small"
                   variant="filled"
                   radius="full"
                 >
-                  {projectNames[index]}
+                  {projectName}
                 </Badge>
               ))}
             </Flex>

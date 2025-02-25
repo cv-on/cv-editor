@@ -52,7 +52,6 @@ export const ProjectModal: FC<ProjectModalProps> = ({
   });
 
   const onSubmit = (projectValues: ProjectTypeWithIdIndex) => {
-    console.log("project modal submit", projectValues);
     onProjectUpdate(projectValues, isUpdateMode);
     onClose();
   };
@@ -80,7 +79,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
           alignItems="center"
           marginProps={{ marginTop: `-${usySpacing.px10}` }}
         >
-          <Typography weight="semibold">Apple to multiple projects</Typography>
+          <Typography weight="semibold">Apply to multiple projects</Typography>
           <Switch
             name="multiple-projects"
             size="small"

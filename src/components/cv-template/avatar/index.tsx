@@ -6,6 +6,7 @@ import { ImageStyled } from "./styled";
 
 export const AvatarSection = () => {
   const personalInfo = useRecoilValue(personalInfoSelector);
+
   return (
     <ImageStyled
       src={personalInfo.avatarSrc}

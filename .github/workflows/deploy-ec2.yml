@@ -29,5 +29,8 @@ jobs:
       - name: Pull Image from Docker Hub
         run: docker pull nat95aws1/cvon:latest
 
+      - name: Delete Outdated Container
+        run: docker rm -f cvonContainer
+
       - name: Run Container
-        run: docker run -p 3000:3000 nat95aws1/cvon:latest
+        run: docker run -d -p 3000:3000 --name cvonContainer nat95aws1/cvon

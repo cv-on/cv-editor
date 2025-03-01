@@ -18,6 +18,9 @@
 // Check Docker version
 `docker --version`
 
+//
+`sudo apt-get install chromium-browser`
+
 ## 2. Create Dockerfile on root project
 
 ## 3. Setup Github Runner

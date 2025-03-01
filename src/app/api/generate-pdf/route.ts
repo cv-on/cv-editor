@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       executablePath:
         process.env.NODE_ENV === "development"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : await chromium.executablePath(),
+          : "/usr/bin/chromium-browser",
     });
     const page = await browser.newPage();
 

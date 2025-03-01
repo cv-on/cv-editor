@@ -41,6 +41,7 @@ export const Achievements: FC<AchievementsProps> = ({ control }) => {
                   size="small"
                   description={error?.message}
                   hasError={Boolean(error?.message)}
+                  heightProps={{ minHeight: "80px" }}
                 />
               </DragDropTextArea>
             )}

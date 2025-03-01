@@ -37,7 +37,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
 
   const sectionThumbsMemo = useMemo<SectionThumbType[]>(
     () => [
-      { id: "personal-info", name: "Personal Info" },
+      { id: "personal-info", name: "Personal" },
       { id: "qualification", name: "Qualification" },
       { id: "technical", name: "Technical" },
       { id: "experience", name: "Experience" },

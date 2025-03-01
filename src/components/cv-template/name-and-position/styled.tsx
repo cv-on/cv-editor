@@ -9,7 +9,7 @@ export const NameAndPositionContainer = styled.div`
 `;
 
 export const NameTypography = styled(Typography)`
-  letter-spacing: ${usySpacing.px4};
+  letter-spacing: ${usySpacing.px2};
 
   * {
     text-transform: uppercase;

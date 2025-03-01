@@ -6,6 +6,7 @@ const a4Ratio = 1.414357682619647;
 
 export const CvPageStyled = styled.div<{ $isRenderMode?: boolean }>`
   width: 900px;
+  min-width: 900px;
   height: 100%;
   min-height: calc(900px * ${a4Ratio});
   background-color: ${usyColor.white};

@@ -27,17 +27,16 @@ export async function POST(request: Request) {
     });
 
     await page.emulateMediaType("print");
-    const scaleDownRate = 0.85;
+    const scaleDownRate = 0.82;
     const pdfBuffer = await page.pdf({
-      width: 1000,
       scale: scaleDownRate,
       format: "a4",
       printBackground: true,
       margin: {
         top: 40 * scaleDownRate,
-        right: 40 * scaleDownRate,
         bottom: 40 * scaleDownRate,
-        left: 40 * scaleDownRate,
+        left: 20 * scaleDownRate,
+        right: 20 * scaleDownRate,
       },
     });
 

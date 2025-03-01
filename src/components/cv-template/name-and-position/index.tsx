@@ -23,6 +23,12 @@ export const NameAndPosition = () => {
       <Typography size="medium" weight="semibold" color="dark-5">
         {personalInfo.position}
       </Typography>
+      <Typography tag="em" size="small" color="dark-9">
+        CV is made by my Cvon tool{" "}
+        <a href="https://github.com/cv-on/cv-editor" target="_blank">
+          [repo]
+        </a>
+      </Typography>
     </NameAndPositionContainer>
   );
 };

@@ -3,6 +3,11 @@ import { NextResponse } from "next/server";
 import puppeteer from "puppeteer-core";
 
 export async function POST(request: Request) {
+  const nodeEnv = process.env.NODE_ENV;
+  const executablePath = nodeEnv
+    ? process.env.PUPPETEER_EXECUTABLE_PATH
+    : await chromium.executablePath();
+
   try {
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
@@ -48,8 +53,12 @@ export async function POST(request: Request) {
         "Content-Disposition": 'attachment; filename="generated.pdf"',
       },
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.log(error);
-    return NextResponse.json({ error: JSON.stringify(error) }, { status: 500 });
+    return NextResponse.json(
+      { error: JSON.stringify({ ...error, executablePath, nodeEnv }) },
+      { status: 500 }
+    );
   }
 }

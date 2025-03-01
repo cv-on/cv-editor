@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath:
-        process.env.NODE_ENV !== "development"
+        process.env.NODE_ENV === "development"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : await chromium.executablePath(
               "https://github.com/Sparticuz/chromium/releases/download/v110.0.1/chromium-v110.0.1-pack.tar"

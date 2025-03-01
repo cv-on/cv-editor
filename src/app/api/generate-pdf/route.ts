@@ -42,9 +42,6 @@ export async function POST(request: Request) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.log(error);
-    return NextResponse.json(
-      { error: JSON.stringify({ ...error, executablePath, nodeEnv }) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: JSON.stringify(error) }, { status: 500 });
   }
 }

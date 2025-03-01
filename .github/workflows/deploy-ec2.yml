@@ -4,8 +4,13 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build:
+    name: Build Project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,6 +24,7 @@ jobs:
 
   deploy:
     needs: build
+    name: Deploy to EC2
     runs-on: aws-ec2
     steps:
       - name: Pull image from Docker Hub

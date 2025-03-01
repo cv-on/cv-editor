@@ -12,8 +12,8 @@ importers:
         specifier: ^131.0.0
         version: 131.0.0
       '@usy-ui/base':
-        specifier: file:usy-ui-base-1.0.4.tgz
-        version: file:usy-ui-base-1.0.4.tgz(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^1.0.4
+        version: 1.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -308,9 +308,8 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@usy-ui/base@file:usy-ui-base-1.0.4.tgz':
-    resolution: {integrity: sha512-tVO5A3gM4tOQXQn6Ri60wu/IKeGsvpdcQ/+rFA5TlaRvlyNDmKEhLpqChXfKrGKmLHGo9j7JmzIm1lPyiAVfYg==, tarball: file:usy-ui-base-1.0.4.tgz}
-    version: 1.0.4
+  '@usy-ui/base@1.0.4':
+    resolution: {integrity: sha512-exnUadCLSsdOXKF/qUxrXL3wlc3go2c0QjfkWjq1Fub1GLFjTGU/PQlM6zRUxTHzlVJ2AMtYQAIpjs9AYSirLA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1911,7 +1910,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@usy-ui/base@file:usy-ui-base-1.0.4.tgz(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@usy-ui/base@1.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

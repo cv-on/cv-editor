@@ -16,7 +16,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Build Docker Image
-        run: docker build -t nat95aws1/cvon .
+        run: docker build -t nat95aws1/cvon:latest .
 
       - name: Publish Image to Docker Hub
         run: docker push nat95aws1/cvon:latest

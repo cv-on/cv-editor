@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import puppeteer from "puppeteer-core";
 
 export async function POST(request: Request) {
-  const executablePath = puppeteer.executablePath();
-
   try {
     const requestPayload = await request.json();
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+    });
     const page = await browser.newPage();
 
     await page.evaluateOnNewDocument((requestPayload) => {
@@ -44,9 +44,6 @@ export async function POST(request: Request) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.log(error);
-    return NextResponse.json(
-      { error: error.message, executablePath },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

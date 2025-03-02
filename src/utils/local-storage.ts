@@ -21,7 +21,7 @@ export const setCvContentToStorage = (cvContent: CvTemplateType) => {
 export const getCvContentFromStorage = (): CvTemplateType => {
   if (isClient) {
     const pureData = localStorage.getItem(AppContentStorageKey);
-    return pureData ? JSON.parse(pureData) : null;
+    return pureData ? JSON.parse(pureData) : mockCvContent;
   }
 
   return mockCvContent;

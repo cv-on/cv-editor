@@ -1,20 +1,10 @@
-import chromium from "@sparticuz/chromium-min";
 import { NextResponse } from "next/server";
-import puppeteer from "puppeteer-core";
+import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {
   try {
     const requestPayload = await request.json();
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath:
-        process.env.NODE_ENV === "development"
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : await chromium.executablePath(
-              "https://github.com/Sparticuz/chromium/releases/download/v110.0.1/chromium-v110.0.1-pack.tar"
-            ),
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.evaluateOnNewDocument((requestPayload) => {

@@ -5,6 +5,7 @@ export async function POST(request: Request) {
   try {
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
+      args: ["--no-sandbox"],
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
     });
     const page = await browser.newPage();

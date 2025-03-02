@@ -1,26 +1,14 @@
-FROM node:20-alpine
+FROM node:21.2.0
 
-# Install necessary dependencies
-RUN apk update && apk add --no-cache \
-  # Dependencies for Puppeteer and Chromium
-  bash \
-  curl \
-  wget \
-  nss \
-  freetype \
-  harfbuzz \
-  ttf-dejavu \
-  libx11 \
-  libxcomposite \
-  libxdamage \
-  libxrandr \
-  libpng \
-  libjpeg \
-  libstdc++ \
-  udev \
-  ttf-freefont \
-  --virtual .build-deps \
-  && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install gnupg wget -y && \
+    wget -q -O- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
+    sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    apt-get update && \
+    apt-get install google-chrome-stable -y --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV NODE_ENV production
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 WORKDIR /app
 COPY package.json ./
@@ -28,7 +16,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-ENV NODE_ENV production
 EXPOSE 3000
 CMD ["npm", "start"]
 

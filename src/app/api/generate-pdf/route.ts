@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 export async function POST(request: Request) {
   try {
     const requestPayload = await request.json();
     const browser = await puppeteer.launch({
-      executablePath: "/usr/bin/google-chrome",
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
     });
     const page = await browser.newPage();
 

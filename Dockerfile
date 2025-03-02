@@ -1,7 +1,7 @@
 FROM node:21.2.0
 
 # ENV variables
-ENV NODE_ENV production
+ENV NODE_ENV=production
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 # Install pnpm globally

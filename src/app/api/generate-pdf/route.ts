@@ -6,12 +6,7 @@ export async function POST(request: Request) {
 
   try {
     const requestPayload = await request.json();
-    const browser = await puppeteer.launch({
-      executablePath:
-        process.env.NODE_ENV === "production"
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : puppeteer.executablePath(),
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     await page.evaluateOnNewDocument((requestPayload) => {

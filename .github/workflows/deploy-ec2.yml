@@ -26,14 +26,11 @@ jobs:
     name: Deploy to EC2
     runs-on: aws-ec2
     steps:
-      - name: Delete Outdated Images
-        run: docker rmi -f $(docker images -aq)
+      - name: Delete Outdated Containers and Images
+        run: docker system prune
 
       - name: Pull Image from Docker Hub
         run: docker pull nat95aws1/cvon:latest
-
-      - name: Delete Outdated Containers
-        run: docker rm -f cvonContainer
 
       - name: Run Container
         run: docker run -d -p 80:3000 --name cvonContainer nat95aws1/cvon

@@ -28,8 +28,8 @@ jobs:
     steps:
       - name: Delete All Outdated Containers and Images
         run: |
-          docker rm -f *
-          docker rmi -f *
+          docker rm -f -a
+          docker rmi -f -a
 
       - name: Pull Image from Docker Hub
         run: docker pull nat95aws1/cvon:latest

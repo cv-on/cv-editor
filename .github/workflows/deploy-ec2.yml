@@ -29,7 +29,7 @@ jobs:
       - name: Delete All Outdated Containers and Images
         run: |
           docker rm -f cvonContainer
-          docker image prune
+          docker rmi -f $(docker images -aq)
 
       - name: Pull Image from Docker Hub
         run: docker pull nat95aws1/cvon:latest

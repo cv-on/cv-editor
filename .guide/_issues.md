@@ -1,6 +1,10 @@
-## no space left on device
+## Delete containers with volumes
 
-- `docker image prune`
+- `docker rm -vf $(docker ps -aq)`
+
+## Delete all images
+
+- `docker rmi -f $(docker images -aq)`
 
 ## check usage
 

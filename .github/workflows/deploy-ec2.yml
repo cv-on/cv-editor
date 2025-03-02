@@ -26,8 +26,8 @@ jobs:
     name: Deploy to EC2
     runs-on: aws-ec2
     steps:
-      - name: Prune Outdated Stuffs
-        run: docker system prune
+      - name: Clean System
+        run: docker system prune -a
 
       - name: Pull Image from Docker Hub
         run: docker pull nat95aws1/cvon:latest

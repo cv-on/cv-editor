@@ -1,13 +1,17 @@
 FROM node:21.2.0
 
+# ENV variables
 ENV NODE_ENV production
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
+# Install pnpm globally
+RUN npm install -g pnpm
+
 WORKDIR /app
-COPY package.json ./
-RUN npm install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install
 COPY . .
-RUN npm run build
+RUN pnpm build
 
 RUN apt-get update && apt-get install gnupg wget -y && \
     wget -q -O- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
@@ -17,5 +21,5 @@ RUN apt-get update && apt-get install gnupg wget -y && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
 

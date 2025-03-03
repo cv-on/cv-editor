@@ -1,7 +1,7 @@
 "use client";
 import { FC, useState } from "react";
 
-import { Box, Scrollable, usySpacing } from "@usy-ui/base";
+import { Scrollable } from "@usy-ui/base";
 
 import { CertificationsSection } from "./certifications";
 import { ExperienceSection } from "./experience";

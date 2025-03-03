@@ -3,6 +3,9 @@ import { useState } from "react";
 
 import { EditIcon, Toast } from "@usy-ui/base";
 
+import { EditPanel } from "@/app-pages/editing/edit-panel";
+import { useViewport } from "@/hooks/use-viewport";
+
 import {
   CvTemplateStyled,
   StyledEditPanelContainer,
@@ -11,9 +14,6 @@ import {
   StyledModal,
   StyledPreviewCvContainer,
 } from "./styled";
-
-import { EditPanel } from "@/app-pages/editing/edit-panel";
-import { useViewport } from "@/hooks/use-viewport";
 
 const breakpoint = 1500;
 

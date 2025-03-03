@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 export const useViewport = () => {
   const [viewportSize, setViewportSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   useEffect(() => {

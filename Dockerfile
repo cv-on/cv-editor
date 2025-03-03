@@ -8,7 +8,7 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 RUN npm install -g pnpm
 
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml usy-ui-base*.tgz ./
 RUN ls -l
 RUN pnpm install
 COPY . .

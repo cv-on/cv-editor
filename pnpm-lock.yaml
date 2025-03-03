@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@usy-ui/base':
-        specifier: file:usy-ui-base-1.0.4.tgz
+        specifier: file:./usy-ui-base-1.0.4.tgz
         version: file:usy-ui-base-1.0.4.tgz(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx:
         specifier: ^2.1.1
@@ -282,7 +282,7 @@ packages:
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
   '@usy-ui/base@file:usy-ui-base-1.0.4.tgz':
-    resolution: {integrity: sha512-tVO5A3gM4tOQXQn6Ri60wu/IKeGsvpdcQ/+rFA5TlaRvlyNDmKEhLpqChXfKrGKmLHGo9j7JmzIm1lPyiAVfYg==, tarball: file:usy-ui-base-1.0.4.tgz}
+    resolution: {integrity: sha512-VVt45L7eIH6dspGoFeJcXANZlrXSZ/PK9cywMgOvy/UMDb/69mykG0lQagdANfT7eZS1H48GKHTXpHNzo99oLg==, tarball: file:usy-ui-base-1.0.4.tgz}
     version: 1.0.4
     peerDependencies:
       react: '>=16.8.0'

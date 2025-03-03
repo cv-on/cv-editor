@@ -1,28 +1,77 @@
-import { Toast } from "@usy-ui/base";
+"use client";
+import { useState } from "react";
 
-import { EditPanel } from "@/app-pages/editing/edit-panel";
+import { EditIcon, Toast } from "@usy-ui/base";
 
 import {
   CvTemplateStyled,
-  EditingPageContainerStyled,
-  EditPanelContainerStyled,
-  PreviewContainerStyled,
+  StyledEditPanelContainer,
+  StyledEditPanelTrigger,
+  StyledHomePage,
+  StyledModal,
+  StyledPreviewCvContainer,
 } from "./styled";
 
-const EditingPage = () => {
+import { EditPanel } from "@/app-pages/editing/edit-panel";
+import { useViewport } from "@/hooks/use-viewport";
+
+const breakpoint = 1500;
+
+const HomePage = () => {
+  const [isEditPanelModalOpen, setIsEditPanelModalOpen] = useState(false);
+  const { width } = useViewport();
+
+  const openModal = () => setIsEditPanelModalOpen(true);
+  const closeModal = () => setIsEditPanelModalOpen(false);
+
+  /**
+   * Render
+   */
+
+  const renderEditPanelContainer = () => {
+    if (width < breakpoint) {
+      return (
+        <StyledEditPanelTrigger size="large" onClick={openModal}>
+          <EditIcon />
+        </StyledEditPanelTrigger>
+      );
+    }
+
+    return (
+      <StyledEditPanelContainer>
+        <EditPanel displayMode="right-side" />
+      </StyledEditPanelContainer>
+    );
+  };
+
+  const renderEditPanelModal = () => {
+    if (!isEditPanelModalOpen || width > breakpoint) {
+      return null;
+    }
+
+    return (
+      <StyledModal
+        onClose={closeModal}
+        preventOutsideClose
+        widthProps={{ maxWidth: "600px" }}
+      >
+        <EditPanel displayMode="modal" />
+      </StyledModal>
+    );
+  };
+
   return (
     <>
       <Toast />
-      <EditingPageContainerStyled>
-        <PreviewContainerStyled>
+      <StyledHomePage>
+        <StyledPreviewCvContainer>
           <CvTemplateStyled />
-        </PreviewContainerStyled>
-        <EditPanelContainerStyled>
-          <EditPanel />
-        </EditPanelContainerStyled>
-      </EditingPageContainerStyled>
+        </StyledPreviewCvContainer>
+        {renderEditPanelContainer()}
+      </StyledHomePage>
+      {renderEditPanelModal()}
     </>
   );
 };
 
-export default EditingPage;
+export default HomePage;

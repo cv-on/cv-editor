@@ -62,7 +62,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
       <Box>
         <SectionHeader sectionTitle="Editing Sections" />
         <Flex
-          justifyContent="space-between"
+          justifyContent="space-around"
           alignItems="flex-start"
           gap={usySpacing.px32}
           wrap="wrap"
@@ -80,7 +80,7 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
     );
   };
 
-  const renderCta = () => {
+  const renderActions = () => {
     return (
       <Flex justifyContent="center" gap={usySpacing.px20}>
         <>
@@ -119,11 +119,10 @@ export const OverviewSections: FC<OverviewSectionsProps> = ({
       direction="column"
       justifyContent="space-between"
       widthProps={{ maxWidth: "50%" }}
-      heightProps={{ minHeight: "100vh" }}
       paddingProps={{ ...SectionPaddingConst }}
     >
       {renderSectionThumbs()}
-      {renderCta()}
+      {renderActions()}
     </Flex>
   );
 };

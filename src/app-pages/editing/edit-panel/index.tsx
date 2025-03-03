@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-import { Scrollable } from "@usy-ui/base";
+import { Box, Scrollable, usySpacing } from "@usy-ui/base";
 
 import { CertificationsSection } from "./certifications";
 import { ExperienceSection } from "./experience";
@@ -13,7 +13,13 @@ import { EditPanelContainerStyled } from "./styled";
 import { TechnicalSection } from "./technical";
 import { DisplaySectionUnion } from "./types";
 
-export const EditPanel = () => {
+export type DisplayModeUnion = "right-side" | "modal";
+
+type EditPanelProps = {
+  displayMode: DisplayModeUnion;
+};
+
+export const EditPanel: FC<EditPanelProps> = ({ displayMode }) => {
   const [displaySection, setDisplaySection] =
     useState<DisplaySectionUnion>("overview");
 
@@ -21,7 +27,7 @@ export const EditPanel = () => {
     setDisplaySection(section);
   };
 
-  const renderOtherSections = () => {
+  const renderSections = () => {
     switch (displaySection) {
       case "personal-info": {
         return <PersonalInfoSection changeSection={changeSection} />;
@@ -51,12 +57,11 @@ export const EditPanel = () => {
 
   return (
     <EditPanelContainerStyled
-      $isDisplayOverview={displaySection === "overview"}
+      $isOnOverview={displaySection === "overview"}
+      $displayMode={displayMode}
     >
       <OverviewSections changeSection={changeSection} />
-      <Scrollable heightProps={{ maxHeight: "100vh" }}>
-        {renderOtherSections()}
-      </Scrollable>
+      <Scrollable>{renderSections()}</Scrollable>
     </EditPanelContainerStyled>
   );
 };

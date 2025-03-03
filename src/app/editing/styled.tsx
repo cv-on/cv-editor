@@ -1,18 +1,20 @@
 "use client";
-import { Scrollable, usyColor, usySpacing } from "@usy-ui/base";
+import { Button, Modal, Scrollable, usyColor, usySpacing } from "@usy-ui/base";
 import styled from "styled-components";
 
-import { CvTemplate } from "../../components/cv-template";
+import { CvTemplate } from "@/components/cv-template";
 
-export const EditingPageContainerStyled = styled.div`
+export const StyledHomePage = styled.div`
+  min-width: 1000px;
   max-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
 `;
 
-export const PreviewContainerStyled = styled(Scrollable)`
+export const StyledPreviewCvContainer = styled(Scrollable)`
   max-height: 100vh;
   display: flex;
   justify-content: center;
@@ -28,9 +30,24 @@ export const CvTemplateStyled = styled(CvTemplate)`
   border-radius: 2px;
 `;
 
-export const EditPanelContainerStyled = styled.div`
+export const StyledEditPanelContainer = styled.div`
   min-width: 500px;
   max-width: 500px;
   min-height: 100vh;
   overflow: hidden;
+`;
+
+export const StyledEditPanelTrigger = styled(Button)`
+  position: fixed;
+  top: 30vh;
+  right: -${usySpacing.px4};
+  border-top-left-radius: ${usySpacing.px8};
+  border-bottom-left-radius: ${usySpacing.px8};
+`;
+
+export const StyledModal = styled(Modal)`
+  overflow: hidden;
+  padding-top: ${usySpacing.px32};
+  padding-left: 0;
+  padding-right: 0;
 `;

@@ -58,6 +58,7 @@ export const QualifyItemModal: FC<QualifyItemModalProps> = ({
     <Modal
       title={isUpdateMode ? "Update Qualification" : "Create Qualification"}
       onClose={onClose}
+      widthProps={{ maxWidth: "550px", width: "100%" }}
       preventOutsideClose
     >
       <form onSubmit={handleSubmit(onSubmit)}>

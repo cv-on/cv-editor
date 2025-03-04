@@ -57,6 +57,7 @@ export const CertificationItemModal: FC<CertificationItemModalProps> = ({
     <Modal
       title={isUpdateMode ? "Update Certification" : "Create Certification"}
       onClose={onClose}
+      widthProps={{ maxWidth: "550px", width: "100%" }}
       preventOutsideClose
     >
       <form onSubmit={handleSubmit(onSubmit)}>

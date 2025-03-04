@@ -25,8 +25,8 @@ export const NameAndPosition = () => {
       </Typography>
       <Typography tag="em" size="small" color="dark-9">
         CV is made by my Cvon tool{" "}
-        <a href="https://github.com/cv-on/cv-editor" target="_blank">
-          [repo]
+        <a href="http://18.142.230.95/" target="_blank">
+          [link]
         </a>
       </Typography>
     </NameAndPositionContainer>

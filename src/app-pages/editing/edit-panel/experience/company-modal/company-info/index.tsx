@@ -9,6 +9,8 @@ import { ExperienceSectionType, CompanyType } from "@/types";
 
 import { CompanyTypeWithIdIndex } from "../..";
 
+import { StyledFormContainer } from "./styled";
+
 type CompanyInfoProps = {
   isUpdateMode: boolean;
   selectedCompany?: CompanyTypeWithIdIndex;
@@ -157,12 +159,11 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <StyledFormContainer onSubmit={handleSubmit(onSubmit)}>
       <Flex
         direction="column"
         gap={usySpacing.px24}
         paddingProps={{ paddingTop: usySpacing.px16 }}
-        widthProps={{ minWidth: "450px", maxWidth: "400px" }}
       >
         {renderCompanyNameAndPosition()}
         {renderFromAndToDate()}
@@ -179,6 +180,6 @@ export const CompanyInfo: FC<CompanyInfoProps> = ({
           </Button>
         </Flex>
       </Flex>
-    </form>
+    </StyledFormContainer>
   );
 };

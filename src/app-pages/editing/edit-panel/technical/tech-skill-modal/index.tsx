@@ -91,7 +91,7 @@ export const TechSkillModal: FC<TechSkillModalProps> = ({
     <Modal
       title={isUpdateMode ? "Update Skill" : "Create Skill"}
       onClose={onClose}
-      widthProps={{ minWidth: "700px", maxWidth: "700px" }}
+      widthProps={{ width: "100%", maxWidth: "700px" }}
       preventOutsideClose
     >
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -197,7 +197,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
     <Modal
       title={isUpdateMode ? "Update Project" : "Create Project"}
       onClose={onClose}
-      widthProps={{ minWidth: "700px", maxWidth: "700px" }}
+      widthProps={{ width: "100%", maxWidth: "700px" }}
       preventOutsideClose
     >
       <Scrollable

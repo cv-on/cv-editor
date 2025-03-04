@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from "react";
 
-import { Flex, Modal, Separator, usySpacing } from "@usy-ui/base";
+import { Modal, usySpacing } from "@usy-ui/base";
 import { UseFieldArrayReturn } from "react-hook-form";
 
 import { ExperienceSectionType } from "@/types";
@@ -9,6 +9,10 @@ import { CompanyTypeWithIdIndex } from "..";
 
 import { CompanyInfo } from "./company-info";
 import { CompanyProjects } from "./company-projects";
+import {
+  StyledCompanyInfoAndProjectsScrollable,
+  StyledSeparator,
+} from "./styled";
 
 type CompanyModalProps = {
   selectedCompany?: CompanyTypeWithIdIndex;
@@ -37,10 +41,17 @@ export const CompanyModal: FC<CompanyModalProps> = ({
     <Modal
       title={isUpdateMode ? "Update Company" : "Create Company"}
       onClose={onClose}
-      widthProps={{ maxWidth: "1000px", width: "100%" }}
+      widthProps={{ width: "100%", maxWidth: "1000px" }}
+      heightProps={{ maxHeight: "90vh" }}
       preventOutsideClose
     >
-      <Flex direction="row" gap={usySpacing.px4}>
+      <StyledCompanyInfoAndProjectsScrollable
+        heightProps={{ maxHeight: "calc(90vh - 100px)" }}
+        paddingProps={{
+          paddingRight: usySpacing.px8,
+          paddingBottom: usySpacing.px40,
+        }}
+      >
         <CompanyInfo
           selectedCompany={selectedCompany}
           isUpdateMode={isUpdateMode}
@@ -48,14 +59,14 @@ export const CompanyModal: FC<CompanyModalProps> = ({
           syncExperienceState={syncExperienceState}
           onClose={onClose}
         />
-        <Separator direction="vertical" heightProps={{ height: "unset" }} />
+        <StyledSeparator />
         <CompanyProjects
           selectedCompany={selectedCompany}
           setSelectedCompany={setSelectedCompany}
           companiesFieldArray={companiesFieldArray}
           syncExperienceState={syncExperienceState}
         />
-      </Flex>
+      </StyledCompanyInfoAndProjectsScrollable>
     </Modal>
   );
 };

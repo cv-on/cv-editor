@@ -2,6 +2,7 @@ FROM node:21.2.0
 
 # ENV variables
 ENV NODE_ENV=production
+ENV NEXT_PUBLIC_SITE_URL=https://cv-editor.onrender.com
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 
 # Install pnpm globally

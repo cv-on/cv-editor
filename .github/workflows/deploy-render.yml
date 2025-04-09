@@ -1,0 +1,34 @@
+name: Deploy to Render
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build Docker Image
+        run: docker build -t nat95aws1/cvon:latest .
+
+      - name: Publish Image to Docker Hub
+        run: docker push nat95aws1/cvon:latest
+
+  deploy:
+    needs: build
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Render
+        run: |
+          curl -fsSL https://render.com/deploy/$RENDER_API_KEY \
+            -d '{"service":"cv-editor","image":"nat95aws1/cvon:latest"}'
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}

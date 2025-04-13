@@ -24,10 +24,11 @@ export const NameAndPosition = () => {
         {personalInfo.position}
       </Typography>
       <Typography tag="em" size="small" color="dark-9">
-        CV is made by my Cvon tool{" "}
+        {"CV is made by my "}
         <a href="http://cvon.anhthi.info/" target="_blank">
-          [link]
+          Cvon
         </a>
+        {" tool"}
       </Typography>
     </NameAndPositionContainer>
   );

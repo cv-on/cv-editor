@@ -25,7 +25,13 @@ jobs:
     name: Deploy to Render
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger redeploy on Render
+      - name: Redeploy Docker Hub Image on Render
         run: |
-          curl -X POST https://api.render.com/deploy/srv-cvr8uoi4d50c738g34a0 \
-            -H 'Authorization: Bearer ${{ secrets.RENDER_API_KEY }}'
+          curl -X PATCH https://api.render.com/v1/services/srv-cvr8uoi4d50c738g34a0 \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "dockerImage": {
+                "imagePath": "nat95aws1/cvon:latest"
+              }
+            }'

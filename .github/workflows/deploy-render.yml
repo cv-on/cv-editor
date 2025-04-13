@@ -25,9 +25,7 @@ jobs:
     name: Deploy to Render
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Render
+      - name: Trigger redeploy on Render
         run: |
-          curl -fsSL https://render.com/deploy/$RENDER_API_KEY \
-            -d '{"service":"cv-editor","image":"nat95aws1/cvon:latest"}'
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          curl -X POST https://api.render.com/deploy/srv-cvr8uoi4d50c738g34a0 \
+            -H 'Authorization: Bearer ${{ secrets.RENDER_API_KEY }}'
